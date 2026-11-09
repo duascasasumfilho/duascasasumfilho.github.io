@@ -1,0 +1,9 @@
+.playwright-mcp/
+node_modules/
+*.log
+
+
+# Arquivos com dados dos profissionais: ficam só no computador
+BRIEFING.md
+CONTEUDO_SITE.md
+
