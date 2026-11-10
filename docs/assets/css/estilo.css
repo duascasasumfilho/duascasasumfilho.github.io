@@ -37,6 +37,7 @@
 }
 
 :root {
+  color-scheme: light;       /* o site tem só o tema claro */
   /* ----- CORES: cada cor tem um papel fixo ----- */
   --papel: #FDF6EE;          /* luz da manhã: fundo das páginas */
   --abraco: #FFF0E3;         /* tom mais quente: capa, resumo, avisos */
@@ -180,7 +181,8 @@ kbd { font: inherit; font-weight: 700; padding: 0 0.3em; border: 1px solid var(-
 .miolo {
   max-width: var(--largura);
   margin: 0 auto;
-  padding: 0 var(--borda);
+  /* em celulares com recorte na tela (deitados), o conteúdo não fica escondido */
+  padding: 0 max(var(--borda), env(safe-area-inset-right)) 0 max(var(--borda), env(safe-area-inset-left));
 }
 
 /* ---------- Cabeçalho, menu e Sair rápido ---------- */
@@ -712,8 +714,40 @@ kbd { font: inherit; font-weight: 700; padding: 0 0.3em; border: 1px solid var(-
   .linha[open] .linha-corpo, .pergunta[open] > div, .servico[open] .servico-corpo, .menu[open] nav { opacity: 0; transform: translateY(-0.4rem); }
 }
 
+/* Cartões que abrem e fecham sem "pulo": a altura acompanha o conteúdo.
+   Abrir leva 240ms; fechar é mais rápido (170ms). Navegadores sem suporte
+   simplesmente abrem de uma vez. */
+@supports (interpolate-size: allow-keywords) {
+  :root { interpolate-size: allow-keywords; }
+  .linha::details-content, .pergunta::details-content, .servico::details-content {
+    block-size: 0;
+    overflow: clip;
+    transition: block-size 170ms var(--suavizar), content-visibility 170ms allow-discrete;
+  }
+  .linha[open]::details-content, .pergunta[open]::details-content, .servico[open]::details-content {
+    block-size: auto;
+    transition-duration: 240ms;
+  }
+}
+
+/* Retorno ao toque nos cartões e nos telefones */
+.linha > summary, .pergunta > summary, .servico > summary { transition: background-color 120ms ease; }
+.linha > summary:active { background: rgb(31 46 53 / 0.05); }
+.pergunta > summary:active, .servico > summary:active { background: var(--abraco); }
+.linha > summary:focus-visible, .pergunta > summary:focus-visible, .servico > summary:focus-visible { border-radius: var(--raio-cartao); outline-offset: 2px; }
+.telefones a { transition: background-color 160ms ease, transform 160ms var(--suavizar); }
+.telefones a:active { transform: scale(0.98); }
+
+/* Quem pede menos movimento: sem deslizes, sem animar altura nem tamanho.
+   Mudanças de cor e de borda continuam, porque ajudam a entender o que mudou. */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  *, *::before, *::after {
+    animation: none !important;
+    scroll-behavior: auto !important;
+    transition-property: color, background-color, border-color, opacity !important;
+  }
+  .linha::details-content, .pergunta::details-content, .servico::details-content { transition: none !important; }
+  .botao:active, .menu > summary:active, .sair-rapido:active, .atalho:active, .quiz-opcoes button:active, .telefones a:active { transform: none; }
 }
 
 /* ---------- Telas maiores ---------- */

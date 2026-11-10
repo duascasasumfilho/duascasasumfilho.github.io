@@ -51,6 +51,7 @@ Abra `docs/data/rede-apoio.js`. Cada órgão tem:
 - `"endereco"`: o endereço completo, entre aspas;
 - `"telefones"`: a lista de telefones, por exemplo `["(31) 3333-3333", "(31) 98888-8888"]`;
 - `"unidades"`: para órgãos com mais de um endereço, como o Conselho Tutelar;
+- `"categoria"`: em que grupo o órgão aparece na página: `"protecao"` (Proteção), `"juridico"` (Jurídico) ou `"saude"` (Saúde e assistência). A ordem dos órgãos no arquivo é a ordem em que aparecem;
 - `"verificado"`: troque para `true` **só depois de confirmar** o endereço por telefone (156) ou pessoalmente;
 - `"lat"` e `"lng"`: coordenadas do prédio, para aparecer o pino no mapa. Para pegar, clique com o botão direito no prédio no Google Maps e clique nos números. **Nunca invente coordenadas.**
 

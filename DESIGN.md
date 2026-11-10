@@ -1,7 +1,7 @@
 ---
 name: Duas Casas, Um Filho
 description: "Casa com luz": guia acolhedor para pais e mães em separação. Fundo de luz da manhã, ilustrações em traço das duas casas e quatro caminhos com cor própria.
-status: proposta em aprovação (ramo visual-acolhedor, 10/11/2026). O site publicado ainda usa o visual "Guia de linhas" (marca site-v1-azul).
+status: aprovado pelo Pedro em 10/11/2026 e aplicado no ramo visual-acolhedor. O visual anterior ("Guia de linhas") está na marca site-v1-azul.
 colors:
   papel: "#FDF6EE"
   superficie: "#FFFFFF"
@@ -177,7 +177,9 @@ O site é plano. A profundidade vem do tom do fundo (papel, abraço, cartão bra
 - **Emergência:** faixa azul-petróleo com quatro números grandes em amarelo, em blocos claros translúcidos.
 - **Rodapé:** aviso legal, compartilhar, créditos e logo da Afya nas cores originais.
 
-Movimento: botões encolhem para 97% ao toque. Cartões abrem com deslize curto e a seta gira. Tudo desliga com "reduzir movimento".
+Movimento: botões encolhem para 97% ao toque (160ms). Cartões (portas, perguntas, serviços) crescem até a altura do conteúdo: 240ms para abrir, 170ms para fechar; a seta gira. Com "reduzir movimento", saem os deslizes e a animação de altura, e ficam só as mudanças de cor.
+
+Tecla Esc: fecha o menu; com o menu fechado, faz o mesmo que o Sair rápido.
 
 ## Do's and Don'ts
 
