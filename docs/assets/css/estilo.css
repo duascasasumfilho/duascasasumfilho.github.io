@@ -490,6 +490,11 @@ small { font-size: var(--t-pequeno); color: var(--suave); }
   border: 1px solid var(--fio);
   margin: var(--e-4) 0;
 }
+#caixa-mapa { margin-top: var(--e-7); }
+#caixa-mapa [hidden] { display: none; }
+#mapa.leaflet-container { font: inherit; font-size: var(--t-pequeno); }
+.mapa-balao { display: grid; gap: 0.15rem; line-height: 1.35; }
+.mapa-balao strong { color: var(--campo); }
 .servicos { margin: var(--e-4) 0; border-bottom: 1px solid var(--fio); }
 .servico { border-top: 1px solid var(--fio); padding: var(--e-4) 0 var(--e-5); }
 .servico h3 { margin: 0 0 var(--e-1); }

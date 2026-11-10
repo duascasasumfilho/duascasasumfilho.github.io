@@ -15,7 +15,7 @@
 - No começo de `ferramentas/montar-site.mjs` ficam três listas: `PAGINAS` (todas as páginas), `GRUPOS` (como o menu agrupa as páginas) e `LINHAS` (os quatro caminhos de leitura da página inicial). No conteúdo, `<!-- PARADAS 2 -->` vira a lista de páginas do caminho 2 e `<!-- SETA -->` vira a seta.
 - `conteudo/404.html` vira `docs/404.html`, a página de erro; ela não entra no menu.
 - Quem chega por uma porta navega com `?linha=N` no endereço. O `site.js` mostra "Página X de Y" e a próxima página. Nada é guardado no aparelho.
-- Rede de apoio: `docs/data/rede-apoio.js` (aceita `telefones` em lista e `unidades` para órgãos com vários endereços). O mapa (Leaflet) só aparece se houver órgão verificado com lat/lng.
+- Rede de apoio: `docs/data/rede-apoio.js` (aceita `telefones` em lista e `unidades` para órgãos com vários endereços). Coordenadas ficam no órgão ou em cada unidade. O mapa (Leaflet, em `docs/assets/leaflet/`) só carrega quando a pessoa toca em "Mostrar o mapa"; antes disso o site não faz pedido externo.
 - Quiz: `docs/assets/js/quiz.js`. No fim, ele convida para o questionário dos pais (Google Forms).
 - Logo da Afya: `docs/assets/img/afya.png`, ligado por `MOSTRAR_LOGO_AFYA` no montador.
 - Capa do WhatsApp: `ferramentas/capa-whatsapp.html`. Para gerar a imagem, sirva a pasta do projeto e tire um screenshot de 1200x630, salvando em `docs/assets/img/capa.png`.

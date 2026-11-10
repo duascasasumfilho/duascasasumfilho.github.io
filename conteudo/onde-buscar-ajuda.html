@@ -17,12 +17,14 @@ scripts: data/rede-apoio.js, assets/js/ajuda.js
   </ul>
 </div>
 
-<div id="caixa-mapa" hidden>
-  <h2>Mapa</h2>
-  <div id="mapa" role="region" aria-label="Mapa dos serviços de apoio"></div>
-</div>
-
 <h2>Serviços</h2>
 <p>Endereços e telefones conferidos pelo grupo em novembro de 2026. Horários podem mudar: antes de ir, ligue e confirme. Em dúvida sobre qual serviço procurar, a Prefeitura atende pelo <a href="tel:156">156</a>.</p>
 <div id="lista-servicos" class="servicos"></div>
 <noscript><p>Para ver a lista de serviços, ative o JavaScript do navegador.</p></noscript>
+
+<section id="caixa-mapa" hidden aria-labelledby="titulo-mapa">
+  <h2 id="titulo-mapa">Mapa</h2>
+  <p>Todos os lugares da lista em um só mapa. As imagens do mapa vêm do OpenStreetMap e só carregam se você pedir.</p>
+  <button type="button" class="botao botao--contorno" id="mostrar-mapa">Mostrar o mapa</button>
+  <div id="mapa" role="region" aria-label="Mapa dos serviços de apoio" hidden></div>
+</section>

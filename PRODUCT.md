@@ -36,7 +36,7 @@ O site mostra a "via de mão dupla" com o mesmo peso: a acusação de alienaçã
 - Todo conteúdo jurídico e psicológico vem do briefing do projeto. Nada de leis, dados, números, falas ou coordenadas inventados.
 - Trechos pendentes ficam marcados com `<!-- REVISAR -->` e com a caixa `.em-revisao`.
 - Nome de profissional só aparece com autorização. Em 10/11/2026 todos os profissionais ouvidos autorizaram nome e registro. Contatos pessoais deles, matrícula e e-mail de alunos nunca aparecem.
-- O mapa só mostra órgãos com endereço verificado e coordenadas reais.
+- O mapa só mostra órgãos com endereço verificado e coordenadas reais, e só carrega quando a pessoa toca em "Mostrar o mapa". O Leaflet fica no próprio site; só as imagens do mapa vêm do OpenStreetMap.
 - O conteúdo só é publicado depois da revisão do professor orientador. O professor já autorizou o logo da Afya, o questionário dos pais e o folder com QR Code.
 - Endereço previsto: https://duascasasumfilho.github.io/ (organização gratuita no GitHub).
 
@@ -53,8 +53,7 @@ O site mostra a "via de mão dupla" com o mesmo peso: a acusação de alienaçã
 
 - Pesquisa de campo qualitativa (outubro e novembro de 2026) com advogadas e advogados de família e uma psicóloga, citados pelo nome com autorização. A Vara de Família não respondeu ao ofício e não é fonte do site.
 - Base legal conferida: CF art. 227, ECA, Código Civil (art. 1.584, § 2º), Lei 11.340/2006 (arts. 7º, VI; 9º, § 8º; 28), Lei 12.318/2010, Lei 14.340/2022, Lei 13.431/2017, Lei 14.713/2023, Lei 15.384/2026, CPC e Recomendação CNJ 157/2024. Cartilha do Divórcio para os Pais (CNJ 2013; TJMG 2020).
-- Rede de apoio de Sete Lagoas com 13 órgãos, endereços e telefones conferidos pelo grupo em 10/11/2026.
-- Dois endereços verificados da rede de apoio (Fórum e OAB). Os demais aguardam confirmação.
+- Rede de apoio de Sete Lagoas com 13 órgãos (21 endereços), com endereços, telefones e coordenadas conferidos pelo grupo em 10/11/2026.
 - Não existem fotos, depoimentos de famílias nem estatística própria. Nada disso deve ser criado.
 
 ## Product Principles

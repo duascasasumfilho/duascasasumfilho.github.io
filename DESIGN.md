@@ -173,7 +173,7 @@ O site é plano. A única sombra é a do menu aberto, que cai sobre o conteúdo 
 - **Em revisão (`.em-revisao`):** fundo amarelo-claro com borda tracejada. Marca conteúdo que o grupo ainda vai confirmar.
 - **Emergência:** quatro números grandes em amarelo sobre campo, separados por fio.
 - **Rodapé:** aviso legal, botão de compartilhar, créditos e o logo da Afya nas cores originais (rosa da marca), com 7,5rem de largura. O rosa aparece só no logo, nunca como cor do site.
-- **Rede de apoio:** cada órgão é um bloco separado por fio, com selo, para que serve, endereço, horário e botões "Ligar" e "Abrir no mapa". Órgãos com vários endereços listam as unidades, recuadas, logo abaixo.
+- **Rede de apoio:** cada órgão é um bloco separado por fio, com selo, para que serve, endereço, horário e botões "Ligar" e "Abrir no mapa". Órgãos com vários endereços listam as unidades, recuadas, logo abaixo. O mapa fica depois da lista, atrás do botão "Mostrar o mapa", com pinos amarelos de contorno campo.
 - **Impressos:** o folder A5 (`ferramentas/folder.html`) e a capa do WhatsApp usam os mesmos tokens, fontes e o trajeto das duas casas.
 
 Movimento: botões encolhem para 97% ao toque (160ms). O conteúdo de linhas, perguntas e menu entra com um deslize curto (220ms). Setas giram em 180ms. Tudo desliga com "reduzir movimento".

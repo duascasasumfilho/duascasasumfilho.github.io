@@ -54,7 +54,7 @@ Abra `docs/data/rede-apoio.js`. Cada órgão tem:
 - `"verificado"`: troque para `true` **só depois de confirmar** o endereço por telefone (156) ou pessoalmente;
 - `"lat"` e `"lng"`: coordenadas do prédio, para aparecer o pino no mapa. Para pegar, clique com o botão direito no prédio no Google Maps e clique nos números. **Nunca invente coordenadas.**
 
-O mapa só aparece quando pelo menos um órgão conferido tiver coordenadas.
+Em órgãos com `"unidades"`, as coordenadas ficam dentro de cada unidade. O mapa só aparece quando pelo menos um lugar conferido tiver coordenadas, e só carrega quando a pessoa toca em "Mostrar o mapa".
 
 ---
 

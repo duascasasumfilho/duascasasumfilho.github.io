@@ -1,4 +1,4 @@
-// Página "Onde buscar ajuda": monta os cartões e o mapa a partir de data/rede-apoio.js
+// Página "Onde buscar ajuda": monta a lista de serviços e o mapa a partir de data/rede-apoio.js
 
 (function () {
   var lista = window.REDE_APOIO || [];
@@ -19,6 +19,10 @@
     return item.telefone ? [item.telefone] : [];
   }
 
+  function temCoordenada(item) {
+    return typeof item.lat === "number" && typeof item.lng === "number";
+  }
+
   // Monta os botões de ligar e de abrir no mapa
   function acoesPara(item, mostrarEndereco) {
     var acoes = el("div", "servico-acoes");
@@ -30,7 +34,8 @@
     });
     if (mostrarEndereco && item.endereco) {
       var mapa = el("a", "botao botao--contorno", "Abrir no mapa");
-      var busca = /Sete Lagoas/.test(item.endereco) ? item.endereco : item.endereco + ", Sete Lagoas/MG";
+      var busca = temCoordenada(item) ? item.lat + "," + item.lng
+        : (/Sete Lagoas/.test(item.endereco) ? item.endereco : item.endereco + ", Sete Lagoas/MG");
       mapa.href = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(busca);
       mapa.target = "_blank";
       mapa.rel = "noopener noreferrer";
@@ -70,34 +75,70 @@
     alvo.appendChild(card);
   });
 
-  // Mapa: só aparece se algum órgão conferido tiver coordenadas
-  var comPino = lista.filter(function (s) {
-    return s.verificado && typeof s.lat === "number" && typeof s.lng === "number";
+  // Mapa: só carrega quando a pessoa pede. Antes disso, a página não faz
+  // nenhum pedido a outro site. O Leaflet fica em assets/leaflet; as imagens
+  // do mapa vêm do OpenStreetMap.
+  var pinos = [];
+  lista.forEach(function (s) {
+    if (!s.verificado) return;
+    if (temCoordenada(s)) pinos.push({ titulo: s.nome, endereco: s.endereco, lat: s.lat, lng: s.lng });
+    (s.unidades || []).forEach(function (u) {
+      if (temCoordenada(u)) pinos.push({ titulo: s.nome, sub: u.nome, endereco: u.endereco, lat: u.lat, lng: u.lng });
+    });
   });
   if (!caixaMapa) return;
-  if (!comPino.length) { caixaMapa.hidden = true; return; }
+  if (!pinos.length) { caixaMapa.hidden = true; return; }
+  caixaMapa.hidden = false;
 
-  var css = document.createElement("link");
-  css.rel = "stylesheet";
-  css.href = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css";
-  document.head.appendChild(css);
+  var botaoMapa = document.getElementById("mostrar-mapa");
+  var areaMapa = document.getElementById("mapa");
+  if (!botaoMapa || !areaMapa) return;
 
-  var js = document.createElement("script");
-  js.src = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js";
-  js.onload = function () {
-    caixaMapa.hidden = false;
-    var mapa = L.map("mapa", { scrollWheelZoom: false });
-    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      maxZoom: 19,
-      attribution: "&copy; colaboradores do OpenStreetMap"
-    }).addTo(mapa);
-    var limites = [];
-    comPino.forEach(function (s) {
-      L.marker([s.lat, s.lng]).addTo(mapa).bindPopup("<strong>" + s.nome + "</strong>");
-      limites.push([s.lat, s.lng]);
+  function carregar(tag, atributos) {
+    return new Promise(function (ok, erro) {
+      var e = document.createElement(tag);
+      Object.keys(atributos).forEach(function (k) { e[k] = atributos[k]; });
+      e.onload = ok;
+      e.onerror = erro;
+      document.head.appendChild(e);
     });
-    if (limites.length === 1) mapa.setView(limites[0], 16);
-    else mapa.fitBounds(limites, { padding: [30, 30] });
-  };
-  document.body.appendChild(js);
+  }
+
+  botaoMapa.addEventListener("click", function () {
+    botaoMapa.disabled = true;
+    botaoMapa.textContent = "Carregando o mapa…";
+    Promise.all([
+      carregar("link", { rel: "stylesheet", href: "assets/leaflet/leaflet.css" }),
+      carregar("script", { src: "assets/leaflet/leaflet.js" })
+    ]).then(function () {
+      botaoMapa.hidden = true;
+      areaMapa.hidden = false;
+      var cor = getComputedStyle(document.documentElement);
+      var campo = cor.getPropertyValue("--campo").trim() || "#0F4C5C";
+      var quente = cor.getPropertyValue("--quente").trim() || "#F2B705";
+
+      var mapa = L.map(areaMapa, { scrollWheelZoom: false });
+      L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 19,
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+      }).addTo(mapa);
+
+      var limites = [];
+      pinos.forEach(function (p) {
+        var balao = el("div", "mapa-balao");
+        balao.appendChild(el("strong", null, p.titulo));
+        if (p.sub) balao.appendChild(el("span", null, p.sub));
+        if (p.endereco) balao.appendChild(el("span", null, p.endereco));
+        L.circleMarker([p.lat, p.lng], {
+          radius: 9, color: campo, weight: 3, fillColor: quente, fillOpacity: 1
+        }).addTo(mapa).bindPopup(balao);
+        limites.push([p.lat, p.lng]);
+      });
+      if (limites.length === 1) mapa.setView(limites[0], 16);
+      else mapa.fitBounds(limites, { padding: [24, 24] });
+    }).catch(function () {
+      botaoMapa.disabled = false;
+      botaoMapa.textContent = "Não foi possível carregar. Tentar de novo";
+    });
+  });
 })();

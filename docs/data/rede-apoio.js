@@ -11,23 +11,24 @@
   - "unidades": use quando o órgão tem mais de um endereço (cada unidade
     tem "nome", "endereco" e "telefones").
   - "lat" e "lng": coordenadas do prédio, para aparecer o pino no mapa.
+    Em órgãos com "unidades", as coordenadas ficam em cada unidade.
     Deixe null se não tiver certeza. NUNCA invente coordenadas.
     (Para pegar: no Google Maps, clique com o botão direito no prédio
     e clique nos números que aparecem; eles são copiados.)
   - Não apague as vírgulas entre os itens.
 
-  Endereços e telefones conferidos pelo grupo em 10/11/2026.
+  Endereços, telefones e coordenadas conferidos pelo grupo em 10/11/2026.
 */
 window.REDE_APOIO = [
   {
     "nome": "Fórum Des. Félix Generoso (Vara de Família)",
     "paraQue": "Onde correm os processos de guarda, convivência e pensão. A Vara de Família fica no piso 3, sala 320.",
-    "endereco": "Rua José Duarte de Paiva, 715, Jardim Cambuí, Sete Lagoas/MG, CEP 35700-059",
+    "endereco": "Rua José Duarte de Paiva, 715, Santa Luzia, Sete Lagoas/MG, CEP 35700-709",
     "telefones": ["(31) 3779-5900"],
     "horario": "Segunda a sexta, das 12h às 18h",
     "verificado": true,
-    "lat": null,
-    "lng": null
+    "lat": -19.45605121376857,
+    "lng": -44.25371763262431
   },
   {
     "nome": "Defensoria Pública de Minas Gerais (Sete Lagoas)",
@@ -36,8 +37,8 @@ window.REDE_APOIO = [
     "telefones": ["(31) 3774-0104", "(31) 98464-8285"],
     "horario": "Segunda a sexta, das 8h às 17h. A triagem acontece de preferência das 8h às 15h ou com agendamento.",
     "verificado": true,
-    "lat": null,
-    "lng": null
+    "lat": -19.455153784355335,
+    "lng": -44.253741849093494
   },
   {
     "nome": "Núcleo de Prática Jurídica (NPJ) da Afya Sete Lagoas",
@@ -46,8 +47,8 @@ window.REDE_APOIO = [
     "telefones": ["(31) 4040-4724", "(31) 98402-1619"],
     "horario": "Segunda a sexta, em horário comercial, com triagem e agendamento na secretaria do NPJ. Nas férias (janeiro e julho) costuma não receber casos novos.",
     "verificado": true,
-    "lat": null,
-    "lng": null
+    "lat": -19.42936561043172,
+    "lng": -44.23484923375131
   },
   {
     "nome": "Núcleo de Prática Jurídica do UNIFEMM",
@@ -56,8 +57,8 @@ window.REDE_APOIO = [
     "telefones": ["(31) 2106-2106"],
     "horario": "Nas férias (janeiro e julho) costuma não receber casos novos.",
     "verificado": true,
-    "lat": null,
-    "lng": null
+    "lat": -19.482577154436356,
+    "lng": -44.266795201744436
   },
   {
     "nome": "Núcleo de Prática Jurídica da Faculdade Promove",
@@ -66,8 +67,8 @@ window.REDE_APOIO = [
     "telefones": ["(31) 99532-3635"],
     "horario": "Nas férias (janeiro e julho) costuma não receber casos novos.",
     "verificado": true,
-    "lat": null,
-    "lng": null
+    "lat": -19.466313696254257,
+    "lng": -44.24479214994403
   },
   {
     "nome": "CEJUSC da Comarca de Sete Lagoas",
@@ -76,21 +77,19 @@ window.REDE_APOIO = [
     "telefones": ["(31) 3771-9472", "(31) 99535-3968"],
     "horario": "Atendimento presencial das 9h às 18h. Também é possível pedir informações e pré-agendar pelos telefones.",
     "verificado": true,
-    "lat": null,
-    "lng": null
+    "lat": -19.462591218421274,
+    "lng": -44.243664627795
   },
   {
     "nome": "Conselho Tutelar de Sete Lagoas",
     "paraQue": "Recebe denúncias de violação de direitos de crianças e adolescentes. A cidade tem três setores; procure o do seu bairro.",
     "horario": "Segunda a sexta, das 8h às 17h, com plantão 24 horas para urgências e fins de semana.",
     "unidades": [
-      { "nome": "Setor I", "endereco": "Rua Coronel Antônio Andrade, 1376, São Geraldo, CEP 35700-193", "telefones": ["(31) 3773-9851"] },
-      { "nome": "Setor II", "endereco": "Rua Congonhas do Campo, 336, Esperança, CEP 35701-039", "telefones": ["(31) 3776-4671"] },
-      { "nome": "Setor III", "endereco": "Rua Quintino Bocaiúva, 996, Centro, CEP 35700-053", "telefones": ["(31) 3774-1522"] }
+      { "nome": "Setor I", "endereco": "Rua Coronel Antônio Andrade, 1376, São Geraldo, CEP 35700-193", "telefones": ["(31) 3773-9851"], "lat": -19.469897319950505, "lng": -44.24553108558262 },
+      { "nome": "Setor II", "endereco": "Rua Congonhas do Campo, 336, Esperança, CEP 35701-039", "telefones": ["(31) 3776-4671"], "lat": -19.440759239380387, "lng": -44.23605683654322 },
+      { "nome": "Setor III", "endereco": "Rua Quintino Bocaiúva, 996, Centro, CEP 35700-053", "telefones": ["(31) 3774-1522"], "lat": -19.45414774920432, "lng": -44.24899726258676 }
     ],
-    "verificado": true,
-    "lat": null,
-    "lng": null
+    "verificado": true
   },
   {
     "nome": "CREAS",
@@ -99,23 +98,21 @@ window.REDE_APOIO = [
     "telefones": ["(31) 3774-7585"],
     "horario": "Segunda a sexta, das 8h às 17h",
     "verificado": true,
-    "lat": null,
-    "lng": null
+    "lat": -19.46022958625092,
+    "lng": -44.2381567337495
   },
   {
     "nome": "CRAS e Secretaria Municipal de Assistência Social",
     "paraQue": "Apoio social às famílias, perto de casa. A Secretaria informa qual CRAS atende o seu bairro.",
     "horario": "Segunda a sexta, das 8h às 17h",
     "unidades": [
-      { "nome": "Secretaria de Assistência Social (central)", "endereco": "Rua Quintino Bocaiúva, 618, Centro, CEP 35700-845", "telefones": ["(31) 3773-7692"] },
-      { "nome": "CRAS Centro", "endereco": "Rua Niterói, 100, Canaã, CEP 35700-290", "telefones": ["(31) 3773-5598"] },
-      { "nome": "CRAS JK", "endereco": "Av. Dalton, 914, JK, CEP 35702-201", "telefones": ["(31) 3775-2146"] },
-      { "nome": "CRAS Brasília", "endereco": "Rua Ulisses Alberto Araújo, 317, Brasília, CEP 35702-013", "telefones": ["(31) 3776-9304"] },
-      { "nome": "CRAS Várzea", "endereco": "Rua Claudionor Olinto Martins, 30, São Geraldo", "telefones": ["(31) 3771-4542"] }
+      { "nome": "Secretaria de Assistência Social (central)", "endereco": "Rua Quintino Bocaiúva, 618, Centro, CEP 35700-845", "telefones": ["(31) 3773-7692"], "lat": -19.457490536941503, "lng": -44.24912706443688 },
+      { "nome": "CRAS Centro", "endereco": "Rua Niterói, 100, Canaã, CEP 35700-290", "telefones": ["(31) 3773-5598"], "lat": -19.464112666125715, "lng": -44.25108000491404 },
+      { "nome": "CRAS JK", "endereco": "Av. Dalton, 914, JK, CEP 35702-201", "telefones": ["(31) 3775-2146"], "lat": -19.417542000438726, "lng": -44.24883477608009 },
+      { "nome": "CRAS Brasília", "endereco": "Rua Ulisses Alberto Araújo, 317, Brasília, CEP 35702-013", "telefones": ["(31) 3776-9304"], "lat": -19.464747987938757, "lng": -44.20457516258564 },
+      { "nome": "CRAS Várzea", "endereco": "Rua Claudionor Olinto Martins, 30, São Geraldo", "telefones": ["(31) 3771-4542"], "lat": -19.476466973041095, "lng": -44.242409720257385 }
     ],
-    "verificado": true,
-    "lat": null,
-    "lng": null
+    "verificado": true
   },
   {
     "nome": "Delegacia Especializada de Atendimento à Mulher (DEAM)",
@@ -124,21 +121,19 @@ window.REDE_APOIO = [
     "telefones": ["(31) 3773-9305"],
     "horario": "Segunda a sexta, das 8h às 12h e das 13h às 17h",
     "verificado": true,
-    "lat": null,
-    "lng": null
+    "lat": -19.45705996246092,
+    "lng": -44.265092162585816
   },
   {
     "nome": "CAPS (saúde mental pelo SUS)",
     "paraQue": "Atendimento em saúde mental pelo SUS. O CAPS Infantil atende crianças e adolescentes.",
     "horario": "Segunda a sexta, das 7h às 17h",
     "unidades": [
-      { "nome": "CAPS Infantil (CAPSi)", "endereco": "Rua Floriano Peixoto, 259, Centro, CEP 35700-048", "telefones": ["(31) 3772-1371"] },
-      { "nome": "CAPS II (adultos)", "endereco": "Rua Floriano Peixoto, 66, Centro, CEP 35700-048", "telefones": ["(31) 3773-3244"] },
-      { "nome": "CAPS Álcool e Drogas (CAPSad)", "endereco": "Rua Milão, 15, Jardim Europa, CEP 35701-455", "telefones": ["(31) 3773-7188"] }
+      { "nome": "CAPS Infantil (CAPSi)", "endereco": "Rua Floriano Peixoto, 259, Centro, CEP 35700-048", "telefones": ["(31) 3772-1371"], "lat": -19.462920376967602, "lng": -44.24900136258596 },
+      { "nome": "CAPS II (adultos)", "endereco": "Rua Floriano Peixoto, 66, Centro, CEP 35700-048", "telefones": ["(31) 3773-3244"], "lat": -19.46299661879142, "lng": -44.24720172025759 },
+      { "nome": "CAPS Álcool e Drogas (CAPSad)", "endereco": "Rua Milão, 15, Jardim Europa, CEP 35701-455", "telefones": ["(31) 3773-7188"], "lat": -19.429794267965992, "lng": -44.23590527607939 }
     ],
-    "verificado": true,
-    "lat": null,
-    "lng": null
+    "verificado": true
   },
   {
     "nome": "Promotoria de Justiça da Infância e Juventude (MPMG)",
@@ -147,17 +142,17 @@ window.REDE_APOIO = [
     "telefones": ["(31) 3776-8310", "(31) 98492-8811"],
     "horario": "Segunda a sexta, das 12h às 18h",
     "verificado": true,
-    "lat": null,
-    "lng": null
+    "lat": -19.455968500851117,
+    "lng": -44.25459076258562
   },
   {
     "nome": "OAB/MG, 46ª Subseção (Sete Lagoas)",
     "paraQue": "Ordem dos Advogados. Pode orientar sobre como encontrar um advogado.",
-    "endereco": "Rua Professor João Fernandino Júnior, 354, Centro, Sete Lagoas/MG, CEP 35700-014",
+    "endereco": "Rua Professor Fernandino Júnior, 354, Centro, Sete Lagoas/MG, CEP 35700-014",
     "telefones": ["(31) 3771-8982"],
     "horario": "Segunda a sexta, das 9h às 18h",
     "verificado": true,
-    "lat": null,
-    "lng": null
+    "lat": -19.463175750323302,
+    "lng": -44.24247380491445
   }
 ];
