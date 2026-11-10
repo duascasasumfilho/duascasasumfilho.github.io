@@ -91,7 +91,7 @@ Os dois foram autorizados pelo professor e estão no ar:
 
 - O folder A5, frente e verso, está pronto em `impressos/folder-a5.pdf`. Para imprimir: tamanho A5, frente e verso, sem margens.
 - Para mudar o texto do folder, edite `ferramentas/folder.html` e gere o PDF de novo (as instruções estão no começo do arquivo).
-- Os QR Codes ficam em `impressos/qrcodes/`. Use `site.svg` (ou `site.png`) no material impresso. Há também um QR Code por local de distribuição (`forum`, `cras`, `escolas` etc.); eles levam ao mesmo site, com `?origem=local` no endereço. Só servem para medir o alcance se o grupo ligar um contador de visitas sem cookies, como o GoatCounter.
+- Os QR Codes ficam em `impressos/qrcodes/`. Use `site.svg` (ou `site.png`) no material impresso. Há também um QR Code por local de distribuição (`forum`, `cras`, `escolas` etc.); eles levam ao mesmo site, com `?origem=local` no endereço. O contador de visitas (GoatCounter) registra de qual QR Code cada pessoa veio. Veja a seção "Contador de visitas".
 
 ---
 
@@ -104,6 +104,16 @@ O endereço do site será **https://duascasasumfilho.github.io/**.
 3. Envie este projeto para esse repositório (o Claude Code pode fazer isso, com a sua autorização).
 4. No repositório, abra **Settings** → **Pages**. Em **Branch**, escolha `main` e a pasta `/docs`. Salve.
 5. Em alguns minutos o site abre no endereço acima.
+
+---
+
+## Contador de visitas (GoatCounter)
+
+O site conta as visitas pelo GoatCounter, que não usa cookies e não identifica ninguém. O endereço do contador fica em `CONTADOR_VISITAS`, no começo de `ferramentas/montar-site.mjs` (deixe `""` para desligar).
+
+- Para ver os números, entre em https://duascasasumfilho.goatcounter.com com a conta do grupo.
+- As visitas que vieram de um QR Code aparecem como **qr-forum**, **qr-cras**, **qr-escolas** etc.
+- No computador do grupo (endereço 127.0.0.1), nada é contado.
 
 ---
 
@@ -138,4 +148,4 @@ Depois abra no navegador: http://127.0.0.1:8080
 
 ## Privacidade
 
-O site não coleta dados, não usa cookies e não tem formulário próprio. O quiz funciona só no aparelho de quem usa. O questionário dos pais fica no Google Forms, fora do site.
+O site não coleta dados pessoais, não usa cookies e não tem formulário próprio. Ele só conta as visitas (GoatCounter), sem saber quem visitou. O quiz funciona só no aparelho de quem usa. O questionário dos pais fica no Google Forms, fora do site.

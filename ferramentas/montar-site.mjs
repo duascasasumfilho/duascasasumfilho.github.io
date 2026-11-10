@@ -62,6 +62,14 @@ const LOGO_AFYA = MOSTRAR_LOGO_AFYA
   ? `      <p class="rodape-logo"><img src="assets/img/afya.png" alt="Afya Faculdade Sete Lagoas" width="379" height="150" loading="lazy"></p>`
   : `      <!-- espaço reservado para o logo da Afya (ver MOSTRAR_LOGO_AFYA no montador) -->`;
 
+// CONTADOR DE VISITAS (GoatCounter, sem cookies e sem dados pessoais).
+// Pedido pelo Pedro em 10/11/2026. Para desligar, deixe as aspas vazias: "".
+const CONTADOR_VISITAS = "https://duascasasumfilho.goatcounter.com/count";
+const SCRIPT_CONTADOR = CONTADOR_VISITAS
+  ? `
+  <script src="assets/js/contador.js" data-endpoint="${CONTADOR_VISITAS}" defer></script>`
+  : "";
+
 const ROTULO = Object.fromEntries(PAGINAS);
 
 const LOGO = `<svg viewBox="0 0 48 48" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
@@ -234,12 +242,12 @@ ${miolo}
       <a class="compartilhar botao" href="https://wa.me/?text=${textoWhats}" rel="noopener noreferrer" target="_blank">Compartilhar no WhatsApp</a>
       <p>Projeto de Extensão do curso de Direito da Afya Faculdade Sete Lagoas, sob orientação do Prof. Filipe Garcia. <a href="sobre-o-projeto.html">Conheça o projeto</a>.</p>
 ${LOGO_AFYA}
-      <p>Este site não usa cookies e não coleta seus dados. O botão Sair rápido, no alto da página, troca este site por uma página de previsão do tempo.</p>
+      <p>Este site não usa cookies e não coleta seus dados. Ele só conta as visitas, sem saber quem visitou. O botão Sair rápido, no alto da página, troca este site por uma página de previsão do tempo.</p>
     </div>
   </footer>
 
   <script type="application/json" id="dados-linhas">${dadosLinhas}</script>
-  <script src="assets/js/site.js" defer></script>
+  <script src="assets/js/site.js" defer></script>${SCRIPT_CONTADOR}
   ${extrasScripts}
 </body>
 </html>

@@ -32,7 +32,7 @@ O site mostra a "via de mão dupla" com o mesmo peso: a acusação de alienaçã
 ## Capabilities and Constraints
 
 - HTML, CSS e JS puros, sem dependências. Os textos ficam em `conteudo/`; `ferramentas/montar-site.mjs` gera `docs/`, publicada pelo GitHub Pages.
-- Não coleta dados pessoais, não usa cookies e não tem formulário próprio.
+- Não coleta dados pessoais, não usa cookies e não tem formulário próprio. Conta visitas pelo GoatCounter (sem cookies, sem identificar ninguém), inclusive de qual QR Code a pessoa veio.
 - Todo conteúdo jurídico e psicológico vem do briefing do projeto. Nada de leis, dados, números, falas ou coordenadas inventados.
 - Trechos pendentes ficam marcados com `<!-- REVISAR -->` e com a caixa `.em-revisao`.
 - Nome de profissional só aparece com autorização. Em 10/11/2026 todos os profissionais ouvidos autorizaram nome e registro. Contatos pessoais deles, matrícula e e-mail de alunos nunca aparecem.

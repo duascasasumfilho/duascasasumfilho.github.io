@@ -16,6 +16,7 @@
 - `conteudo/404.html` vira `docs/404.html`, a página de erro; ela não entra no menu.
 - Quem chega por uma porta navega com `?linha=N` no endereço. O `site.js` mostra "Página X de Y" e a próxima página. Nada é guardado no aparelho.
 - Rede de apoio: `docs/data/rede-apoio.js` (aceita `telefones` em lista e `unidades` para órgãos com vários endereços). Coordenadas ficam no órgão ou em cada unidade. O mapa (Leaflet, em `docs/assets/leaflet/`) só carrega quando a pessoa toca em "Mostrar o mapa"; antes disso o site não faz pedido externo.
+- Contador de visitas: `docs/assets/js/contador.js` chama o GoatCounter (`goatcounter.js`, hospedado no site), com o endereço em `CONTADOR_VISITAS` no montador. Conta só o caminho da página e, com `?origem=`, um evento `qr-<local>`.
 - Quiz: `docs/assets/js/quiz.js`. No fim, ele convida para o questionário dos pais (Google Forms).
 - Logo da Afya: `docs/assets/img/afya.png`, ligado por `MOSTRAR_LOGO_AFYA` no montador.
 - Capa do WhatsApp: `ferramentas/capa-whatsapp.html`. Para gerar a imagem, sirva a pasta do projeto e tire um screenshot de 1200x630, salvando em `docs/assets/img/capa.png`.
