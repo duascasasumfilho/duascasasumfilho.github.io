@@ -5,5 +5,29 @@
       "maxFindings": 5,
       "maxChars": 8000
     }
+  },
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "oversized-h1",
+        "value": "*",
+        "files": [
+          "ferramentas/capa-whatsapp.html"
+        ],
+        "createdAt": "2026-11-10T04:19:47.567Z",
+        "reason": "Agent: arquivo e o molde da imagem de capa do WhatsApp (1200x630), nao uma pagina; o titulo grande e o proprio conteudo da imagem"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "*",
+        "files": [
+          "ferramentas/capa-whatsapp.html"
+        ],
+        "createdAt": "2026-11-10T04:19:48.256Z",
+        "reason": "Agent: falso positivo; a fonte usada e Barlow Semi Condensed, declarada no DESIGN.md, e o detector leu mal a forma abreviada font:"
+      }
+    ]
   }
 }
