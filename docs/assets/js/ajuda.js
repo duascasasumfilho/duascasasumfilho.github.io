@@ -44,20 +44,29 @@
     return acoes;
   }
 
+  // Cada órgão vira um cartão que abre e fecha. Fechado, mostra o nome e
+  // para que serve; aberto, mostra endereço, horário e os botões.
+  // O cartão vai para a seção da sua "categoria" (Proteção, Jurídico ou
+  // Saúde e assistência). Sem categoria, vai para a última seção.
+  var secoes = alvo.querySelectorAll("[data-categoria]");
+  var seta = '<svg class="seta" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>';
+
   lista.forEach(function (s) {
-    var card = el("article", "servico");
-    card.appendChild(el("h3", null, s.nome));
+    var card = el("details", "servico");
+    var resumo = el("summary");
+    resumo.appendChild(el("span", "servico-nome", s.nome));
+    resumo.insertAdjacentHTML("beforeend", seta);
+    if (s.paraQue) resumo.appendChild(el("span", "para-que", s.paraQue));
+    card.appendChild(resumo);
 
-    var selo = el("span", "selo " + (s.verificado ? "selo--ok" : "selo--confirmar"),
-      s.verificado ? "Endereço conferido" : "Endereço em confirmação");
-    card.appendChild(selo);
-
-    if (s.paraQue) card.appendChild(el("p", "para-que", s.paraQue));
-    if (s.verificado && s.endereco) card.appendChild(el("p", null, s.endereco));
-    if (s.horario) card.appendChild(el("p", null, "Horário: " + s.horario));
+    var corpo = el("div", "servico-corpo");
+    corpo.appendChild(el("span", "selo " + (s.verificado ? "selo--ok" : "selo--confirmar"),
+      s.verificado ? "Endereço conferido" : "Endereço em confirmação"));
+    if (s.verificado && s.endereco) corpo.appendChild(el("p", null, s.endereco));
+    if (s.horario) corpo.appendChild(el("p", null, "Horário: " + s.horario));
 
     var acoes = acoesPara(s, s.verificado);
-    if (acoes.children.length) card.appendChild(acoes);
+    if (acoes.children.length) corpo.appendChild(acoes);
 
     // Órgãos com mais de um endereço (por exemplo, os três setores do Conselho Tutelar)
     if (Array.isArray(s.unidades) && s.unidades.length) {
@@ -70,10 +79,14 @@
         if (acoesU.children.length) li.appendChild(acoesU);
         lista2.appendChild(li);
       });
-      card.appendChild(lista2);
+      corpo.appendChild(lista2);
     }
-    alvo.appendChild(card);
+    card.appendChild(corpo);
+
+    var destino = alvo.querySelector('[data-categoria="' + s.categoria + '"]') || secoes[secoes.length - 1] || alvo;
+    destino.appendChild(card);
   });
+
 
   // Mapa: só carrega quando a pessoa pede. Antes disso, a página não faz
   // nenhum pedido a outro site. O Leaflet fica em assets/leaflet; as imagens

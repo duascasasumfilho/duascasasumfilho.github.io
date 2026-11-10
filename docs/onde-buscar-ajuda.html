@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Onde buscar ajuda em Sete Lagoas | Duas Casas, Um Filho</title>
   <meta name="description" content="Fórum, OAB, Defensoria, CEJUSC, Conselho Tutelar, CREAS e outros serviços de apoio às famílias em Sete Lagoas.">
-  <meta name="theme-color" content="#F6F7F4">
+  <meta name="theme-color" content="#FDF6EE">
   <meta name="referrer" content="no-referrer">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://tile.openstreetmap.org https://duascasasumfilho.goatcounter.com; connect-src 'self' https://duascasasumfilho.goatcounter.com; font-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
   <link rel="canonical" href="https://duascasasumfilho.github.io/onde-buscar-ajuda.html">
@@ -23,7 +23,7 @@
   <link rel="icon" href="favicon.ico" sizes="32x32">
   <link rel="apple-touch-icon" href="assets/img/icone-180.png">
   <link rel="preload" href="assets/fontes/atkinson-hyperlegible-400.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="assets/fontes/barlow-semi-condensed-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fontes/lexend-600.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/css/estilo.css">
   
 </head>
@@ -35,7 +35,7 @@
       <a class="marca" href="./" aria-label="Duas Casas, Um Filho, página inicial"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
   <path d="M4 24 13 15l9 9v15H4Z"/>
   <path d="M26 24l9-9 9 9v15H26Z"/>
-  <circle cx="24" cy="31" r="3.5" fill="currentColor" stroke="none"/>
+  <circle class="crianca-ponto" cx="24" cy="31" r="4" fill="currentColor" stroke="none"/>
 </svg><span aria-hidden="true" translate="no">Duas Casas, <br>Um Filho</span></a>
       <details class="menu">
         <summary>Menu</summary>
@@ -71,7 +71,7 @@
                 <li><a href="sobre-o-projeto.html">Sobre o projeto</a></li>
               </ul>
             </div>
-            <p class="menu-nota">O botão <strong>Sair rápido</strong> troca este site por uma página de previsão do tempo.</p>
+            <p class="menu-nota">O botão <strong>Sair rápido</strong> troca este site por uma página de previsão do tempo. No computador, a tecla <kbd>Esc</kbd> faz o mesmo.</p>
           </div>
         </nav>
       </details>
@@ -81,24 +81,41 @@
 
   <main id="conteudo" class="conteudo">
     <div class="miolo">
-      <article class="coluna">
-<h1>Onde buscar ajuda em Sete Lagoas</h1>
+      <article class="coluna coluna--ampla">
+<div class="cabeca-pagina"><h1>Onde buscar ajuda em Sete Lagoas</h1><svg class="ilustra" viewBox="0 0 64 64" aria-hidden="true" focusable="false" fill="none" stroke="#0F4C5C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="36" r="24" fill="#E1ECF6" stroke="none"/><path d="M32 60S12 40 12 26a20 20 0 0 1 40 0c0 14-20 34-20 34Z"/><path d="M23 30l9-8 9 8v9H23Z"/><circle cx="32" cy="33" r="2.5" fill="#F2B705" stroke="none"/></svg></div>
 <p class="abertura">Você não precisa enfrentar isso sozinho(a). Aqui estão os lugares de Sete Lagoas e os telefones que podem ajudar com orientação jurídica, apoio psicológico, assistência social e proteção.</p>
 
 <div class="equilibrio">
   <h2>Não sabe por onde começar?</h2>
   <ul>
-    <li><strong>Em perigo:</strong> ligue 190.</li>
-    <li><strong>Violência contra a mulher:</strong> ligue 180 ou procure a Delegacia da Mulher.</li>
-    <li><strong>Direitos de uma criança em risco:</strong> procure o Conselho Tutelar ou ligue 100.</li>
-    <li><strong>Orientação jurídica gratuita:</strong> Defensoria Pública ou Núcleo de Prática Jurídica.</li>
-    <li><strong>Quer tentar um acordo:</strong> CEJUSC.</li>
+    <li><strong>Em perigo:</strong> ligue <a href="tel:190">190</a>.</li>
+    <li><strong>Violência contra a mulher:</strong> ligue <a href="tel:180">180</a> ou procure a <a href="#protecao">Delegacia da Mulher</a>.</li>
+    <li><strong>Direitos de uma criança em risco:</strong> procure o <a href="#protecao">Conselho Tutelar</a> ou ligue <a href="tel:100">100</a>.</li>
+    <li><strong>Orientação jurídica gratuita:</strong> <a href="#juridico">Defensoria Pública ou Núcleo de Prática Jurídica</a>.</li>
+    <li><strong>Quer tentar um acordo:</strong> <a href="#juridico">CEJUSC</a>.</li>
   </ul>
 </div>
 
-<h2>Serviços</h2>
 <p>Endereços e telefones conferidos pelo grupo em novembro de 2026. Horários podem mudar: antes de ir, ligue e confirme. Em dúvida sobre qual serviço procurar, a Prefeitura atende pelo <a href="tel:156">156</a>.</p>
-<div id="lista-servicos" class="servicos"></div>
+<nav class="atalhos" aria-label="Tipos de serviço">
+  <a class="atalho" href="#protecao"><svg class="icone-tema" viewBox="0 0 64 64" aria-hidden="true" focusable="false" fill="none" stroke="#0F4C5C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="34" r="24" fill="#F6E2E8" stroke="none"/><path d="M32 6l20 8v14c0 14-9 24-20 30-11-6-20-16-20-30V14Z"/><path d="M23 32l6 6 12-12"/></svg>Proteção</a>
+  <a class="atalho" href="#juridico"><svg class="icone-tema" viewBox="0 0 64 64" aria-hidden="true" focusable="false" fill="none" stroke="#0F4C5C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="34" r="24" fill="#E1ECF6" stroke="none"/><path d="M16 8h22l10 10v38H16Z"/><path d="M38 8v10h10M23 30h18M23 38h18"/><circle cx="44" cy="50" r="7" fill="#F2B705"/></svg>Jurídico</a>
+  <a class="atalho" href="#saude"><svg class="icone-tema" viewBox="0 0 64 64" aria-hidden="true" focusable="false" fill="none" stroke="#0F4C5C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="34" r="24" fill="#E3F0E6" stroke="none"/><path d="M32 54S8 40 8 24a12 12 0 0 1 24-4 12 12 0 0 1 24 4c0 16-24 30-24 30Z"/><path d="M32 26v14M25 33h14"/></svg>Saúde e assistência</a>
+</nav>
+<div id="lista-servicos">
+<section class="categoria" id="protecao" aria-labelledby="titulo-protecao">
+  <div class="categoria-cabeca"><svg class="icone-tema" viewBox="0 0 64 64" aria-hidden="true" focusable="false" fill="none" stroke="#0F4C5C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="34" r="24" fill="#F6E2E8" stroke="none"/><path d="M32 6l20 8v14c0 14-9 24-20 30-11-6-20-16-20-30V14Z"/><path d="M23 32l6 6 12-12"/></svg><h2 id="titulo-protecao">Proteção</h2></div>
+  <div class="servicos" data-categoria="protecao"></div>
+</section>
+<section class="categoria" id="juridico" aria-labelledby="titulo-juridico">
+  <div class="categoria-cabeca"><svg class="icone-tema" viewBox="0 0 64 64" aria-hidden="true" focusable="false" fill="none" stroke="#0F4C5C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="34" r="24" fill="#E1ECF6" stroke="none"/><path d="M16 8h22l10 10v38H16Z"/><path d="M38 8v10h10M23 30h18M23 38h18"/><circle cx="44" cy="50" r="7" fill="#F2B705"/></svg><h2 id="titulo-juridico">Jurídico</h2></div>
+  <div class="servicos" data-categoria="juridico"></div>
+</section>
+<section class="categoria" id="saude" aria-labelledby="titulo-saude">
+  <div class="categoria-cabeca"><svg class="icone-tema" viewBox="0 0 64 64" aria-hidden="true" focusable="false" fill="none" stroke="#0F4C5C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="34" r="24" fill="#E3F0E6" stroke="none"/><path d="M32 54S8 40 8 24a12 12 0 0 1 24-4 12 12 0 0 1 24 4c0 16-24 30-24 30Z"/><path d="M32 26v14M25 33h14"/></svg><h2 id="titulo-saude">Saúde e assistência</h2></div>
+  <div class="servicos" data-categoria="saude"></div>
+</section>
+</div>
 <noscript><p>Para ver a lista de serviços, ative o JavaScript do navegador.</p></noscript>
 
 <section id="caixa-mapa" hidden aria-labelledby="titulo-mapa">
@@ -130,7 +147,7 @@
       <a class="compartilhar botao" href="https://wa.me/?text=Onde%20buscar%20ajuda%20em%20Sete%20Lagoas%3A%20https%3A%2F%2Fduascasasumfilho.github.io%2Fonde-buscar-ajuda.html" rel="noopener noreferrer" target="_blank">Compartilhar no WhatsApp</a>
       <p>Projeto de Extensão do curso de Direito da Afya Faculdade Sete Lagoas, sob orientação do Prof. Filipe Garcia. <a href="sobre-o-projeto.html">Conheça o projeto</a>.</p>
       <p class="rodape-logo"><img src="assets/img/afya.png" alt="Afya Faculdade Sete Lagoas" width="379" height="150" loading="lazy"></p>
-      <p>Este site não usa cookies e não coleta seus dados. Ele só conta as visitas, sem saber quem visitou. O botão Sair rápido, no alto da página, troca este site por uma página de previsão do tempo.</p>
+      <p>Este site não usa cookies e não coleta seus dados. Ele só conta as visitas, sem saber quem visitou. O botão Sair rápido, no alto da página, troca este site por uma página de previsão do tempo. No computador, a tecla Esc faz o mesmo.</p>
     </div>
   </footer>
 

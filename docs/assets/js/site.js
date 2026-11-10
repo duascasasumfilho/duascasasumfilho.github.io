@@ -7,29 +7,36 @@
   // Troca a página por um site neutro sem deixar esta página no botão
   // "voltar" do navegador.
   var SITE_NEUTRO = "https://www.climatempo.com.br/";
+  function sairRapido() {
+    try { document.body.style.display = "none"; } catch (e) {}
+    window.location.replace(SITE_NEUTRO);
+  }
   var botao = document.querySelector(".sair-rapido");
   if (botao) {
     botao.addEventListener("click", function (evento) {
       evento.preventDefault();
-      try { document.body.style.display = "none"; } catch (e) {}
-      window.location.replace(SITE_NEUTRO);
+      sairRapido();
     });
   }
 
   // ---------- Menu ----------
-  // Fecha ao clicar fora dele ou apertar Esc
+  // Fecha ao clicar fora dele. A tecla Esc fecha o menu, se estiver
+  // aberto; se não estiver, Esc faz o mesmo que o botão "Sair rápido".
   var menu = document.querySelector(".menu");
   if (menu) {
     document.addEventListener("click", function (evento) {
       if (menu.open && !menu.contains(evento.target)) menu.open = false;
     });
-    document.addEventListener("keydown", function (evento) {
-      if (evento.key === "Escape" && menu.open) {
-        menu.open = false;
-        menu.querySelector("summary").focus();
-      }
-    });
   }
+  document.addEventListener("keydown", function (evento) {
+    if (evento.key !== "Escape" || evento.defaultPrevented) return;
+    if (menu && menu.open) {
+      menu.open = false;
+      menu.querySelector("summary").focus();
+      return;
+    }
+    sairRapido();
+  });
 
   function criar(tag, classe, texto) {
     var e = document.createElement(tag);
@@ -59,23 +66,36 @@
 
     var total = linha.paradas.length;
     document.body.style.setProperty("--cor", "var(--l" + linha.n + ")");
+    document.body.style.setProperty("--cor-clara", "var(--l" + linha.n + "-claro)");
 
-    // Faixa logo abaixo do cabeçalho
+    // Faixa logo abaixo do cabeçalho: o caminho, as paradas e a próxima
     var faixa = criar("div", "trilho");
     faixa.setAttribute("role", "note");
     var miolo = criar("div", "miolo");
+    var cartao = criar("div", "trilho-cartao");
     var num = criar("span", "num", String(linha.n));
     num.setAttribute("aria-hidden", "true");
-    var frase = criar("p", "trilho-frase", linha.frase);
-    var onde = criar("p", "trilho-onde");
-    onde.appendChild(criar("span", null, "Página " + (pos + 1) + " de " + total + " deste caminho"));
+    var frase = criar("p", "trilho-frase");
+    frase.appendChild(criar("span", null, "Caminho: "));
+    frase.appendChild(criar("strong", null, linha.frase));
     var pontos = criar("span", "trilho-pontos");
     pontos.setAttribute("aria-hidden", "true");
     for (var k = 0; k < total; k++) pontos.appendChild(criar("i", k < pos ? "feito" : k === pos ? "aqui" : null));
-    onde.appendChild(pontos);
-    miolo.appendChild(num);
-    miolo.appendChild(frase);
-    miolo.appendChild(onde);
+    var onde = criar("p", "trilho-onde");
+    onde.appendChild(criar("strong", null, "Parada " + (pos + 1) + " de " + total + ". "));
+    if (pos + 1 < total) {
+      onde.appendChild(document.createTextNode("Próxima: "));
+      var prox = criar("a", null, linha.paradas[pos + 1][1]);
+      prox.href = linha.paradas[pos + 1][0] + ".html?linha=" + linha.n;
+      onde.appendChild(prox);
+    } else {
+      onde.appendChild(document.createTextNode("Esta é a última parada deste caminho."));
+    }
+    cartao.appendChild(num);
+    cartao.appendChild(frase);
+    cartao.appendChild(pontos);
+    cartao.appendChild(onde);
+    miolo.appendChild(cartao);
     faixa.appendChild(miolo);
     principal.parentNode.insertBefore(faixa, principal);
 
@@ -87,7 +107,7 @@
       if (coluna) coluna.appendChild(proxima);
     }
     proxima.textContent = "";
-    var link = criar("a", "botao");
+    var link = criar("a", "botao botao--caminho");
     if (pos + 1 < total) {
       proxima.appendChild(criar("p", null, "Próxima página do seu caminho:"));
       link.href = linha.paradas[pos + 1][0] + ".html?linha=" + linha.n;
@@ -105,7 +125,8 @@
   // fecha; em telas largas fica fixo na lateral.
   (function () {
     var coluna = document.querySelector(".coluna");
-    if (!coluna) return;
+    // a coluna larga (rede de apoio) já tem atalhos próprios no topo
+    if (!coluna || coluna.classList.contains("coluna--ampla")) return;
     var titulos = [];
     var todos = coluna.querySelectorAll("h2");
     for (var i = 0; i < todos.length; i++) {

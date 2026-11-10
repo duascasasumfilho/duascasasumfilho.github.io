@@ -2,24 +2,32 @@
 
 (function () {
   // Para editar: troque o texto da pergunta, a resposta certa (true = Verdadeiro,
-  // false = Falso) e a explicação.
+  // false = Falso), a explicação e a página do site que explica o assunto.
   var PERGUNTAS = [
     { texto: "Se o outro genitor atrasa a pensão, posso suspender as visitas.", certa: false,
-      explicacao: "Pensão e convivência são independentes. Se a pensão atrasar, o caminho é procurar a Justiça, não impedir a visita." },
+      explicacao: "Pensão e convivência são independentes. Se a pensão atrasar, o caminho é procurar a Justiça, não impedir a visita.",
+      pagina: ["convivencia", "Convivência é direito do filho"] },
     { texto: "Guarda compartilhada significa que a criança passa metade do tempo em cada casa.", certa: false,
-      explicacao: "Guarda compartilhada significa dividir as decisões sobre a vida do filho. O tempo em cada casa pode ser diferente." },
+      explicacao: "Guarda compartilhada significa dividir as decisões sobre a vida do filho. O tempo em cada casa pode ser diferente.",
+      pagina: ["convivencia", "Convivência é direito do filho"] },
     { texto: "Se a criança não quer ver um dos pais, isso prova alienação parental.", certa: false,
-      explicacao: "Rejeição é sintoma, não diagnóstico. Pode ter muitas causas, e só uma avaliação profissional consegue entender." },
+      explicacao: "Rejeição é sintoma, não diagnóstico. Pode ter muitas causas, e só uma avaliação profissional consegue entender.",
+      pagina: ["o-que-e-alienacao-parental", "O que é e o que não é alienação parental"] },
     { texto: "Denunciar uma suspeita de abuso é sempre alienação parental.", certa: false,
-      explicacao: "Proteger não é alienar. Uma suspeita de abuso deve ser levada a sério e apurada pelos canais certos." },
+      explicacao: "Proteger não é alienar. Uma suspeita de abuso deve ser levada a sério e apurada pelos canais certos.",
+      pagina: ["quando-a-acusacao-vira-arma", "Quando a acusação vira arma"] },
     { texto: "Fazer uma denúncia falsa para afastar o outro genitor pode ser considerado alienação parental.", certa: true,
-      explicacao: "A Lei 12.318/2010 (art. 2º, parágrafo único, VI) prevê a falsa denúncia como forma de alienação parental." },
+      explicacao: "A Lei 12.318/2010 (art. 2º, parágrafo único, VI) prevê a falsa denúncia como forma de alienação parental.",
+      pagina: ["quando-a-acusacao-vira-arma", "Quando a acusação vira arma"] },
     { texto: "Em casos de violência doméstica, a mediação é sempre o melhor caminho.", certa: false,
-      explicacao: "A mediação não é indicada quando há violência, ameaça ou controle. Nesses casos, a proteção vem primeiro." },
+      explicacao: "A mediação não é indicada quando há violência, ameaça ou controle. Nesses casos, a proteção vem primeiro.",
+      pagina: ["mediacao-e-cejusc", "Mediação e CEJUSC"] },
     { texto: "Pedir que a criança grave o outro genitor ajuda a proteger meu filho.", certa: false,
-      explicacao: "Isso coloca a criança no meio do conflito e a torna responsável pela prova. Procure ajuda profissional." },
+      explicacao: "Isso coloca a criança no meio do conflito e a torna responsável pela prova. Procure ajuda profissional.",
+      pagina: ["protegendo-seu-filho", "Protegendo seu filho do conflito"] },
     { texto: "A Lei de Alienação Parental foi revogada.", certa: false,
-      explicacao: "A lei continua em vigor. Existe um projeto de revogação em discussão no Congresso. Veja a página O debate sobre a lei." }
+      explicacao: "A lei continua em vigor. Existe um projeto de revogação em discussão no Congresso. Veja a página O debate sobre a lei.",
+      pagina: ["debate-sobre-a-lei", "O debate sobre a lei"] }
   ];
 
   var alvo = document.getElementById("quiz");
@@ -70,6 +78,16 @@
         texto.appendChild(document.createTextNode(p.explicacao));
         resposta.innerHTML = "";
         resposta.appendChild(texto);
+        if (p.pagina) {
+          var mais = document.createElement("p");
+          mais.className = "quiz-mais";
+          mais.appendChild(document.createTextNode("Saiba mais: "));
+          var link = document.createElement("a");
+          link.href = p.pagina[0] + ".html";
+          link.textContent = p.pagina[1];
+          mais.appendChild(link);
+          resposta.appendChild(mais);
+        }
 
         if (respondidas === PERGUNTAS.length) mostrarResultado();
       });

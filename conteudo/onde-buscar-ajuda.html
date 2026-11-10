@@ -1,6 +1,7 @@
 <!--
 titulo: Onde buscar ajuda em Sete Lagoas
 descricao: Fórum, OAB, Defensoria, CEJUSC, Conselho Tutelar, CREAS e outros serviços de apoio às famílias em Sete Lagoas.
+largura: ampla
 scripts: data/rede-apoio.js, assets/js/ajuda.js
 -->
 <h1>Onde buscar ajuda em Sete Lagoas</h1>
@@ -9,17 +10,34 @@ scripts: data/rede-apoio.js, assets/js/ajuda.js
 <div class="equilibrio">
   <h2>Não sabe por onde começar?</h2>
   <ul>
-    <li><strong>Em perigo:</strong> ligue 190.</li>
-    <li><strong>Violência contra a mulher:</strong> ligue 180 ou procure a Delegacia da Mulher.</li>
-    <li><strong>Direitos de uma criança em risco:</strong> procure o Conselho Tutelar ou ligue 100.</li>
-    <li><strong>Orientação jurídica gratuita:</strong> Defensoria Pública ou Núcleo de Prática Jurídica.</li>
-    <li><strong>Quer tentar um acordo:</strong> CEJUSC.</li>
+    <li><strong>Em perigo:</strong> ligue <a href="tel:190">190</a>.</li>
+    <li><strong>Violência contra a mulher:</strong> ligue <a href="tel:180">180</a> ou procure a <a href="#protecao">Delegacia da Mulher</a>.</li>
+    <li><strong>Direitos de uma criança em risco:</strong> procure o <a href="#protecao">Conselho Tutelar</a> ou ligue <a href="tel:100">100</a>.</li>
+    <li><strong>Orientação jurídica gratuita:</strong> <a href="#juridico">Defensoria Pública ou Núcleo de Prática Jurídica</a>.</li>
+    <li><strong>Quer tentar um acordo:</strong> <a href="#juridico">CEJUSC</a>.</li>
   </ul>
 </div>
 
-<h2>Serviços</h2>
 <p>Endereços e telefones conferidos pelo grupo em novembro de 2026. Horários podem mudar: antes de ir, ligue e confirme. Em dúvida sobre qual serviço procurar, a Prefeitura atende pelo <a href="tel:156">156</a>.</p>
-<div id="lista-servicos" class="servicos"></div>
+<nav class="atalhos" aria-label="Tipos de serviço">
+  <a class="atalho" href="#protecao"><!-- ILUSTRA protecao -->Proteção</a>
+  <a class="atalho" href="#juridico"><!-- ILUSTRA juridico -->Jurídico</a>
+  <a class="atalho" href="#saude"><!-- ILUSTRA saude -->Saúde e assistência</a>
+</nav>
+<div id="lista-servicos">
+<section class="categoria" id="protecao" aria-labelledby="titulo-protecao">
+  <div class="categoria-cabeca"><!-- ILUSTRA protecao --><h2 id="titulo-protecao">Proteção</h2></div>
+  <div class="servicos" data-categoria="protecao"></div>
+</section>
+<section class="categoria" id="juridico" aria-labelledby="titulo-juridico">
+  <div class="categoria-cabeca"><!-- ILUSTRA juridico --><h2 id="titulo-juridico">Jurídico</h2></div>
+  <div class="servicos" data-categoria="juridico"></div>
+</section>
+<section class="categoria" id="saude" aria-labelledby="titulo-saude">
+  <div class="categoria-cabeca"><!-- ILUSTRA saude --><h2 id="titulo-saude">Saúde e assistência</h2></div>
+  <div class="servicos" data-categoria="saude"></div>
+</section>
+</div>
 <noscript><p>Para ver a lista de serviços, ative o JavaScript do navegador.</p></noscript>
 
 <section id="caixa-mapa" hidden aria-labelledby="titulo-mapa">
