@@ -17,7 +17,7 @@ const PASTA_SITE = join(RAIZ, "docs");
 const ENDERECO_SITE = "https://pedritoartist.github.io/duas-casas-um-filho/";
 const NOME_SITE = "Duas Casas, Um Filho";
 
-// Ordem das páginas no menu
+// Todas as páginas do site: [nome do arquivo, nome que aparece no menu]
 const PAGINAS = [
   ["index", "Início"],
   ["convivencia", "Convivência é direito do filho"],
@@ -34,11 +34,43 @@ const PAGINAS = [
   ["sobre-o-projeto", "Sobre o projeto"],
 ];
 
+// Como o menu agrupa as páginas. Para mudar a ordem do menu, mude aqui.
+const GRUPOS = [
+  ["Entender", ["convivencia", "o-que-e-alienacao-parental", "quando-a-acusacao-vira-arma", "debate-sobre-a-lei"]],
+  ["Cuidar", ["protegendo-seu-filho", "violencia-nao-e-conflito", "mediacao-e-cejusc", "passo-a-passo"]],
+  ["Agir", ["onde-buscar-ajuda", "perguntas-frequentes", "teste-seus-conhecimentos", "sobre-o-projeto"]],
+];
+
+// Os quatro caminhos de leitura da página inicial (as "linhas" do guia).
+// "paradas" são as páginas de cada caminho, na ordem de leitura.
+const LINHAS = [
+  { n: 1, frase: "Estou me separando e quero proteger meu filho",
+    paradas: ["convivencia", "protegendo-seu-filho", "mediacao-e-cejusc", "o-que-e-alienacao-parental", "onde-buscar-ajuda"] },
+  { n: 2, frase: "Sinto que meu filho está sendo afastado de mim",
+    paradas: ["o-que-e-alienacao-parental", "passo-a-passo", "quando-a-acusacao-vira-arma", "protegendo-seu-filho", "onde-buscar-ajuda"] },
+  { n: 3, frase: "Fui acusado(a) de alienação parental",
+    paradas: ["quando-a-acusacao-vira-arma", "o-que-e-alienacao-parental", "protegendo-seu-filho", "perguntas-frequentes", "onde-buscar-ajuda"] },
+  { n: 4, frase: "Estou em situação de violência",
+    paradas: ["violencia-nao-e-conflito", "onde-buscar-ajuda", "quando-a-acusacao-vira-arma", "perguntas-frequentes"] },
+];
+
+// LOGO DA AFYA: aguardando autorização do professor.
+// Quando liberar: salve o arquivo em docs/assets/img/afya.svg,
+// troque "false" por "true" na linha abaixo e monte o site.
+const MOSTRAR_LOGO_AFYA = false;
+const LOGO_AFYA = MOSTRAR_LOGO_AFYA
+  ? `      <p class="rodape-logo"><img src="assets/img/afya.svg" alt="Afya Faculdade Sete Lagoas" width="120" height="40" loading="lazy"></p>`
+  : `      <!-- espaço reservado para o logo da Afya (ver MOSTRAR_LOGO_AFYA no montador) -->`;
+
+const ROTULO = Object.fromEntries(PAGINAS);
+
 const LOGO = `<svg viewBox="0 0 48 48" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
   <path d="M4 24 13 15l9 9v15H4Z"/>
   <path d="M26 24l9-9 9 9v15H26Z"/>
   <circle cx="24" cy="31" r="3.5" fill="currentColor" stroke="none"/>
 </svg>`;
+
+const SETA = `<svg class="seta" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m9 5 7 7-7 7"/></svg>`;
 
 function lerConteudo(arquivo) {
   const bruto = readFileSync(join(PASTA_CONTEUDO, arquivo), "utf8");
@@ -67,12 +99,47 @@ function escapar(texto) {
     .replace(/"/g, "&quot;");
 }
 
+// Troca as marcações especiais do conteúdo:
+//   <!-- PARADAS 2 -->  vira a lista de páginas do caminho 2, na ordem
+//   <!-- SETA -->       vira a setinha das linhas e das perguntas
+function trocarMarcacoes(corpo) {
+  return corpo
+    .replace(/<!--\s*PARADAS\s+(\d)\s*-->/g, (_, n) => {
+      const linha = LINHAS.find((l) => l.n === Number(n));
+      if (!linha) return "";
+      const itens = linha.paradas
+        .map((slug) => `              <li><a href="${slug}.html?linha=${linha.n}">${ROTULO[slug]}</a></li>`)
+        .join("\n");
+      return `<ol class="paradas">\n${itens}\n            </ol>`;
+    })
+    .replace(/<!--\s*SETA\s*-->/g, SETA);
+}
+
+function montarMenu(slug) {
+  const link = (s) => {
+    const atual = s === slug ? ' aria-current="page"' : "";
+    return `<li><a href="${s === "index" ? "./" : s + ".html"}"${atual}>${ROTULO[s]}</a></li>`;
+  };
+  const grupos = GRUPOS.map(
+    ([nome, slugs]) => `<div class="menu-grupo">
+              <h2>${nome}</h2>
+              <ul>
+                ${slugs.map(link).join("\n                ")}
+              </ul>
+            </div>`
+  ).join("\n            ");
+  return `<ul class="menu-inicio">
+              ${link("index")}
+            </ul>
+            ${grupos}`;
+}
+
 function montarPagina(slug, rotuloMenu, { dados, corpo }) {
   const arquivoSaida = `${slug}.html`;
   const endereco = slug === "index" ? ENDERECO_SITE : `${ENDERECO_SITE}${arquivoSaida}`;
   const titulo = slug === "index" ? `${NOME_SITE}: convivência familiar e alienação parental` : `${dados.titulo || rotuloMenu} | ${NOME_SITE}`;
   const descricao = dados.descricao || "Informação acolhedora para pais e mães em separação em Sete Lagoas.";
-  const largura = dados.largura === "larga" ? " conteudo--larga" : "";
+  const inicio = dados.largura === "larga";
   const extrasHead = dados.head ? dados.head : "";
   const extrasScripts = (dados.scripts || "")
     .split(",")
@@ -81,12 +148,23 @@ function montarPagina(slug, rotuloMenu, { dados, corpo }) {
     .map((s) => `<script src="${s}" defer></script>`)
     .join("\n  ");
 
-  const menu = PAGINAS.map(([s, r]) => {
-    const atual = s === slug ? ' aria-current="page"' : "";
-    return `<li><a href="${s === "index" ? "./" : s + ".html"}"${atual}>${r}</a></li>`;
-  }).join("\n            ");
-
   const textoWhats = encodeURIComponent(`${dados.titulo || NOME_SITE}: ${endereco}`);
+  const conteudo = trocarMarcacoes(corpo);
+
+  // A página inicial ocupa a largura toda. As outras têm uma coluna de leitura.
+  const miolo = inicio
+    ? conteudo
+    : `    <div class="miolo">
+      <article class="coluna">
+${conteudo}
+      </article>
+    </div>`;
+
+  // Dados dos caminhos de leitura, usados pelo site.js para mostrar
+  // "página 2 de 5" e a próxima página do caminho.
+  const dadosLinhas = JSON.stringify(
+    LINHAS.map((l) => ({ n: l.n, frase: l.frase, paradas: l.paradas.map((s) => [s, ROTULO[s]]) }))
+  ).replace(/</g, "\\u003c");
 
   return `<!doctype html>
 <html lang="pt-BR">
@@ -95,7 +173,7 @@ function montarPagina(slug, rotuloMenu, { dados, corpo }) {
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>${escapar(titulo)}</title>
   <meta name="description" content="${escapar(descricao)}">
-  <meta name="theme-color" content="#0F4C5C">
+  <meta name="theme-color" content="#F6F7F4">
   <meta name="referrer" content="no-referrer">
   <link rel="canonical" href="${endereco}">
   <meta property="og:type" content="website">
@@ -114,30 +192,31 @@ function montarPagina(slug, rotuloMenu, { dados, corpo }) {
   <link rel="stylesheet" href="assets/css/estilo.css">
   ${extrasHead}
 </head>
-<body>
+<body data-pagina="${slug}">
   <a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
-  <a class="sair-rapido" href="https://www.climatempo.com.br/" rel="noopener noreferrer" title="Sai deste site na hora e abre um site de previsão do tempo">Sair rápido</a>
 
-  <header class="cabecalho">
-    <div class="cabecalho-interno">
-      <a class="marca" href="./" aria-label="${NOME_SITE}, página inicial">${LOGO}<span aria-hidden="true">Duas Casas,<br>Um Filho</span></a>
+  <header class="topo">
+    <div class="miolo">
+      <a class="marca" href="./" aria-label="${NOME_SITE}, página inicial">${LOGO}<span aria-hidden="true" translate="no">Duas Casas, <br>Um Filho</span></a>
       <details class="menu">
         <summary>Menu</summary>
         <nav aria-label="Páginas do site">
-          <ul>
-            ${menu}
-          </ul>
+          <div class="miolo">
+            ${montarMenu(slug)}
+            <p class="menu-nota">O botão <strong>Sair rápido</strong> troca este site por uma página de previsão do tempo.</p>
+          </div>
         </nav>
       </details>
+      <a class="sair-rapido" href="https://www.climatempo.com.br/" rel="noopener noreferrer" title="Sai deste site na hora e abre um site de previsão do tempo">Sair rápido</a>
     </div>
   </header>
 
-  <main id="conteudo" class="conteudo${largura}">
-${corpo}
+  <main id="conteudo" class="conteudo${inicio ? " conteudo--inicio" : ""}">
+${miolo}
   </main>
 
   <section class="emergencia" aria-labelledby="titulo-emergencia">
-    <div class="emergencia-interno">
+    <div class="miolo">
       <h2 id="titulo-emergencia">Precisa de ajuda agora?</h2>
       <p>As ligações são gratuitas. Toque no número para ligar.</p>
       <ul class="telefones">
@@ -150,14 +229,16 @@ ${corpo}
   </section>
 
   <footer class="rodape">
-    <div class="rodape-interno">
+    <div class="miolo">
       <p class="aviso-legal">Conteúdo informativo produzido por estudantes de Direito sob orientação docente. Não substitui a orientação de advogado(a) ou da Defensoria Pública.</p>
-      <a class="compartilhar botao botao--verde" href="https://wa.me/?text=${textoWhats}" rel="noopener noreferrer" target="_blank">Compartilhar no WhatsApp</a>
+      <a class="compartilhar botao" href="https://wa.me/?text=${textoWhats}" rel="noopener noreferrer" target="_blank">Compartilhar no WhatsApp</a>
       <p>Projeto de Extensão do curso de Direito da Afya Faculdade Sete Lagoas, sob orientação do Prof. Filipe Garcia. <a href="sobre-o-projeto.html">Conheça o projeto</a>.</p>
-      <p>Este site não usa cookies e não coleta seus dados.</p>
+${LOGO_AFYA}
+      <p>Este site não usa cookies e não coleta seus dados. O botão Sair rápido, no alto da página, troca este site por uma página de previsão do tempo.</p>
     </div>
   </footer>
 
+  <script type="application/json" id="dados-linhas">${dadosLinhas}</script>
   <script src="assets/js/site.js" defer></script>
   ${extrasScripts}
 </body>

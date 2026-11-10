@@ -48,10 +48,14 @@
       var b = document.createElement("button");
       b.type = "button";
       b.textContent = op[0];
+      b.setAttribute("data-valor", op[1] ? "v" : "f");
       b.setAttribute("aria-pressed", "false");
       b.addEventListener("click", function () {
         var botoes = opcoes.querySelectorAll("button");
-        for (var k = 0; k < botoes.length; k++) botoes[k].disabled = true;
+        for (var k = 0; k < botoes.length; k++) {
+          botoes[k].disabled = true;
+          botoes[k].setAttribute("data-certa", (botoes[k].getAttribute("data-valor") === "v") === p.certa ? "sim" : "nao");
+        }
         b.setAttribute("aria-pressed", "true");
 
         var acertou = op[1] === p.certa;

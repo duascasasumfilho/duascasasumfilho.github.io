@@ -15,7 +15,10 @@ duas-casas-um-filho/
 │   ├── data/rede-apoio.js   ← endereços da página "Onde buscar ajuda"
 │   └── assets/              ← cores (css), funções (js) e imagens
 ├── ferramentas/     ← o "montador" do site
+├── propostas/       ← as propostas de visual comparadas na escolha (não é publicado)
 ├── BRIEFING.md      ← toda a pesquisa e as regras de conteúdo
+├── PRODUCT.md       ← resumo do produto: para quem é e o que não pode mudar
+├── DESIGN.md        ← as regras do visual: cores, letras e blocos
 └── README.md        ← este manual
 ```
 
@@ -50,6 +53,35 @@ Abra `docs/data/rede-apoio.js`. Cada órgão tem:
 - `"lat"` e `"lng"`: coordenadas do prédio, para aparecer o pino no mapa. Para pegar, clique com o botão direito no prédio no Google Maps e clique nos números. **Nunca invente coordenadas.**
 
 O mapa só aparece quando pelo menos um órgão conferido tiver coordenadas.
+
+---
+
+## Como mudar cores e letras
+
+Abra `docs/assets/css/estilo.css`. As cores, as fontes e os tamanhos ficam no bloco `:root`, logo no começo, cada um com um comentário dizendo para que serve. Mude só ali. As regras de uso estão no `DESIGN.md`.
+
+Os arquivos das fontes ficam em `docs/assets/fontes/`. O site não carrega nada do Google.
+
+---
+
+## Como mudar o menu e os caminhos de leitura
+
+Abra `ferramentas/montar-site.mjs`. No começo do arquivo há três listas:
+
+- `PAGINAS`: todas as páginas e o nome de cada uma;
+- `GRUPOS`: como o menu agrupa as páginas (Entender, Cuidar, Agir);
+- `LINHAS`: os quatro caminhos da página inicial e a ordem das páginas de cada um.
+
+Depois de mudar, monte o site.
+
+---
+
+## Como ativar o questionário e o logo da Afya
+
+- **Questionário dos pais:** em `conteudo/sobre-o-projeto.html`, procure por `QUESTIONÁRIO DOS PAIS` e siga os três passos escritos ali.
+- **Logo da Afya:** em `ferramentas/montar-site.mjs`, procure por `MOSTRAR_LOGO_AFYA` e siga as instruções.
+
+Os dois ficam escondidos até a autorização do professor.
 
 ---
 
