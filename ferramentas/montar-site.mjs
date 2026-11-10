@@ -70,6 +70,23 @@ const SCRIPT_CONTADOR = CONTADOR_VISITAS
   <script src="assets/js/contador.js" data-endpoint="${CONTADOR_VISITAS}" defer></script>`
   : "";
 
+// REGRAS DE SEGURANÇA (Content-Security-Policy): o navegador só carrega
+// arquivos do próprio site, as imagens do mapa (OpenStreetMap) e o contador.
+const ORIGEM_CONTADOR = CONTADOR_VISITAS ? new URL(CONTADOR_VISITAS).origin : "";
+const SEGURANCA = [
+  "default-src 'self'",
+  "script-src 'self'",
+  "style-src 'self' 'unsafe-inline'",
+  `img-src 'self' data: https://tile.openstreetmap.org ${ORIGEM_CONTADOR}`.trim(),
+  `connect-src 'self' ${ORIGEM_CONTADOR}`.trim(),
+  "font-src 'self'",
+  "object-src 'none'",
+  "frame-src 'none'",
+  "base-uri 'self'",
+  "form-action 'none'",
+  "upgrade-insecure-requests"
+].join("; ");
+
 const ROTULO = Object.fromEntries(PAGINAS);
 
 const LOGO = `<svg viewBox="0 0 48 48" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
@@ -156,7 +173,9 @@ function montarPagina(slug, rotuloMenu, { dados, corpo }) {
     .map((s) => `<script src="${s}" defer></script>`)
     .join("\n  ");
 
-  const textoWhats = encodeURIComponent(`${dados.titulo || NOME_SITE}: ${endereco}`);
+  const textoWhats = slug === "404"
+    ? encodeURIComponent(`${NOME_SITE}: ${ENDERECO_SITE}`)
+    : encodeURIComponent(`${dados.titulo || NOME_SITE}: ${endereco}`);
   const conteudo = trocarMarcacoes(corpo);
 
   // A página inicial ocupa a largura toda. As outras têm uma coluna de leitura.
@@ -183,6 +202,7 @@ ${conteudo}
   <meta name="description" content="${escapar(descricao)}">
   <meta name="theme-color" content="#F6F7F4">
   <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="${SEGURANCA}">
   ${slug === "404" ? '<base href="/">\n  <meta name="robots" content="noindex">' : `<link rel="canonical" href="${endereco}">`}
   <meta property="og:type" content="website">
   <meta property="og:locale" content="pt_BR">
@@ -195,6 +215,8 @@ ${conteudo}
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="assets/img/icone.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon.ico" sizes="32x32">
+  <link rel="apple-touch-icon" href="assets/img/icone-180.png">
   <link rel="preload" href="assets/fontes/atkinson-hyperlegible-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fontes/barlow-semi-condensed-700.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/css/estilo.css">
@@ -273,4 +295,21 @@ if (arquivos.has("404.html")) {
   writeFileSync(join(PASTA_SITE, "404.html"), montarPagina("404", "Página não encontrada", lerConteudo("404.html")), "utf8");
   total++;
 }
+// robots.txt e sitemap.xml: ajudam o Google a encontrar todas as páginas.
+const hoje = new Date().toISOString().slice(0, 10);
+const enderecos = PAGINAS.map(([slug]) =>
+  slug === "index" ? ENDERECO_SITE : ENDERECO_SITE + slug + ".html");
+writeFileSync(join(PASTA_SITE, "sitemap.xml"),
+  `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${enderecos.map((u) => `  <url><loc>${u}</loc><lastmod>${hoje}</lastmod></url>`).join("\n")}
+</urlset>
+`, "utf8");
+writeFileSync(join(PASTA_SITE, "robots.txt"),
+  `User-agent: *
+Allow: /
+
+Sitemap: ${ENDERECO_SITE}sitemap.xml
+`, "utf8");
+
 console.log(`Pronto! ${total} página(s) montada(s) em docs/.`);
