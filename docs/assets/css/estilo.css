@@ -1,30 +1,105 @@
 /* =========================================================
    Duas Casas, Um Filho — estilo do site
-   Cores e letras ficam nas variáveis abaixo (:root).
+   Visual "Guia de linhas": cada porta da página inicial é uma
+   linha com cor própria, e as páginas são as paradas.
+
+   PARA MUDAR CORES OU LETRAS: altere só o bloco ":root" abaixo.
    ========================================================= */
 
+/* ---------- Fontes (os arquivos ficam em assets/fontes/) ---------- */
+
+@font-face {
+  font-family: "Atkinson Hyperlegible";
+  src: url("../fontes/atkinson-hyperlegible-400.woff2") format("woff2");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Atkinson Hyperlegible";
+  src: url("../fontes/atkinson-hyperlegible-400-italico.woff2") format("woff2");
+  font-weight: 400; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: "Atkinson Hyperlegible";
+  src: url("../fontes/atkinson-hyperlegible-700.woff2") format("woff2");
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Barlow Semi Condensed";
+  src: url("../fontes/barlow-semi-condensed-600.woff2") format("woff2");
+  font-weight: 600; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Barlow Semi Condensed";
+  src: url("../fontes/barlow-semi-condensed-700.woff2") format("woff2");
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+
 :root {
-  --fundo: #F8F6FC;
-  --superficie: #FFFFFF;
-  --lilas: #5E4B9C;
-  --lilas-escuro: #46377A;
-  --lilas-claro: #E9E3F6;
-  --lilas-borda: #CFC4EA;
-  --verde: #3B7F57;
-  --verde-escuro: #2C6343;
-  --verde-claro: #DCEFE3;
-  --texto: #2A2638;
-  --texto-suave: #575270;
-  --ameixa: #3A2D63;
-  --aviso: #FFF4D6;
+  /* ----- CORES: cada cor tem um papel fixo ----- */
+  --papel: #F6F7F4;          /* fundo das páginas */
+  --superficie: #FFFFFF;     /* fundo de blocos que precisam se destacar do papel */
+  --tinta: #15252B;          /* texto */
+  --suave: #4A5B60;          /* texto de apoio */
+  --fio: #D3DAD6;            /* linhas finas que separam itens */
+
+  --campo: #0F4C5C;          /* áreas fortes: capa, emergência, botões, títulos */
+  --campo-escuro: #0A3742;   /* o mesmo, ao passar o mouse */
+  --campo-claro: #E1EBEC;    /* fundo suave de destaques */
+  --sobre-campo: #FFFFFF;    /* texto em cima do campo */
+  --suave-campo: #C9DDE1;    /* texto de apoio em cima do campo */
+  --quente: #F2B705;         /* destaque quente: usar pouco */
+
+  --l1: #2F7A45;             /* linha 1: estou me separando */
+  --l2: #1F6594;             /* linha 2: meu filho está sendo afastado */
+  --l3: #A94E0B;             /* linha 3: fui acusado(a) */
+  --l4: #8E2F4B;             /* linha 4: situação de violência */
+  --l1-escuro: #235E35;
+  --l1-claro: #DDEBDF;
+  --l1-fundo: #F1F7F2;
+
+  --aviso: #FFF4D6;          /* caixa "em revisão" */
   --aviso-borda: #E2B93B;
 
+  /* ----- LETRAS ----- */
   --fonte-texto: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
-  --fonte-titulo: "Fraunces", Georgia, "Times New Roman", serif;
+  --fonte-titulo: "Barlow Semi Condensed", "Arial Narrow", "Segoe UI", sans-serif;
 
-  --medida: 40rem;
+  /* ----- TAMANHOS DE TEXTO ----- */
+  --t-pequeno: 1rem;                              /* 16px: legendas e apoio */
+  --t-texto: 1.125rem;                            /* 18px: texto corrido */
+  --t-abertura: 1.25rem;                          /* 20px: parágrafo de abertura */
+  --t-h3: 1.4rem;
+  --t-h2: clamp(1.6rem, 6.6vw, 2.25rem);
+  --t-h1: clamp(2.4rem, 10vw, 4rem);
+
+  /* ----- ESPAÇOS ----- */
+  --e-1: 0.25rem;
+  --e-2: 0.5rem;
+  --e-3: 0.75rem;
+  --e-4: 1rem;
+  --e-5: 1.5rem;
+  --e-6: 2rem;
+  --e-7: 3rem;
+  --e-8: 4rem;
+
+  --medida: 40rem;           /* largura máxima do texto corrido */
   --raio: 14px;
   --raio-pequeno: 8px;
+
+  /* ----- NOMES ANTIGOS -----
+     Apontam para as cores novas enquanto os blocos das páginas não são
+     redesenhados. Serão removidos nas Etapas 4 e 5. */
+  --fundo: var(--papel);
+  --lilas: var(--campo);
+  --lilas-escuro: var(--campo-escuro);
+  --lilas-claro: var(--campo-claro);
+  --lilas-borda: var(--fio);
+  --verde: var(--l1);
+  --verde-escuro: var(--l1-escuro);
+  --verde-claro: var(--l1-claro);
+  --texto: var(--tinta);
+  --texto-suave: var(--suave);
+  --ameixa: var(--campo);
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -33,23 +108,27 @@ html { -webkit-text-size-adjust: 100%; }
 
 body {
   margin: 0;
-  background: var(--fundo);
-  color: var(--texto);
+  background: var(--papel);
+  color: var(--tinta);
   font-family: var(--fonte-texto);
-  font-size: 1.125rem;            /* 18px */
+  font-size: var(--t-texto);
   line-height: 1.6;
 }
 
+::selection { background: var(--quente); color: var(--tinta); }
+
 img, svg { max-width: 100%; height: auto; }
 
-a { color: var(--lilas); text-underline-offset: 0.18em; }
-a:hover { color: var(--lilas-escuro); }
+a { color: var(--campo); text-decoration-thickness: 2px; text-underline-offset: 0.2em; }
+a:hover { color: var(--campo-escuro); }
 
 :focus-visible {
-  outline: 3px solid var(--verde);
+  outline: 3px solid var(--campo);
   outline-offset: 3px;
   border-radius: 4px;
 }
+/* em cima de fundo escuro, o contorno de foco fica amarelo */
+.emergencia :focus-visible, .sair-rapido:focus-visible, .quiz-resultado :focus-visible { outline-color: var(--quente); }
 
 .pular-conteudo {
   position: absolute;
@@ -66,21 +145,20 @@ a:hover { color: var(--lilas-escuro); }
 
 h1, h2, h3 {
   font-family: var(--fonte-titulo);
-  font-weight: 600;
-  line-height: 1.2;
-  color: var(--ameixa);
-  font-variation-settings: "SOFT" 100, "WONK" 0;
+  font-weight: 700;
+  color: var(--campo);
+  text-wrap: balance;
 }
-h1 { font-size: clamp(2rem, 6vw, 2.75rem); margin: 0 0 1rem; letter-spacing: -0.01em; }
-h2 { font-size: clamp(1.45rem, 4vw, 1.75rem); margin: 2.5rem 0 0.75rem; }
-h3 { font-size: 1.25rem; margin: 1.75rem 0 0.5rem; }
+h1 { font-size: var(--t-h1); line-height: 0.98; margin: 0 0 var(--e-4); }
+h2 { font-size: var(--t-h2); line-height: 1.08; margin: var(--e-7) 0 var(--e-3); }
+h3 { font-size: var(--t-h3); line-height: 1.15; margin: var(--e-6) 0 var(--e-2); }
 
-p, ul, ol { margin: 0 0 1rem; }
+p, ul, ol { margin: 0 0 var(--e-4); }
 li + li { margin-top: 0.35rem; }
 
 .abertura {
-  font-size: 1.25rem;
-  color: var(--texto-suave);
+  font-size: var(--t-abertura);
+  color: var(--suave);
   max-width: 36rem;
 }
 
@@ -113,7 +191,7 @@ li + li { margin-top: 0.35rem; }
   text-decoration: none;
   color: var(--ameixa);
   font-family: var(--fonte-titulo);
-  font-weight: 600;
+  font-weight: 700;
   font-size: 1.15rem;
   line-height: 1.1;
 }
@@ -142,7 +220,7 @@ li + li { margin-top: 0.35rem; }
   background: var(--superficie);
   border: 1px solid var(--lilas-borda);
   border-radius: var(--raio);
-  box-shadow: 0 12px 32px rgba(58, 45, 99, 0.18);
+  box-shadow: 0 12px 32px rgb(15 76 92 / 0.18);
   padding: 0.5rem;
   z-index: 30;
 }
@@ -175,10 +253,10 @@ li + li { margin-top: 0.35rem; }
   border-radius: 999px;
   font: 700 1rem/1 var(--fonte-texto);
   text-decoration: none;
-  box-shadow: 0 4px 14px rgba(58, 45, 99, 0.35);
+  box-shadow: 0 4px 14px rgb(15 76 92 / 0.35);
   cursor: pointer;
 }
-.sair-rapido:hover { background: #2A2049; color: #fff; }
+.sair-rapido:hover { background: var(--campo-escuro); color: #fff; }
 
 /* ---------- Página inicial ---------- */
 
@@ -242,7 +320,7 @@ li + li { margin-top: 0.35rem; }
 .porta-corpo ol { padding-left: 1.3rem; }
 .porta-corpo ol a { font-weight: 700; }
 
-.porta--violencia { border-color: var(--verde); background: #F5FBF7; }
+.porta--violencia { border-color: var(--verde); background: var(--l1-fundo); }
 .porta--violencia .porta-icone { background: var(--verde-claro); }
 .porta--violencia[open] { border-color: var(--verde-escuro); }
 
@@ -287,9 +365,10 @@ li + li { margin-top: 0.35rem; }
   background: var(--lilas-claro);
   border-radius: 0 var(--raio-pequeno) var(--raio-pequeno) 0;
   font-family: var(--fonte-titulo);
-  font-size: 1.25rem;
-  line-height: 1.4;
-  color: var(--ameixa);
+  font-weight: 600;
+  font-size: 1.4rem;
+  line-height: 1.3;
+  color: var(--campo);
 }
 .destaque p { margin: 0; }
 .destaque cite {
@@ -306,7 +385,7 @@ li + li { margin-top: 0.35rem; }
   padding: 1rem 1.2rem;
   border: 2px solid var(--verde);
   border-radius: var(--raio);
-  background: #F5FBF7;
+  background: var(--l1-fundo);
 }
 .equilibrio h2, .equilibrio h3 { margin-top: 0; color: var(--verde-escuro); font-size: 1.2rem; }
 .equilibrio p:last-child { margin-bottom: 0; }
@@ -343,7 +422,7 @@ li + li { margin-top: 0.35rem; }
 }
 .par > div { padding: 0.85rem 1rem; font-size: 1.05rem; }
 .par-pode { border-left: 6px solid var(--lilas); }
-.par-naoe { border-left: 6px solid var(--verde); background: #F5FBF7; }
+.par-naoe { border-left: 6px solid var(--verde); background: var(--l1-fundo); }
 .par-rotulo {
   display: block;
   font-weight: 700;
@@ -528,7 +607,7 @@ li + li { margin-top: 0.35rem; }
 }
 .emergencia-interno { max-width: var(--medida); margin: 0 auto; }
 .emergencia h2 { color: #fff; margin: 0 0 0.35rem; font-size: 1.35rem; }
-.emergencia > div > p { margin: 0 0 1rem; color: #E4DEF5; }
+.emergencia > div > p { margin: 0 0 1rem; color: var(--suave-campo); }
 .telefones {
   list-style: none; margin: 0; padding: 0;
   display: grid;
@@ -548,7 +627,7 @@ li + li { margin-top: 0.35rem; }
   line-height: 1.25;
 }
 .telefones a:hover { background: rgba(255, 255, 255, 0.2); }
-.telefones strong { display: block; font-size: 1.6rem; font-family: var(--fonte-titulo); }
+.telefones strong { display: block; font: 700 2.25rem/1 var(--fonte-titulo); color: var(--quente); margin-bottom: 0.25rem; }
 .telefones span { font-size: 0.95rem; }
 
 .rodape {

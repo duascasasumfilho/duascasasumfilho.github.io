@@ -1,0 +1,491 @@
+<!doctype html>
+<!--
+  PROPOSTAS DE VISUAL (Etapa 2). Este arquivo NÃO faz parte do site publicado.
+  Ele mostra a página inicial em duas propostas e duas paletas:
+    ?proposta=a  Guia de linhas        ?proposta=b  Caderneta
+    ?paleta=1    Lilás e verde         ?paleta=2    Paleta nova
+-->
+<html lang="pt-BR" data-proposta="a" data-paleta="1">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Propostas de visual | Duas Casas, Um Filho</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Barlow+Semi+Condensed:wght@600;700&family=Nunito:wght@700;800&display=swap">
+<script>
+  (function () {
+    var q = new URLSearchParams(location.search), h = document.documentElement;
+    if (q.get("proposta") === "b") h.dataset.proposta = "b";
+    if (q.get("paleta") === "2") h.dataset.paleta = "2";
+  })();
+</script>
+<style>
+/* ---------- Paletas ---------- */
+:root {                       /* 1: lilás e verde, com um papel fixo por cor */
+  --papel: #FBFAFD;
+  --tinta: #2A2638;
+  --suave: #575270;
+  --fio: #DDD6EC;
+  --campo: #3A2D63;           /* fundo das áreas fortes: capa e emergência */
+  --sobre-campo: #FFFFFF;
+  --suave-campo: #D9D2EE;
+  --quente: #F4C95D;          /* destaque quente */
+  --l1: #2F7D55;              /* porta 1 */
+  --l2: #5E4B9C;              /* porta 2 */
+  --l3: #955A0E;              /* porta 3 */
+  --l4: #8C2F5A;              /* porta 4 */
+  --texto: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+}
+[data-paleta="2"] {           /* 2: paleta nova */
+  --papel: #F6F7F4;
+  --tinta: #15252B;
+  --suave: #4A5B60;
+  --fio: #D3DAD6;
+  --campo: #0F4C5C;
+  --suave-campo: #C9DDE1;
+  --quente: #F2B705;
+  --l1: #2F7A45;
+  --l2: #1F6594;
+  --l3: #A94E0B;
+  --l4: #8E2F4B;
+}
+[data-proposta="a"] { --titulo: "Barlow Semi Condensed", "Arial Narrow", sans-serif; }
+[data-proposta="b"] { --titulo: "Nunito", "Segoe UI", sans-serif; }
+
+/* ---------- Base (vale para as duas propostas) ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: 5rem; }
+body {
+  margin: 0;
+  background: var(--papel);
+  color: var(--tinta);
+  font: 400 1.125rem/1.6 var(--texto);
+}
+::selection { background: var(--quente); color: var(--tinta); }
+a { color: inherit; text-decoration-thickness: 2px; text-underline-offset: 0.2em; }
+:focus-visible { outline: 3px solid var(--quente); outline-offset: 3px; border-radius: 4px; }
+h1, h2, h3 { font-family: var(--titulo); margin: 0; text-wrap: balance; }
+p, ul, ol { margin: 0 0 1rem; }
+.miolo { max-width: 70rem; margin: 0 auto; padding: 0 1.125rem; }
+
+.topo {
+  position: sticky; top: 0; z-index: 20;
+  background: var(--papel);
+  border-bottom: 1px solid var(--fio);
+}
+.topo .miolo { display: flex; align-items: center; gap: 0.5rem; min-height: 3.75rem; }
+.marca {
+  display: flex; align-items: center; gap: 0.5rem; margin-right: auto;
+  font: 700 1rem/1.1 var(--titulo); text-decoration: none; color: var(--campo);
+}
+.marca svg { width: 2.1rem; height: 2.1rem; flex: none; }
+.menu-botao, .sair {
+  min-height: 2.75rem; padding: 0 0.9rem;
+  display: inline-flex; align-items: center;
+  font: 700 1rem/1 var(--texto); border-radius: 0.5rem; cursor: pointer; text-decoration: none; white-space: nowrap;
+}
+.menu-botao { background: none; border: 2px solid var(--campo); color: var(--campo); }
+.sair { background: var(--campo); color: var(--sobre-campo); border: 2px solid var(--campo); }
+
+.capa-texto { max-width: 34rem; }
+section > .miolo > h2 { margin-bottom: 0.5rem; }
+.linha > summary { list-style: none; cursor: pointer; }
+.linha > summary::-webkit-details-marker { display: none; }
+.linha-corpo h3 { font: 700 1.05rem/1.3 var(--texto); margin: 1.25rem 0 0.5rem; }
+.saber { padding-left: 1.2rem; }
+.saber li + li { margin-top: 0.5rem; }
+.paradas { list-style: none; padding: 0; }
+.paradas a { font-weight: 700; }
+
+.sentidos h3, .grupos h3 { margin-bottom: 0.35rem; }
+.grupos ul { list-style: none; padding: 0; margin: 0; }
+.grupos a { display: block; padding: 0.8rem 0; text-decoration: none; border-top: 1px solid var(--fio); }
+.grupos a strong { display: block; }
+.grupos a span { color: var(--suave); font-size: 1rem; }
+.grupos a:hover strong { text-decoration: underline; text-decoration-thickness: 2px; }
+
+.emergencia { background: var(--campo); color: var(--sobre-campo); padding: 2.5rem 0; }
+.emergencia h2 { font-size: 1.75rem; }
+.emergencia p { color: var(--suave-campo); margin: 0.25rem 0 1.25rem; }
+.telefones { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; }
+.telefones a { display: block; padding: 1rem 0.75rem 1rem 0; text-decoration: none; border-top: 1px solid rgb(255 255 255 / 0.28); height: 100%; }
+.telefones strong { display: block; font: 700 2.75rem/1 var(--titulo); color: var(--quente); }
+.telefones span { font-size: 1rem; line-height: 1.3; display: block; margin-top: 0.3rem; }
+.rodape { padding: 1.75rem 0 2.5rem; color: var(--suave); font-size: 1rem; }
+
+@media (min-width: 60rem) {
+  .miolo { padding: 0 2rem; }
+  .linhas { columns: 2; column-gap: 3rem; }
+  .linha { break-inside: avoid; }
+  .marca { font-size: 1.25rem; }
+  .marca br { display: none; }
+  .sentidos { display: grid; grid-template-columns: 1fr 1fr; column-gap: 3rem; }
+  .grupos { display: grid; grid-template-columns: repeat(3, 1fr); column-gap: 3rem; }
+  .telefones { grid-template-columns: repeat(4, 1fr); column-gap: 2rem; }
+}
+
+/* =========================================================
+   PROPOSTA A — GUIA DE LINHAS
+   Cada porta é uma linha com cor própria; as páginas são as paradas.
+   ========================================================= */
+[data-proposta="a"] .casas { display: none; }
+[data-proposta="a"] .capa { background: var(--campo); color: var(--sobre-campo); padding: 1.5rem 0 1.6rem; }
+[data-proposta="a"] h1 { font-size: clamp(2.6rem, 11.5vw, 5.25rem); line-height: 0.96; font-weight: 700; letter-spacing: -0.01em; }
+[data-proposta="a"] h1 span { color: var(--quente); display: block; }
+[data-proposta="a"] .capa-texto { color: var(--suave-campo); margin: 0.9rem 0 0; }
+[data-proposta="a"] .trajeto { display: block; width: 100%; max-width: 26rem; height: auto; margin-top: 1.1rem; color: var(--sobre-campo); }
+[data-proposta="a"] .trajeto .crianca { fill: var(--quente); }
+
+[data-proposta="a"] section:not(.capa):not(.emergencia) { padding: 1.75rem 0 0.5rem; }
+[data-proposta="a"] section:not(.capa):not(.emergencia) + section { padding-top: 2.75rem; }
+[data-proposta="a"] h2 { font-size: clamp(1.6rem, 6.6vw, 2.6rem); line-height: 1.05; font-weight: 700; color: var(--campo); }
+[data-proposta="a"] .emergencia h2 { color: var(--sobre-campo); }
+[data-proposta="a"] .linhas { margin-top: 0.75rem; }
+[data-proposta="a"] .linha { border-top: 1px solid var(--fio); }
+[data-proposta="a"] .linha > summary {
+  display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 0.9rem;
+  padding: 0.6rem 0; font-weight: 700; font-size: 1.125rem; line-height: 1.25;
+}
+[data-proposta="a"] .num {
+  width: 2.75rem; height: 2.75rem; border-radius: 50%; display: grid; place-items: center;
+  background: var(--cor); color: #fff; font: 700 1.6rem/1 var(--titulo);
+}
+[data-proposta="a"] .seta { width: 1.25rem; height: 1.25rem; color: var(--cor); transition: transform 180ms cubic-bezier(0.23, 1, 0.32, 1); }
+[data-proposta="a"] .linha[open] .seta { transform: rotate(90deg); }
+[data-proposta="a"] .linha-corpo { padding: 0.25rem 0 1.5rem; }
+[data-proposta="a"] .linha-corpo > p:first-child { color: var(--suave); }
+/* o mapa da linha: trilho na cor da porta, com uma parada por página */
+[data-proposta="a"] .paradas { position: relative; margin: 0.75rem 0 0; }
+[data-proposta="a"] .paradas::before {
+  content: ""; position: absolute; left: 1.175rem; top: 0.9rem; bottom: 0.9rem; width: 0.4rem;
+  background: var(--cor); border-radius: 1rem;
+}
+[data-proposta="a"] .paradas li { position: relative; padding: 0.45rem 0 0.45rem 3.65rem; }
+[data-proposta="a"] .paradas li::before {
+  content: ""; position: absolute; left: 0.675rem; top: 0.72rem; width: 1.4rem; height: 1.4rem;
+  border-radius: 50%; background: var(--papel); border: 0.3rem solid var(--cor);
+}
+[data-proposta="a"] .paradas li:last-child::before { background: var(--cor); }
+[data-proposta="a"] .sentidos { margin-top: 1rem; }
+[data-proposta="a"] .sentidos > div { border-top: 1px solid var(--fio); padding: 1rem 0 0.25rem; }
+[data-proposta="a"] .sentidos h3, [data-proposta="a"] .grupos h3 { font-size: 1.45rem; line-height: 1.15; font-weight: 700; }
+[data-proposta="a"] .grupos > div { margin-top: 1.5rem; }
+
+@media (min-width: 60rem) {
+  [data-proposta="a"] .capa { padding: 4rem 0; }
+  [data-proposta="a"] .capa .miolo { display: grid; grid-template-columns: 7fr 5fr; column-gap: 3rem; align-items: end; }
+  [data-proposta="a"] .capa h1, [data-proposta="a"] .capa-texto { grid-column: 1; }
+  [data-proposta="a"] .trajeto { grid-column: 2; grid-row: 1 / span 2; margin: 0 0 0.5rem; max-width: none; }
+  [data-proposta="a"] section:not(.capa):not(.emergencia) { padding-top: 4rem; }
+}
+
+/* =========================================================
+   PROPOSTA B — CADERNETA
+   Capa clara com a ilustração, títulos em faixa e abas na borda.
+   ========================================================= */
+[data-proposta="b"] .trajeto { display: none; }
+[data-proposta="b"] .capa { background: color-mix(in srgb, var(--l2) 14%, var(--papel)); padding: 1.1rem 0 1.5rem; }
+[data-proposta="b"] .casas { display: block; width: 100%; max-width: 13rem; height: auto; margin: 0 0 0.5rem; }
+[data-proposta="b"] h1 { font-size: clamp(2rem, 8.6vw, 3.5rem); line-height: 1.08; font-weight: 800; color: var(--campo); }
+[data-proposta="b"] .capa-texto { margin: 0.9rem 0 0; }
+
+[data-proposta="b"] section:not(.capa):not(.emergencia) { padding: 1.5rem 0 0.5rem; }
+[data-proposta="b"] section:not(.capa):not(.emergencia) + section { padding-top: 2.5rem; }
+/* título em faixa que nasce na borda da página, como divisória de caderneta */
+[data-proposta="b"] section:not(.capa):not(.emergencia) h2 {
+  display: inline-block; font-size: 1.5rem; line-height: 1.2; font-weight: 800;
+  background: var(--campo); color: var(--sobre-campo);
+  padding: 0.55rem 1.4rem 0.55rem 1.125rem; margin: 0 0 0.75rem -1.125rem;
+  border-radius: 0 999px 999px 0;
+}
+[data-proposta="b"] .emergencia h2 { font-weight: 800; }
+[data-proposta="b"] .linhas { margin: 0.75rem -1.125rem 0 0; }
+[data-proposta="b"] .linha { border-top: 1px solid var(--fio); }
+[data-proposta="b"] .linha > summary {
+  display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 1rem;
+  padding: 0.5rem 0; font-weight: 700; font-size: 1.125rem; line-height: 1.25; min-height: 4rem;
+}
+[data-proposta="b"] .frase { grid-column: 1; grid-row: 1; }
+/* a aba: fica presa na borda direita, na cor da porta */
+[data-proposta="b"] .num {
+  grid-column: 2; grid-row: 1;
+  width: 3.5rem; height: 3rem; display: grid; place-items: center;
+  background: var(--cor); color: #fff; font: 800 1.4rem/1 var(--titulo);
+  border-radius: 999px 0 0 999px;
+  transition: width 180ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+[data-proposta="b"] .linha[open] .num { width: 4.75rem; }
+[data-proposta="b"] .seta { display: none; }
+[data-proposta="b"] .linha-corpo { padding: 0 1.125rem 1.5rem 0; }
+[data-proposta="b"] .saber { list-style: none; padding: 0; }
+[data-proposta="b"] .saber li { position: relative; padding-left: 2rem; }
+[data-proposta="b"] .saber li::before {
+  content: ""; position: absolute; left: 0; top: 0.3rem; width: 1.15rem; height: 1.15rem;
+  border: 2px solid var(--cor); border-radius: 0.25rem;
+}
+[data-proposta="b"] .paradas { counter-reset: parada; }
+[data-proposta="b"] .paradas li { counter-increment: parada; position: relative; padding: 0.4rem 0 0.4rem 2.5rem; }
+[data-proposta="b"] .paradas li::before {
+  content: counter(parada); position: absolute; left: 0; top: 0.3rem;
+  width: 1.8rem; height: 1.8rem; border-radius: 50%; display: grid; place-items: center;
+  border: 2px solid var(--cor); color: var(--cor); font: 800 1rem/1 var(--titulo);
+}
+[data-proposta="b"] .sentidos > div { padding: 0.5rem 0 0.25rem; }
+[data-proposta="b"] .sentidos h3, [data-proposta="b"] .grupos h3 { font-size: 1.3rem; line-height: 1.2; font-weight: 800; color: var(--campo); }
+[data-proposta="b"] .grupos > div { margin-top: 1.25rem; }
+
+@media (min-width: 60rem) {
+  [data-proposta="b"] .capa { padding: 3rem 0; }
+  [data-proposta="b"] .capa .miolo { display: grid; grid-template-columns: 7fr 5fr; column-gap: 3rem; align-items: center; }
+  [data-proposta="b"] .capa h1, [data-proposta="b"] .capa-texto { grid-column: 1; }
+  [data-proposta="b"] .casas { grid-column: 2; grid-row: 1 / span 2; max-width: none; margin: 0; }
+  [data-proposta="b"] section:not(.capa):not(.emergencia) h2 { margin-left: 0; border-radius: 999px; padding-left: 1.4rem; }
+  [data-proposta="b"] .linhas { margin-right: 0; }
+  [data-proposta="b"] .num { border-radius: 999px; }
+  [data-proposta="b"] .linha-corpo { padding-right: 0; }
+  [data-proposta="b"] section:not(.capa):not(.emergencia) { padding-top: 3.5rem; }
+}
+
+/* Barra de troca: existe só neste arquivo de propostas */
+.troca { background: #111; color: #fff; font: 700 0.95rem/1.2 var(--texto); padding: 0.5rem 0; }
+.troca .miolo { display: flex; flex-wrap: wrap; gap: 0.4rem 1rem; align-items: center; }
+.troca a { color: #fff; padding: 0.35rem 0.6rem; border: 1px solid #777; border-radius: 0.4rem; text-decoration: none; }
+.troca a[aria-current] { background: #fff; color: #111; border-color: #fff; }
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+
+<nav class="troca" aria-label="Trocar de proposta">
+  <div class="miolo">
+    <span>Proposta</span>
+    <a data-k="proposta" data-v="a" href="?proposta=a">A · Guia de linhas</a>
+    <a data-k="proposta" data-v="b" href="?proposta=b">B · Caderneta</a>
+    <span>Paleta</span>
+    <a data-k="paleta" data-v="1" href="?paleta=1">1 · Lilás e verde</a>
+    <a data-k="paleta" data-v="2" href="?paleta=2">2 · Nova</a>
+  </div>
+</nav>
+<script>
+  (function () {
+    var h = document.documentElement, q = new URLSearchParams(location.search);
+    if (q.get("limpo") === "1") { document.querySelector(".troca").hidden = true; return; }
+    var atual = { proposta: h.dataset.proposta, paleta: h.dataset.paleta };
+    document.querySelectorAll(".troca a").forEach(function (a) {
+      var novo = { proposta: atual.proposta, paleta: atual.paleta };
+      novo[a.dataset.k] = a.dataset.v;
+      a.href = "?proposta=" + novo.proposta + "&paleta=" + novo.paleta;
+      if (atual[a.dataset.k] === a.dataset.v) a.setAttribute("aria-current", "true");
+    });
+  })();
+</script>
+
+<header class="topo">
+  <div class="miolo">
+    <a class="marca" href="#">
+      <svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><path d="M4 24 13 15l9 9v15H4Z"/><path d="M26 24l9-9 9 9v15H26Z"/><circle cx="24" cy="31" r="3.5" fill="currentColor" stroke="none"/></svg>
+      <span>Duas Casas, <br>Um Filho</span>
+    </a>
+    <button class="menu-botao" type="button">Menu</button>
+    <a class="sair" href="#">Sair rápido</a>
+  </div>
+</header>
+
+<main>
+  <section class="capa">
+    <div class="miolo">
+      <svg class="casas" viewBox="0 0 520 250" role="img" aria-label="Duas casas ligadas por um caminho. No meio do caminho, uma criança.">
+        <path d="M150 210 C 205 167, 225 247, 260 208 S 330 167, 372 210" fill="none" stroke="var(--fio)" stroke-width="14" stroke-linecap="round"/>
+        <g stroke="var(--l2)" stroke-width="5" stroke-linejoin="round" stroke-linecap="round">
+          <path d="M40 104 100 48 160 104V214H40Z" fill="color-mix(in srgb, var(--l2) 22%, white)"/>
+          <rect x="84" y="158" width="32" height="56" rx="16" fill="var(--l2)" stroke="none"/>
+        </g>
+        <g stroke="var(--l1)" stroke-width="5" stroke-linejoin="round" stroke-linecap="round">
+          <path d="M360 104 420 48 480 104V214H360Z" fill="color-mix(in srgb, var(--l1) 22%, white)"/>
+          <rect x="404" y="158" width="32" height="56" rx="16" fill="var(--l1)" stroke="none"/>
+        </g>
+        <circle cx="260" cy="150" r="15" fill="var(--campo)"/>
+        <path d="M260 168v30M240 172l20 10 20-10M250 220l10-22 10 22" fill="none" stroke="var(--campo)" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <h1>Seu filho tem direito aos dois. <span>E à paz.</span></h1>
+      <p class="capa-texto">Se você chegou até aqui, provavelmente está passando por um momento difícil. Este espaço foi feito para orientar, não para julgar.</p>
+      <svg class="trajeto" viewBox="0 0 416 64" role="img" aria-label="Um caminho liga duas casas. No meio do caminho, uma criança." fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+        <path d="M6 34 26 14l20 20v24H6Z"/><path d="M370 34l20-20 20 20v24h-40Z"/>
+        <path d="M58 46h118M240 46h118" stroke-width="6"/>
+        <circle class="crianca" cx="208" cy="46" r="13" stroke="none"/>
+      </svg>
+    </div>
+  </section>
+
+  <section>
+    <div class="miolo">
+      <h2>Por onde você quer começar?</h2>
+      <p>Escolha a frase que mais combina com o seu momento.</p>
+      <div class="linhas">
+
+        <details class="linha" style="--cor: var(--l1)">
+          <summary><span class="num">1</span><span class="frase">Estou me separando e quero proteger meu filho</span><svg class="seta" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m9 5 7 7-7 7"/></svg></summary>
+          <div class="linha-corpo">
+            <p>Separar dói, e querer proteger seu filho nesse momento já é um grande passo. Você não precisa ter todas as respostas agora.</p>
+            <h3>O que saber primeiro</h3>
+            <ul class="saber">
+              <li>A separação é do casal. <strong>Pai e mãe continuam pai e mãe.</strong></li>
+              <li>Convivência é direito do seu filho, e pensão e visitas são coisas separadas.</li>
+              <li>Tentar um acordo, com mediação ou no CEJUSC, costuma ser o caminho mais tranquilo, quando não há violência.</li>
+            </ul>
+            <h3>Leia nesta ordem</h3>
+            <ol class="paradas">
+              <li><a href="#">Convivência é direito do filho</a></li>
+              <li><a href="#">Protegendo seu filho do conflito</a></li>
+              <li><a href="#">Mediação e CEJUSC</a></li>
+              <li><a href="#">O que é e o que não é alienação parental</a></li>
+              <li><a href="#">Onde buscar ajuda em Sete Lagoas</a></li>
+            </ol>
+          </div>
+        </details>
+
+        <details class="linha" style="--cor: var(--l2)">
+          <summary><span class="num">2</span><span class="frase">Sinto que meu filho está sendo afastado de mim</span><svg class="seta" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m9 5 7 7-7 7"/></svg></summary>
+          <div class="linha-corpo">
+            <p>Sentir que está perdendo espaço na vida do seu filho é uma dor enorme. Vamos ver juntos o que pode estar acontecendo e o que você pode fazer.</p>
+            <h3>O que saber primeiro</h3>
+            <ul class="saber">
+              <li>A recusa da criança <strong>é um sinal a ser entendido, não uma prova</strong>. Pode haver várias razões.</li>
+              <li><strong>Não revide nem decida sozinho(a).</strong> Responda com fatos e procure orientação, não com outra acusação.</li>
+              <li>Registre de forma objetiva: mensagens completas, tentativas de contato, datas. <strong>Nunca peça que seu filho grave ou "prove" nada.</strong></li>
+            </ul>
+            <h3>Leia nesta ordem</h3>
+            <ol class="paradas">
+              <li><a href="#">O que é e o que não é alienação parental</a></li>
+              <li><a href="#">Se você está vivendo isso agora</a></li>
+              <li><a href="#">Quando a acusação vira arma</a></li>
+              <li><a href="#">Protegendo seu filho do conflito</a></li>
+              <li><a href="#">Onde buscar ajuda em Sete Lagoas</a></li>
+            </ol>
+          </div>
+        </details>
+
+        <details class="linha" style="--cor: var(--l3)">
+          <summary><span class="num">3</span><span class="frase">Fui acusado(a) de alienação parental</span><svg class="seta" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m9 5 7 7-7 7"/></svg></summary>
+          <div class="linha-corpo">
+            <p>Ser acusado(a) mexe com tudo: raiva, medo, injustiça. Respire. Uma acusação não é uma condenação.</p>
+            <h3>O que saber primeiro</h3>
+            <ul class="saber">
+              <li><strong>Alegar não é provar.</strong> A Justiça precisa de avaliação técnica, como o estudo psicossocial.</li>
+              <li><strong>Não responda com outra acusação.</strong> Organize os fatos com datas e busque orientação jurídica.</li>
+              <li>Vale olhar com honestidade, sem culpa, para as próprias atitudes. Na dor da separação, às vezes a gente não percebe como um comentário atinge o filho.</li>
+            </ul>
+            <h3>Leia nesta ordem</h3>
+            <ol class="paradas">
+              <li><a href="#">Quando a acusação vira arma</a></li>
+              <li><a href="#">O que é e o que não é alienação parental</a></li>
+              <li><a href="#">Protegendo seu filho do conflito</a></li>
+              <li><a href="#">Perguntas frequentes</a></li>
+              <li><a href="#">Onde buscar ajuda em Sete Lagoas</a></li>
+            </ol>
+          </div>
+        </details>
+
+        <details class="linha" style="--cor: var(--l4)">
+          <summary><span class="num">4</span><span class="frase">Estou em situação de violência</span><svg class="seta" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m9 5 7 7-7 7"/></svg></summary>
+          <div class="linha-corpo">
+            <h3>Primeiro, sua segurança</h3>
+            <ul class="saber">
+              <li><strong>Em perigo agora? Ligue <a href="tel:190">190</a>.</strong></li>
+              <li><a href="tel:180"><strong>180</strong></a>: Central de Atendimento à Mulher</li>
+              <li><a href="tel:100"><strong>100</strong></a>: Disque Direitos Humanos, também para violência contra crianças</li>
+              <li><a href="tel:188"><strong>188</strong></a>: CVV, apoio emocional 24 horas</li>
+              <li>Use o botão <strong>Sair rápido</strong>, no alto da tela, a qualquer momento. Ele troca este site por uma página de previsão do tempo.</li>
+            </ul>
+            <p>Você não está sozinho(a), e o que está acontecendo não é culpa sua. Buscar proteção para você e para seu filho é um direito.</p>
+            <h3>Leia nesta ordem</h3>
+            <ol class="paradas">
+              <li><a href="#">Violência não é conflito</a></li>
+              <li><a href="#">Onde buscar ajuda em Sete Lagoas</a></li>
+              <li><a href="#">Quando a acusação vira arma</a></li>
+              <li><a href="#">Perguntas frequentes</a></li>
+            </ol>
+          </div>
+        </details>
+
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="miolo">
+      <h2>Uma via de mão dupla</h2>
+      <p>Em uma disputa de guarda, a acusação pode virar arma dos dois lados. Nos dois casos, quem mais perde é a criança.</p>
+      <div class="sentidos">
+        <div>
+          <h3>Proteger não é alienar</h3>
+          <p>Quem denuncia uma violência ou um abuso precisa ser ouvido com seriedade. Uma acusação de alienação parental não pode servir para calar essa denúncia.</p>
+        </div>
+        <div>
+          <h3>Acusar não é provar</h3>
+          <p>Uma denúncia falsa, feita para afastar o outro genitor, também prejudica a criança. A própria lei trata isso como forma de alienação parental.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="miolo">
+      <h2>Todos os temas</h2>
+      <div class="grupos">
+        <div>
+          <h3>Entender</h3>
+          <ul>
+            <li><a href="#"><strong>Convivência é direito do filho</strong><span>Guarda compartilhada, visitas e pensão</span></a></li>
+            <li><a href="#"><strong>O que é e o que não é alienação parental</strong><span>O que a lei diz, em palavras simples</span></a></li>
+            <li><a href="#"><strong>Quando a acusação vira arma</strong><span>Como o juiz decide e por que a prova importa</span></a></li>
+            <li><a href="#"><strong>O debate sobre a lei</strong><span>Os dois lados da proposta de revogação</span></a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Cuidar</h3>
+          <ul>
+            <li><a href="#"><strong>Protegendo seu filho do conflito</strong><span>O que a criança sente e como ajudar</span></a></li>
+            <li><a href="#"><strong>Violência não é conflito</strong><span>Quando a segurança vem antes de tudo</span></a></li>
+            <li><a href="#"><strong>Mediação e CEJUSC</strong><span>Quando o acordo ajuda e quando não é indicado</span></a></li>
+            <li><a href="#"><strong>Se você está vivendo isso agora</strong><span>Dez orientações práticas</span></a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Agir</h3>
+          <ul>
+            <li><a href="#"><strong>Onde buscar ajuda em Sete Lagoas</strong><span>Endereços e telefones</span></a></li>
+            <li><a href="#"><strong>Perguntas frequentes</strong><span>Respostas curtas para dúvidas comuns</span></a></li>
+            <li><a href="#"><strong>Teste seus conhecimentos</strong><span>Oito perguntas de verdadeiro ou falso</span></a></li>
+            <li><a href="#"><strong>Sobre o projeto</strong><span>Quem somos e como pesquisamos</span></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<section class="emergencia" style="margin-top: 3rem">
+  <div class="miolo">
+    <h2>Precisa de ajuda agora?</h2>
+    <p>As ligações são gratuitas. Toque no número para ligar.</p>
+    <ul class="telefones">
+      <li><a href="tel:190"><strong>190</strong><span>Polícia Militar, em caso de perigo</span></a></li>
+      <li><a href="tel:180"><strong>180</strong><span>Central de Atendimento à Mulher</span></a></li>
+      <li><a href="tel:100"><strong>100</strong><span>Disque Direitos Humanos, também para crianças</span></a></li>
+      <li><a href="tel:188"><strong>188</strong><span>CVV, apoio emocional 24 horas</span></a></li>
+    </ul>
+  </div>
+</section>
+
+<footer class="rodape">
+  <div class="miolo">
+    <p>Conteúdo informativo produzido por estudantes de Direito sob orientação docente. Não substitui a orientação de advogado(a) ou da Defensoria Pública.</p>
+  </div>
+</footer>
+
+</body>
+</html>

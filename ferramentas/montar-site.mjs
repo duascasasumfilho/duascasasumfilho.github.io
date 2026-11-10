@@ -34,11 +34,10 @@ const PAGINAS = [
   ["sobre-o-projeto", "Sobre o projeto"],
 ];
 
-const LOGO = `<svg viewBox="0 0 48 48" aria-hidden="true" focusable="false">
-  <path d="M3 24 L13 15 L23 24 V40 H3 Z" fill="#E9E3F6" stroke="#5E4B9C" stroke-width="2.4" stroke-linejoin="round"/>
-  <path d="M25 24 L35 15 L45 24 V40 H25 Z" fill="#DCEFE3" stroke="#3B7F57" stroke-width="2.4" stroke-linejoin="round"/>
-  <circle cx="24" cy="31" r="4.2" fill="#3A2D63"/>
-  <path d="M24 35.5 V40" stroke="#3A2D63" stroke-width="2.4" stroke-linecap="round"/>
+const LOGO = `<svg viewBox="0 0 48 48" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
+  <path d="M4 24 13 15l9 9v15H4Z"/>
+  <path d="M26 24l9-9 9 9v15H26Z"/>
+  <circle cx="24" cy="31" r="3.5" fill="currentColor" stroke="none"/>
 </svg>`;
 
 function lerConteudo(arquivo) {
@@ -96,7 +95,7 @@ function montarPagina(slug, rotuloMenu, { dados, corpo }) {
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>${escapar(titulo)}</title>
   <meta name="description" content="${escapar(descricao)}">
-  <meta name="theme-color" content="#3A2D63">
+  <meta name="theme-color" content="#0F4C5C">
   <meta name="referrer" content="no-referrer">
   <link rel="canonical" href="${endereco}">
   <meta property="og:type" content="website">
@@ -110,9 +109,8 @@ function montarPagina(slug, rotuloMenu, { dados, corpo }) {
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="assets/img/icone.svg" type="image/svg+xml">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Fraunces:opsz,wght,SOFT@9..144,500..700,100&display=swap">
+  <link rel="preload" href="assets/fontes/atkinson-hyperlegible-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fontes/barlow-semi-condensed-700.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/css/estilo.css">
   ${extrasHead}
 </head>

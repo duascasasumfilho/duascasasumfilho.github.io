@@ -15,5 +15,6 @@
 - Rede de apoio: `docs/data/rede-apoio.js`. O mapa (Leaflet) só aparece se houver órgão verificado com lat/lng.
 - Quiz: `docs/assets/js/quiz.js`.
 - Capa do WhatsApp: `ferramentas/capa-whatsapp.html`. Para gerar a imagem, sirva o arquivo e tire um screenshot de 1200x630, salvando em `docs/assets/img/capa.png`.
-- Cores e fontes: variáveis no topo de `docs/assets/css/estilo.css`. Paleta lilás e verde; fontes Atkinson Hyperlegible (texto) e Fraunces (títulos).
+- Cores e fontes: variáveis no topo de `docs/assets/css/estilo.css` (bloco `:root`). Visual "Guia de linhas": azul-petróleo nas áreas fortes, amarelo como destaque e uma cor para cada uma das quatro portas. Fontes Atkinson Hyperlegible (texto) e Barlow Semi Condensed (títulos). Os arquivos das fontes ficam em `docs/assets/fontes/`; o site não carrega nada do Google.
+- Design: o resumo do produto está em `PRODUCT.md` e a direção visual escolhida em `.impeccable/surfaces/`. As propostas comparadas na escolha ficam em `propostas/` e não são publicadas.
 - Para ver no navegador: `npx http-server docs -p 8080`, e abrir http://127.0.0.1:8080. Confira sempre em 390px de largura, a largura de um celular.
