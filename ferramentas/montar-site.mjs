@@ -87,6 +87,14 @@ const SEGURANCA = [
   "upgrade-insecure-requests"
 ].join("; ");
 
+// GOOGLE SEARCH CONSOLE: código que prova ao Google que o site é do grupo.
+// Fica só na página inicial. Não apague, ou o Search Console perde o acesso.
+const CODIGO_GOOGLE = "9KUSH3Ms1ipK0C8s_IIaOVnleIR_GBrKOjxfWCU2DTY";
+const VERIFICACAO_GOOGLE = CODIGO_GOOGLE
+  ? `
+  <meta name="google-site-verification" content="${CODIGO_GOOGLE}">`
+  : "";
+
 const ROTULO = Object.fromEntries(PAGINAS);
 
 const LOGO = `<svg viewBox="0 0 48 48" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
@@ -200,7 +208,7 @@ ${conteudo}
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>${escapar(titulo)}</title>
   <meta name="description" content="${escapar(descricao)}">
-  <meta name="theme-color" content="#F6F7F4">
+  <meta name="theme-color" content="#F6F7F4">${slug === "index" ? VERIFICACAO_GOOGLE : ""}
   <meta name="referrer" content="no-referrer">
   <meta http-equiv="Content-Security-Policy" content="${SEGURANCA}">
   ${slug === "404" ? '<base href="/">\n  <meta name="robots" content="noindex">' : `<link rel="canonical" href="${endereco}">`}
