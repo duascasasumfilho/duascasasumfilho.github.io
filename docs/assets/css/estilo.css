@@ -500,6 +500,11 @@ small { font-size: var(--t-pequeno); color: var(--suave); }
 .selo--ok { color: var(--campo); }
 .selo--ok::before { background: var(--campo); border-color: var(--campo); }
 .servico-acoes { display: flex; flex-wrap: wrap; gap: var(--e-2); margin-top: var(--e-3); }
+/* órgãos com mais de um endereço: unidades separadas por fio, um pouco recuadas */
+.unidades { list-style: none; margin: var(--e-4) 0 0; padding: 0; }
+.unidades li { margin: 0; padding: var(--e-3) 0 var(--e-3) var(--e-4); border-top: 1px solid var(--fio); }
+.unidade-nome { font-weight: 700; color: var(--tinta); }
+.rodape-logo img { width: 7.5rem; height: auto; }
 
 /* ---------- Quiz ---------- */
 
@@ -527,6 +532,9 @@ small { font-size: var(--t-pequeno); color: var(--suave); }
 .quiz-resultado { margin-top: var(--e-5); padding: var(--e-5); border-radius: var(--raio); background: var(--campo); color: var(--sobre-campo); }
 .quiz-resultado h2 { color: var(--sobre-campo); margin-top: 0; }
 .quiz-resultado a { color: var(--sobre-campo); }
+.quiz-resultado p:last-child { margin-bottom: 0; }
+/* o resultado recebe o foco por código, só para o leitor de tela anunciar; sem moldura */
+.quiz-resultado:focus { outline: none; }
 
 /* ---------- Emergência e rodapé ---------- */
 

@@ -13,6 +13,32 @@
     return e;
   }
 
+  // Lista de telefones: aceita "telefones" (lista) ou "telefone" (um só)
+  function telefonesDe(item) {
+    if (Array.isArray(item.telefones)) return item.telefones.filter(Boolean);
+    return item.telefone ? [item.telefone] : [];
+  }
+
+  // Monta os botões de ligar e de abrir no mapa
+  function acoesPara(item, mostrarEndereco) {
+    var acoes = el("div", "servico-acoes");
+    telefonesDe(item).forEach(function (numero) {
+      var tel = el("a", "botao", "Ligar: " + numero);
+      var digitos = String(numero).replace(/[^0-9]/g, "");
+      tel.href = "tel:" + (digitos.length >= 10 ? "+55" + digitos : digitos);
+      acoes.appendChild(tel);
+    });
+    if (mostrarEndereco && item.endereco) {
+      var mapa = el("a", "botao botao--contorno", "Abrir no mapa");
+      var busca = /Sete Lagoas/.test(item.endereco) ? item.endereco : item.endereco + ", Sete Lagoas/MG";
+      mapa.href = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(busca);
+      mapa.target = "_blank";
+      mapa.rel = "noopener noreferrer";
+      acoes.appendChild(mapa);
+    }
+    return acoes;
+  }
+
   lista.forEach(function (s) {
     var card = el("article", "servico");
     card.appendChild(el("h3", null, s.nome));
@@ -25,20 +51,22 @@
     if (s.verificado && s.endereco) card.appendChild(el("p", null, s.endereco));
     if (s.horario) card.appendChild(el("p", null, "Horário: " + s.horario));
 
-    var acoes = el("div", "servico-acoes");
-    if (s.telefone) {
-      var tel = el("a", "botao", "Ligar: " + s.telefone);
-      tel.href = "tel:" + String(s.telefone).replace(/[^0-9+]/g, "");
-      acoes.appendChild(tel);
-    }
-    if (s.verificado && s.endereco) {
-      var mapa = el("a", "botao botao--contorno", "Abrir no mapa");
-      mapa.href = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(s.endereco);
-      mapa.target = "_blank";
-      mapa.rel = "noopener noreferrer";
-      acoes.appendChild(mapa);
-    }
+    var acoes = acoesPara(s, s.verificado);
     if (acoes.children.length) card.appendChild(acoes);
+
+    // Órgãos com mais de um endereço (por exemplo, os três setores do Conselho Tutelar)
+    if (Array.isArray(s.unidades) && s.unidades.length) {
+      var lista2 = el("ul", "unidades");
+      s.unidades.forEach(function (u) {
+        var li = el("li");
+        li.appendChild(el("p", "unidade-nome", u.nome));
+        if (s.verificado && u.endereco) li.appendChild(el("p", null, u.endereco));
+        var acoesU = acoesPara(u, s.verificado);
+        if (acoesU.children.length) li.appendChild(acoesU);
+        lista2.appendChild(li);
+      });
+      card.appendChild(lista2);
+    }
     alvo.appendChild(card);
   });
 

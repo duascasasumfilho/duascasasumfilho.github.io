@@ -14,7 +14,8 @@ duas-casas-um-filho/
 ├── docs/            ← o site pronto, que vai para a internet (não editar à mão)
 │   ├── data/rede-apoio.js   ← endereços da página "Onde buscar ajuda"
 │   └── assets/              ← cores (css), funções (js) e imagens
-├── ferramentas/     ← o "montador" do site
+├── ferramentas/     ← o "montador" do site, o molde da capa do WhatsApp e o folder
+├── impressos/       ← folder A5 em PDF e QR Codes (não é publicado)
 ├── propostas/       ← as propostas de visual comparadas na escolha (não é publicado)
 ├── BRIEFING.md      ← toda a pesquisa e as regras de conteúdo
 ├── PRODUCT.md       ← resumo do produto: para quem é e o que não pode mudar
@@ -48,7 +49,8 @@ duas-casas-um-filho/
 Abra `docs/data/rede-apoio.js`. Cada órgão tem:
 
 - `"endereco"`: o endereço completo, entre aspas;
-- `"telefone"`: o telefone, por exemplo `"(31) 3333-3333"`;
+- `"telefones"`: a lista de telefones, por exemplo `["(31) 3333-3333", "(31) 98888-8888"]`;
+- `"unidades"`: para órgãos com mais de um endereço, como o Conselho Tutelar;
 - `"verificado"`: troque para `true` **só depois de confirmar** o endereço por telefone (156) ou pessoalmente;
 - `"lat"` e `"lng"`: coordenadas do prédio, para aparecer o pino no mapa. Para pegar, clique com o botão direito no prédio no Google Maps e clique nos números. **Nunca invente coordenadas.**
 
@@ -76,12 +78,32 @@ Depois de mudar, monte o site.
 
 ---
 
-## Como ativar o questionário e o logo da Afya
+## Questionário e logo da Afya
 
-- **Questionário dos pais:** em `conteudo/sobre-o-projeto.html`, procure por `QUESTIONÁRIO DOS PAIS` e siga os três passos escritos ali.
-- **Logo da Afya:** em `ferramentas/montar-site.mjs`, procure por `MOSTRAR_LOGO_AFYA` e siga as instruções.
+Os dois foram autorizados pelo professor e estão no ar:
 
-Os dois ficam escondidos até a autorização do professor.
+- **Questionário dos pais:** em `conteudo/sobre-o-projeto.html` (seção "Questionário para pais e mães") e no fim do quiz (`docs/assets/js/quiz.js`). Para trocar o link, procure por `docs.google.com/forms` nos dois arquivos.
+- **Logo da Afya:** o arquivo é `docs/assets/img/afya.png`. Para esconder, troque `MOSTRAR_LOGO_AFYA` para `false` em `ferramentas/montar-site.mjs`.
+
+---
+
+## Folder e QR Codes
+
+- O folder A5, frente e verso, está pronto em `impressos/folder-a5.pdf`. Para imprimir: tamanho A5, frente e verso, sem margens.
+- Para mudar o texto do folder, edite `ferramentas/folder.html` e gere o PDF de novo (as instruções estão no começo do arquivo).
+- Os QR Codes ficam em `impressos/qrcodes/`. Use `site.svg` (ou `site.png`) no material impresso. Há também um QR Code por local de distribuição (`forum`, `cras`, `escolas` etc.); eles levam ao mesmo site, com `?origem=local` no endereço. Só servem para medir o alcance se o grupo ligar um contador de visitas sem cookies, como o GoatCounter.
+
+---
+
+## Como publicar no GitHub Pages
+
+O endereço do site será **https://duascasasumfilho.github.io/**.
+
+1. No GitHub, clique no **+** (canto superior direito) e em **New organization**. Escolha o plano gratuito e o nome `duascasasumfilho`.
+2. Dentro da organização, crie um repositório público chamado `duascasasumfilho.github.io`.
+3. Envie este projeto para esse repositório (o Claude Code pode fazer isso, com a sua autorização).
+4. No repositório, abra **Settings** → **Pages**. Em **Branch**, escolha `main` e a pasta `/docs`. Salve.
+5. Em alguns minutos o site abre no endereço acima.
 
 ---
 
@@ -93,15 +115,12 @@ Abra `conteudo/debate-sobre-a-lei.html` e mude a data em `Atualizado em ...` e o
 
 ## Trechos marcados para revisão
 
-Os trechos que dependem de autorização ou confirmação estão marcados com `<!-- REVISAR -->` no código e com uma caixa amarela no site. Para encontrar todos, procure pela palavra **REVISAR** na pasta `conteudo/`.
+Quando algo depender de confirmação, marque o trecho com `<!-- REVISAR -->` no código e com a caixa amarela `.em-revisao` no site. Para encontrar todos, procure pela palavra **REVISAR** na pasta `conteudo/`.
 
-Pendências principais (ver `BRIEFING.md`, seção 10):
+Em 10/11/2026 não havia nenhum trecho pendente. Antes de publicar, falta só:
 
-- [ ] autorização de cada profissional para aparecer com nome;
-- [ ] confirmação dos endereços da rede de apoio;
-- [ ] texto "Como conversar sobre a separação";
-- [ ] conferência da Lei 15.384/2026 e da situação do PL 2.812/2022;
-- [ ] revisão final do Prof. Filipe Garcia.
+- [ ] revisão final do Prof. Filipe Garcia;
+- [ ] conferir de novo a situação do PL 2.812/2022 no site da Câmara e atualizar a data em `conteudo/debate-sobre-a-lei.html`.
 
 ---
 
@@ -119,4 +138,4 @@ Depois abra no navegador: http://127.0.0.1:8080
 
 ## Privacidade
 
-O site não coleta dados, não usa cookies e não tem formulário. O quiz funciona só no aparelho de quem usa.
+O site não coleta dados, não usa cookies e não tem formulário próprio. O quiz funciona só no aparelho de quem usa. O questionário dos pais fica no Google Forms, fora do site.

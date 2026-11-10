@@ -14,7 +14,7 @@ const PASTA_CONTEUDO = join(RAIZ, "conteudo");
 const PASTA_SITE = join(RAIZ, "docs");
 
 // Endereço do site publicado (usado nos links de compartilhar e no WhatsApp)
-const ENDERECO_SITE = "https://pedritoartist.github.io/duas-casas-um-filho/";
+const ENDERECO_SITE = "https://duascasasumfilho.github.io/";
 const NOME_SITE = "Duas Casas, Um Filho";
 
 // Todas as páginas do site: [nome do arquivo, nome que aparece no menu]
@@ -54,12 +54,12 @@ const LINHAS = [
     paradas: ["violencia-nao-e-conflito", "onde-buscar-ajuda", "quando-a-acusacao-vira-arma", "perguntas-frequentes"] },
 ];
 
-// LOGO DA AFYA: aguardando autorização do professor.
-// Quando liberar: salve o arquivo em docs/assets/img/afya.svg,
-// troque "false" por "true" na linha abaixo e monte o site.
-const MOSTRAR_LOGO_AFYA = false;
+// LOGO DA AFYA: autorizado pelo professor em 10/11/2026.
+// O arquivo fica em docs/assets/img/afya.png. Para esconder, troque
+// "true" por "false" na linha abaixo e monte o site.
+const MOSTRAR_LOGO_AFYA = true;
 const LOGO_AFYA = MOSTRAR_LOGO_AFYA
-  ? `      <p class="rodape-logo"><img src="assets/img/afya.svg" alt="Afya Faculdade Sete Lagoas" width="120" height="40" loading="lazy"></p>`
+  ? `      <p class="rodape-logo"><img src="assets/img/afya.png" alt="Afya Faculdade Sete Lagoas" width="379" height="150" loading="lazy"></p>`
   : `      <!-- espaço reservado para o logo da Afya (ver MOSTRAR_LOGO_AFYA no montador) -->`;
 
 const ROTULO = Object.fromEntries(PAGINAS);
@@ -175,7 +175,7 @@ ${conteudo}
   <meta name="description" content="${escapar(descricao)}">
   <meta name="theme-color" content="#F6F7F4">
   <meta name="referrer" content="no-referrer">
-  <link rel="canonical" href="${endereco}">
+  ${slug === "404" ? '<base href="/">\n  <meta name="robots" content="noindex">' : `<link rel="canonical" href="${endereco}">`}
   <meta property="og:type" content="website">
   <meta property="og:locale" content="pt_BR">
   <meta property="og:site_name" content="${NOME_SITE}">
@@ -256,6 +256,13 @@ for (const [slug, rotulo] of PAGINAS) {
   }
   const html = montarPagina(slug, rotulo, lerConteudo(arquivo));
   writeFileSync(join(PASTA_SITE, arquivo), html, "utf8");
+  total++;
+}
+
+// Página de erro: aparece quando alguém abre um endereço que não existe.
+// Não entra no menu. O GitHub Pages usa o arquivo docs/404.html.
+if (arquivos.has("404.html")) {
+  writeFileSync(join(PASTA_SITE, "404.html"), montarPagina("404", "Página não encontrada", lerConteudo("404.html")), "utf8");
   total++;
 }
 console.log(`Pronto! ${total} página(s) montada(s) em docs/.`);

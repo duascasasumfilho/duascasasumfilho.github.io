@@ -27,6 +27,24 @@
         ],
         "createdAt": "2026-11-10T04:19:48.256Z",
         "reason": "Agent: falso positivo; a fonte usada e Barlow Semi Condensed, declarada no DESIGN.md, e o detector leu mal a forma abreviada font:"
+      },
+      {
+        "rule": "oversized-h1",
+        "value": "*",
+        "files": [
+          "ferramentas/folder.html"
+        ],
+        "createdAt": "2026-11-10T09:05:33.863Z",
+        "reason": "Agent: folder impresso A5; o titulo grande e a capa do impresso, nao uma pagina do site"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "*",
+        "files": [
+          "ferramentas/folder.html"
+        ],
+        "createdAt": "2026-11-10T09:05:34.769Z",
+        "reason": "Agent: #888 e so o fundo cinza da pre-visualizacao na tela; nao sai na impressao (@media print)"
       }
     ]
   }

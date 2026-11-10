@@ -1,0 +1,152 @@
+<!doctype html>
+<!--
+  FOLDER A5 PARA IMPRESSÃO (frente e verso). Não faz parte do site.
+  Para gerar o PDF: sirva a pasta do projeto (npx http-server . -p 8082),
+  abra http://127.0.0.1:8082/ferramentas/folder.html no Chrome,
+  aperte Ctrl+P, escolha "Salvar como PDF", tamanho A5, margens "Nenhuma"
+  e marque "Gráficos de plano de fundo".
+  O PDF pronto fica em impressos/folder-a5.pdf.
+  As mensagens vêm da seção 4.3 do briefing.
+-->
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Folder A5 | Duas Casas, Um Filho</title>
+<style>
+  @font-face { font-family: "Atkinson Hyperlegible"; src: url("../docs/assets/fontes/atkinson-hyperlegible-400.woff2") format("woff2"); font-weight: 400; }
+  @font-face { font-family: "Atkinson Hyperlegible"; src: url("../docs/assets/fontes/atkinson-hyperlegible-700.woff2") format("woff2"); font-weight: 700; }
+  @font-face { font-family: "Barlow Semi Condensed"; src: url("../docs/assets/fontes/barlow-semi-condensed-700.woff2") format("woff2"); font-weight: 700; }
+
+  :root {
+    --papel: #F6F7F4; --tinta: #15252B; --suave: #4A5B60; --fio: #D3DAD6;
+    --campo: #0F4C5C; --suave-campo: #C9DDE1; --quente: #F2B705;
+    --l1: #2F7A45; --l2: #1F6594; --l3: #A94E0B; --l4: #8E2F4B;
+  }
+  @page { size: 148mm 210mm; margin: 0; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body { background: #888; font-family: "Atkinson Hyperlegible", sans-serif; color: var(--tinta); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .pagina {
+    width: 148mm; height: 210mm; margin: 0 auto 8mm; overflow: hidden;
+    background: var(--papel); display: flex; flex-direction: column; position: relative;
+  }
+  @media print { body { background: none; } .pagina { margin: 0; break-after: page; } }
+  h1, h2, .num, .tel strong { font-family: "Barlow Semi Condensed", sans-serif; font-weight: 700; }
+
+  /* ---------- Frente ---------- */
+  .capa { background: var(--campo); color: #fff; padding: 8mm 10mm 6mm; }
+  .marca { display: flex; align-items: center; gap: 2.5mm; font: 700 13pt/1 "Barlow Semi Condensed", sans-serif; }
+  .marca svg { width: 9mm; height: 9mm; }
+  .capa h1 { font-size: 31pt; line-height: 0.98; margin: 5mm 0 0; text-wrap: balance; }
+  .capa h1 span { display: block; color: var(--quente); }
+  .capa p { margin: 4mm 0 0; font-size: 10.5pt; line-height: 1.4; color: var(--suave-campo); }
+  .trajeto { display: block; width: 54mm; height: auto; margin-top: 4mm; color: #fff; }
+
+  .lembretes { padding: 5.5mm 10mm 0; flex: 1; }
+  .lembretes h2 { font-size: 17pt; line-height: 1.1; margin: 0 0 3mm; color: var(--campo); }
+  .lembretes ol { list-style: none; margin: 0; padding: 0; }
+  .lembretes li { display: grid; grid-template-columns: 9mm 1fr; gap: 2.5mm; padding: 2mm 0; border-top: 0.3mm solid var(--fio); }
+  .lembretes li:last-child { border-bottom: 0.3mm solid var(--fio); }
+  .num { font-size: 20pt; line-height: 1; color: var(--campo); }
+  .lembretes strong { display: block; font-size: 10.5pt; line-height: 1.25; }
+  .lembretes div span { display: block; font-size: 9pt; line-height: 1.35; color: var(--suave); margin-top: 0.6mm; }
+  .vire { margin: 0; padding: 3mm 10mm 6mm; font-size: 9pt; color: var(--suave); text-align: right; }
+
+  /* ---------- Verso ---------- */
+  .qr-bloco { padding: 10mm 10mm 6mm; display: grid; grid-template-columns: 46mm 1fr; gap: 6mm; align-items: center; }
+  .qr-bloco img { width: 46mm; height: 46mm; display: block; }
+  .qr-bloco h2 { font-size: 20pt; line-height: 1.02; margin: 0 0 2.5mm; color: var(--campo); }
+  .qr-bloco p { margin: 0 0 2mm; font-size: 9.5pt; line-height: 1.4; }
+  .endereco { font-weight: 700; font-size: 10pt; color: var(--campo); word-break: break-all; }
+  .caminhos { padding: 0 10mm 5mm; }
+  .caminhos p { margin: 0 0 2mm; font-size: 9pt; color: var(--suave); }
+  .caminhos ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.6mm; }
+  .caminhos li { display: grid; grid-template-columns: 6.5mm 1fr; gap: 2.2mm; align-items: center; font-size: 9.5pt; line-height: 1.25; font-weight: 700; }
+  .caminhos i { width: 6.5mm; height: 6.5mm; border-radius: 50%; display: grid; place-items: center; font: 700 10pt/1 "Barlow Semi Condensed", sans-serif; font-style: normal; color: #fff; }
+  .emergencia { background: var(--campo); color: #fff; padding: 6mm 10mm; margin-top: auto; }
+  .emergencia h2 { font-size: 16pt; margin: 0 0 1mm; }
+  .emergencia > p { margin: 0 0 3mm; font-size: 9pt; color: var(--suave-campo); }
+  .tels { display: grid; grid-template-columns: 1fr 1fr; gap: 0 5mm; }
+  .tel { border-top: 0.3mm solid rgb(255 255 255 / 0.3); padding: 2mm 0; }
+  .tel strong { display: block; font-size: 22pt; line-height: 1; color: var(--quente); }
+  .tel span { font-size: 8.5pt; line-height: 1.25; }
+  .creditos { padding: 5mm 10mm 7mm; display: grid; grid-template-columns: 1fr 22mm; gap: 5mm; align-items: end; font-size: 7.5pt; line-height: 1.4; color: var(--suave); }
+  .creditos p { margin: 0 0 1.2mm; }
+  .creditos img { width: 22mm; height: auto; }
+</style>
+</head>
+<body>
+
+<!-- FRENTE -->
+<section class="pagina">
+  <div class="capa">
+    <div class="marca">
+      <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><path d="M4 24 13 15l9 9v15H4Z"/><path d="M26 24l9-9 9 9v15H26Z"/><circle cx="24" cy="31" r="3.5" fill="currentColor" stroke="none"/></svg>
+      Duas Casas, Um Filho
+    </div>
+    <h1>Seu filho tem direito aos dois. <span>E à paz.</span></h1>
+    <p>Separar dói. Este material foi feito para orientar, não para julgar.</p>
+    <svg class="trajeto" viewBox="0 0 416 64" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true">
+      <path d="M6 34 26 14l20 20v24H6Z"/><path d="M370 34l20-20 20 20v24h-40Z"/>
+      <path d="M58 46h118M240 46h118" stroke-width="6"/>
+      <circle cx="208" cy="46" r="13" fill="#F2B705" stroke="none"/>
+    </svg>
+  </div>
+
+  <div class="lembretes">
+    <h2>Seis coisas para lembrar</h2>
+    <ol>
+      <li><span class="num">1</span><div><strong>Convivência é direito do seu filho.</strong><span>Não é prêmio nem castigo para os pais.</span></div></li>
+      <li><span class="num">2</span><div><strong>Pensão e convivência são coisas separadas.</strong><span>Atrasar a pensão não autoriza impedir a visita, e não ver o filho não autoriza deixar de pagar.</span></div></li>
+      <li><span class="num">3</span><div><strong>Deixe seu filho fora da briga.</strong><span>Não fale mal do outro para ele e não o use como mensageiro.</span></div></li>
+      <li><span class="num">4</span><div><strong>Não interrogue a criança em casa.</strong><span>Não peça que ela grave ninguém. Se ela contar algo, acolha e procure ajuda especializada.</span></div></li>
+      <li><span class="num">5</span><div><strong>Tente o acordo antes da guerra.</strong><span>A mediação e o CEJUSC ajudam, exceto em casos de violência.</span></div></li>
+      <li><span class="num">6</span><div><strong>Peça ajuda cedo.</strong><span>Você não precisa enfrentar isso sozinho(a).</span></div></li>
+    </ol>
+  </div>
+  <p class="vire">Vire a página para ler mais no celular.</p>
+</section>
+
+<!-- VERSO -->
+<section class="pagina">
+  <div class="qr-bloco">
+    <img src="../impressos/qrcodes/site.svg" alt="QR Code do site Duas Casas, Um Filho">
+    <div>
+      <h2>Leia mais no seu celular</h2>
+      <p>Aponte a câmera para o código. É gratuito e o site não coleta seus dados.</p>
+      <p class="endereco">duascasasumfilho.github.io</p>
+    </div>
+  </div>
+
+  <div class="caminhos">
+    <p>No site, escolha a frase que combina com o seu momento:</p>
+    <ul>
+      <li><i style="background: var(--l1)">1</i>Estou me separando e quero proteger meu filho</li>
+      <li><i style="background: var(--l2)">2</i>Sinto que meu filho está sendo afastado de mim</li>
+      <li><i style="background: var(--l3)">3</i>Fui acusado(a) de alienação parental</li>
+      <li><i style="background: var(--l4)">4</i>Estou em situação de violência</li>
+    </ul>
+  </div>
+
+  <div class="emergencia">
+    <h2>Precisa de ajuda agora?</h2>
+    <p>As ligações são gratuitas.</p>
+    <div class="tels">
+      <div class="tel"><strong>190</strong><span>Polícia Militar, em caso de perigo</span></div>
+      <div class="tel"><strong>180</strong><span>Central de Atendimento à Mulher</span></div>
+      <div class="tel"><strong>100</strong><span>Disque Direitos Humanos, também para crianças</span></div>
+      <div class="tel"><strong>188</strong><span>CVV, apoio emocional 24 horas</span></div>
+    </div>
+  </div>
+
+  <div class="creditos">
+    <div>
+      <p>Projeto de Extensão do curso de Direito da Afya Faculdade Sete Lagoas, sob orientação do Prof. Filipe Garcia.</p>
+      <p>Conteúdo informativo produzido por estudantes de Direito. Não substitui a orientação de advogado(a) ou da Defensoria Pública.</p>
+    </div>
+    <img src="../docs/assets/img/afya.png" alt="Afya">
+  </div>
+</section>
+
+</body>
+</html>

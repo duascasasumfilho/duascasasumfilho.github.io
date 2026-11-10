@@ -97,7 +97,20 @@
     a.textContent = "Voltar para o início";
     resultado.appendChild(h);
     resultado.appendChild(p);
-    resultado.appendChild(a);
+    var voltar = document.createElement("p");
+    voltar.appendChild(a);
+    resultado.appendChild(voltar);
+    // Convite para o questionário dos pais (abre no Google Forms, fora do site)
+    var convite = document.createElement("p");
+    convite.appendChild(document.createTextNode("É pai, mãe ou responsável? "));
+    var forms = document.createElement("a");
+    forms.href = "https://docs.google.com/forms/d/e/1FAIpQLSelXoGly04DsGW5bb6I3Sz3I_xlXspRcAL0Gj8Ch0LOnLdKxw/viewform?usp=header";
+    forms.target = "_blank";
+    forms.rel = "noopener noreferrer";
+    forms.textContent = "Responda ao questionário do projeto";
+    convite.appendChild(forms);
+    convite.appendChild(document.createTextNode(" (abre no Google Forms)."));
+    resultado.appendChild(convite);
     resultado.hidden = false;
     resultado.setAttribute("tabindex", "-1");
     resultado.focus();
