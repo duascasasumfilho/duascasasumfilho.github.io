@@ -1,56 +1,59 @@
 ---
 name: Duas Casas, Um Filho
-description: Guia de linhas para pais e mães em separação. Cada porta é uma linha com cor própria; as páginas são as paradas.
+description: "Casa com luz": guia acolhedor para pais e mães em separação. Fundo de luz da manhã, ilustrações em traço das duas casas e quatro caminhos com cor própria.
+status: proposta em aprovação (ramo visual-acolhedor, 10/11/2026). O site publicado ainda usa o visual "Guia de linhas" (marca site-v1-azul).
 colors:
-  papel: "#F6F7F4"
+  papel: "#FDF6EE"
   superficie: "#FFFFFF"
-  tinta: "#15252B"
-  suave: "#4A5B60"
-  fio: "#D3DAD6"
+  tinta: "#1F2E35"
+  suave: "#4F5F66"
+  fio: "#EADFD2"
   campo: "#0F4C5C"
   campo-escuro: "#0A3742"
-  campo-claro: "#E1EBEC"
-  sobre-campo: "#FFFFFF"
-  suave-campo: "#C9DDE1"
-  quente: "#F2B705"
+  sol: "#F2B705"
+  sol-claro: "#FCE7A6"
+  pessego: "#F8DCC6"
+  abraco: "#FFF0E3"
+  ambar-fundo: "#FFF0D2"
+  ambar-tinta: "#7A4A00"
+  ambar-traco: "#E0A43A"
+  verde-fundo: "#E3F1E6"
+  verde-tinta: "#1D5E33"
+  verde-traco: "#6DAF7F"
   linha-1: "#2F7A45"
+  linha-1-claro: "#E3F0E6"
   linha-2: "#1F6594"
+  linha-2-claro: "#E1ECF6"
   linha-3: "#A94E0B"
+  linha-3-claro: "#FBE8D8"
   linha-4: "#8E2F4B"
-  aviso: "#FFF4D6"
-  aviso-borda: "#C99A12"
-  aviso-tinta: "#5C4300"
+  linha-4-claro: "#F6E2E8"
 typography:
-  capa:
-    fontFamily: "Barlow Semi Condensed, Arial Narrow, Segoe UI, sans-serif"
-    fontSize: "clamp(2.6rem, 11.5vw, 5.25rem)"
-    fontWeight: 700
-    lineHeight: 0.98
   h1:
-    fontFamily: "Barlow Semi Condensed, Arial Narrow, Segoe UI, sans-serif"
-    fontSize: "clamp(2.5rem, 10.5vw, 4rem)"
-    fontWeight: 700
-    lineHeight: 1
+    fontFamily: "Lexend, Segoe UI, system-ui, sans-serif"
+    fontSize: "clamp(2.1rem, 8.4vw, 3.6rem)"
+    fontWeight: 600
+    lineHeight: 1.08
   h2:
-    fontFamily: "Barlow Semi Condensed, Arial Narrow, Segoe UI, sans-serif"
-    fontSize: "clamp(1.9rem, 7.5vw, 2.4rem)"
-    fontWeight: 700
-    lineHeight: 1.1
+    fontFamily: "Lexend, Segoe UI, system-ui, sans-serif"
+    fontSize: "clamp(1.55rem, 6vw, 2rem)"
+    fontWeight: 600
+    lineHeight: 1.2
   h3:
-    fontFamily: "Barlow Semi Condensed, Arial Narrow, Segoe UI, sans-serif"
-    fontSize: "1.45rem"
-    fontWeight: 700
-    lineHeight: 1.15
-  destaque:
-    fontFamily: "Barlow Semi Condensed, Arial Narrow, Segoe UI, sans-serif"
-    fontSize: "1.6rem"
+    fontFamily: "Lexend, Segoe UI, system-ui, sans-serif"
+    fontSize: "1.25rem"
     fontWeight: 600
     lineHeight: 1.3
+  destaque:
+    fontFamily: "Lexend, Segoe UI, system-ui, sans-serif"
+    fontSize: "1.45rem"
+    fontWeight: 500
+    lineHeight: 1.35
   abertura:
     fontFamily: "Atkinson Hyperlegible, Segoe UI, system-ui, sans-serif"
-    fontSize: "1.25rem"
+    fontSize: "1.22rem"
     fontWeight: 400
-    lineHeight: 1.5
+    lineHeight: 1.55
   texto:
     fontFamily: "Atkinson Hyperlegible, Segoe UI, system-ui, sans-serif"
     fontSize: "1.125rem"
@@ -62,128 +65,126 @@ typography:
     fontWeight: 400
     lineHeight: 1.4
 rounded:
-  foco: "4px"
-  raio: "0.5rem"
-  traco: "1rem"
+  foco: "6px"
+  raio: "0.75rem"
+  cartao: "1.25rem"
+  botao: "999px"
   circulo: "50%"
 spacing:
-  e-1: "0.25rem"
   e-2: "0.5rem"
   e-3: "0.75rem"
   e-4: "1rem"
   e-5: "1.5rem"
   e-6: "2rem"
   e-7: "3rem"
-  e-8: "4rem"
+  e-8: "4.5rem"
 components:
   botao:
     backgroundColor: "{colors.campo}"
-    textColor: "{colors.sobre-campo}"
-    rounded: "{rounded.raio}"
-    padding: "0.6rem 1.25rem"
-    height: "3rem"
-  botao-hover:
-    backgroundColor: "{colors.campo-escuro}"
+    textColor: "#FFFFFF"
+    rounded: "{rounded.botao}"
+    height: "44px"
   botao-contorno:
-    backgroundColor: "transparent"
+    backgroundColor: "{colors.superficie}"
     textColor: "{colors.campo}"
-    rounded: "{rounded.raio}"
+    rounded: "{rounded.botao}"
   sair-rapido:
     backgroundColor: "{colors.campo}"
-    textColor: "{colors.sobre-campo}"
-    rounded: "{rounded.raio}"
-    height: "2.75rem"
-  disco-da-linha:
-    backgroundColor: "{colors.linha-1}"
     textColor: "#FFFFFF"
-    rounded: "{rounded.circulo}"
-    size: "2.75rem"
-  aviso-importante:
-    backgroundColor: "{colors.campo-claro}"
+    rounded: "{rounded.botao}"
+    height: "44px"
+  porta:
+    backgroundColor: "{colors.linha-1-claro}"
     textColor: "{colors.tinta}"
-    rounded: "{rounded.raio}"
-    padding: "1rem 1.5rem 1.5rem"
-  em-revisao:
-    backgroundColor: "{colors.aviso}"
-    textColor: "{colors.aviso-tinta}"
-    rounded: "{rounded.raio}"
-    padding: "0.75rem 1rem"
+    rounded: "{rounded.cartao}"
+  resumo:
+    backgroundColor: "{colors.abraco}"
+    rounded: "{rounded.cartao}"
+  pode-ser:
+    backgroundColor: "{colors.ambar-fundo}"
+    textColor: "{colors.tinta}"
+  nao-e:
+    backgroundColor: "{colors.verde-fundo}"
+    textColor: "{colors.tinta}"
+  servico:
+    backgroundColor: "{colors.superficie}"
+    rounded: "{rounded.cartao}"
 ---
 
-# Duas Casas, Um Filho
+# Duas Casas, Um Filho: "Casa com luz"
 
 ## Overview
 
-O site é um guia de bolso com quatro linhas, como um mapa de transporte. Cada porta da página inicial é uma linha com número e cor. As páginas são as paradas, na ordem de leitura. Quem chega por uma porta vê, em toda página, em que parada está e qual é a próxima.
+O site é um guia de apoio, como uma conversa numa cozinha clara: fundo de luz da manhã, letras fáceis de ler e desenhos em traço das duas casas. A criança aparece sempre em amarelo, entre as duas casas. Os quatro caminhos de leitura continuam, cada um com sua cor.
 
 O leitor é um pai, uma mãe ou um responsável abalado, quase sempre no celular. O visual acolhe sem infantilizar. Não pode parecer tribunal nem repartição pública.
 
-Todos os valores ficam no bloco `:root` de `docs/assets/css/estilo.css`. Esse arquivo é a fonte da verdade; este documento descreve como usar os valores.
+A versão anterior ("Guia de linhas", azul-petróleo com fios finos) está guardada na marca `site-v1-azul` do git. Os protótipos desta direção ficam em `propostas/visual-acolhedor/`.
 
 ## Colors
 
-Cada cor tem um papel fixo.
-
-- **papel** é o fundo de todas as páginas. **tinta** é o texto. **suave** é o texto de apoio.
-- **fio** desenha as linhas finas que separam itens. É o que substitui as caixas.
-- **campo** (azul-petróleo) cobre as áreas fortes: capa, faixa de emergência, botões e títulos. **campo-claro** é o fundo do aviso importante, o único bloco com fundo colorido dentro do texto.
-- **quente** (amarelo) é o destaque. Usa-se pouco: "E à paz." na capa, os números de emergência, a criança no trajeto, a marca de página atual e o traço acima das citações.
-- **linha-1 a linha-4** identificam os quatro caminhos. Elas nunca querem dizer "certo", "errado" ou "perigo". Estado se mostra com forma (ponto cheio ou vazado) e com texto.
-- **aviso** é só da caixa "em revisão".
-
-Contraste medido: todos os pares de texto passam de 4,5 para 1.
+- **papel** (luz da manhã) é o fundo de todas as páginas. **abraco** é um tom mais quente, usado na capa, no "Em resumo" e no "Não sabe por onde começar?".
+- **campo** (azul-petróleo) é a cor da confiança: títulos, botões, Sair rápido, traço das ilustrações e a faixa de emergência.
+- **sol** (amarelo) é a criança: o ponto do logo, a figura da capa, os marcadores do resumo e a parada atual do trajeto. **sol-claro** e **pessego** são manchas de luz atrás dos desenhos.
+- **linha-1 a linha-4** e seus tons claros identificam os quatro caminhos. Os cartões das portas usam o tom claro de fundo e a cor forte no número. As cores dos caminhos nunca querem dizer certo ou errado.
+- **âmbar** e **verde** são só do quadro "Pode ser / Não é, por si só". O sentido também vem por texto e por ícone (exclamação e sinal de visto), nunca só pela cor.
+- O texto de abertura usa a cor **tinta**, não cinza: é a frase que mais acolhe.
+- Contraste: todo texto passa de 4,5:1 sobre o fundo em que está.
 
 ## Typography
 
-Títulos em Barlow Semi Condensed, peso 700, na cor campo. Citações usam a mesma família em peso 600. Texto corrido em Atkinson Hyperlegible, 18px, entrelinha 1,6. A coluna de leitura tem no máximo 40rem.
+- Títulos em **Lexend** (peso 600), letra criada para facilitar a leitura, de formas redondas e abertas. Citações em Lexend 500.
+- Texto corrido em **Atkinson Hyperlegible**, 18px, entrelinha 1,6. Coluna de leitura de no máximo 44rem.
+- As fontes ficam em `docs/assets/fontes/`. O site não carrega fonte de servidor externo.
+- Negrito no texto corrido marca só a ideia principal do parágrafo.
 
-Os arquivos das fontes ficam em `docs/assets/fontes/`. O site não carrega fonte de servidor externo.
+## Illustration
 
-Negrito no texto corrido marca só a ideia principal do parágrafo.
+- Traço único em azul-petróleo (3px na escala de 64px, 4px na capa), pontas e cantos redondos.
+- Atrás de cada desenho, uma mancha clara (tom de caminho, sol-claro ou pêssego). A criança, quando aparece, é amarela.
+- Uma ilustração por página, ao lado do título. Ícones das categorias da rede de apoio e dos temas no mesmo estilo.
+- Proibido: rostos com expressão, criança chorando, família "quebrada", balança da Justiça, martelo de juiz, fotos de banco de imagem.
+- Todas são SVG escritos à mão, leves, sem imagem externa.
 
 ## Layout
 
-- Tudo o que fica dentro de `.miolo` tem a mesma largura máxima (70rem) e as mesmas bordas (1,125rem no celular, 2rem a partir de 60rem). Cabeçalho, conteúdo, emergência e rodapé se alinham por ele.
-- Páginas de leitura têm uma coluna de 40rem alinhada à esquerda. A partir de 68rem, o índice "Nesta página" ocupa a lateral direita e fica fixo.
-- A página inicial ocupa a largura toda: capa em campo, as quatro linhas, a via de mão dupla e os temas em três grupos.
-- No celular de 390px, as quatro linhas terminam antes do fim da primeira tela.
+- `.miolo`: largura máxima de 72rem, bordas de 1,125rem no celular e 2rem a partir de 60rem.
+- Página inicial: capa clara com o título à esquerda e a ilustração à direita no computador; no celular, a ilustração vem antes do título, baixa, para a primeira porta aparecer na primeira tela. As quatro portas são cartões; no computador, em grade de 2 por 2.
+- Páginas de leitura: faixa do caminho (com `?linha=N`), título com ilustração, "Em resumo" nas páginas longas, texto em coluna de 44rem e, a partir de 68rem, a lateral com "Nesta página".
+- "Onde buscar ajuda": a caixa "Não sabe por onde começar?" com links tocáveis, atalhos para três categorias na ordem Proteção, Jurídico, Saúde e assistência, e um cartão que abre e fecha por órgão. O Fórum vem por último no Jurídico. No computador, os cartões ficam em duas colunas.
 - Ritmo: mais espaço acima de um título do que abaixo dele.
 
 ## Elevation & Depth
 
-O site é plano. A única sombra é a do menu aberto, que cai sobre o conteúdo logo abaixo do cabeçalho.
+O site é plano. A profundidade vem do tom do fundo (papel, abraço, cartão branco), não de sombras. O cabeçalho fixo tem um leve desfoque do que passa por baixo.
 
 ## Shapes
 
-- Raio de 0,5rem em botões, aviso importante, caixa em revisão e respostas do quiz. O contorno de foco usa 4px, e os traços (trilho e traço da citação) têm pontas arredondadas de 1rem.
-- Círculos: disco numerado das linhas, paradas do trilho, pontos do índice e marcadores de estado.
-- O trilho é a assinatura: uma linha grossa na cor do caminho com uma parada redonda por página. Aparece na porta aberta, na faixa "seu caminho" e, em versão fina, no índice "Nesta página".
+- Cartões: raio de 1,25rem. Botões, Menu, Sair rápido e atalhos: pílula.
+- Círculos: número das portas, paradas do trajeto, marcadores do resumo.
+- O trajeto é a assinatura: uma linha com paradas redondas, a atual em amarelo.
 
 ## Components
 
-- **Cabeçalho:** fixo no topo, com a marca, o Menu e o Sair rápido. Menu e Sair rápido têm 44px de altura.
-- **Menu:** ocupa a largura inteira abaixo do cabeçalho, com Início e três grupos (Entender, Cuidar, Agir).
-- **Linha (porta):** disco numerado, frase e seta. Aberta, mostra o acolhimento, o que saber primeiro e as paradas.
-- **Faixa "seu caminho":** aparece quando o endereço tem `?linha=N`. Mostra o número, a frase e "Página X de Y".
-- **Aviso importante (`.equilibrio`):** fundo campo-claro. Um por assunto, no máximo.
-- **Citação (`.destaque`):** sem caixa, com um traço amarelo curto acima.
-- **Dois lados, quadro e pares:** colunas separadas por fio, sempre com o mesmo peso visual dos dois lados.
-- **Passos:** número grande à esquerda, fio entre os passos.
-- **Pergunta:** linha com fio, texto em negrito e seta que gira ao abrir.
-- **Em revisão (`.em-revisao`):** fundo amarelo-claro com borda tracejada. Marca conteúdo que o grupo ainda vai confirmar.
-- **Emergência:** quatro números grandes em amarelo sobre campo, separados por fio.
-- **Rodapé:** aviso legal, botão de compartilhar, créditos e o logo da Afya nas cores originais (rosa da marca), com 7,5rem de largura. O rosa aparece só no logo, nunca como cor do site.
-- **Rede de apoio:** cada órgão é um bloco separado por fio, com selo, para que serve, endereço, horário e botões "Ligar" e "Abrir no mapa". Órgãos com vários endereços listam as unidades, recuadas, logo abaixo. O mapa fica depois da lista, atrás do botão "Mostrar o mapa", com pinos amarelos de contorno campo.
-- **Impressos:** o folder A5 (`ferramentas/folder.html`) e a capa do WhatsApp usam os mesmos tokens, fontes e o trajeto das duas casas.
+- **Cabeçalho:** fixo, com a marca (ponto amarelo entre as casas), Menu e Sair rápido, todos com 44px. No celular cabe em uma linha.
+- **Porta (cartão):** fundo no tom claro do caminho, número em círculo, frase do caminho e uma frase curta de apoio tirada do próprio texto da porta. Abre no mesmo lugar.
+- **Faixa do caminho:** "Caminho: frase", as paradas como pontos numa linha e "Parada X de Y. Próxima: página".
+- **Em resumo:** fundo abraço, três pontos amarelos, frases copiadas da própria página. Só nas páginas longas.
+- **Pode ser / Não é, por si só:** no computador, duas colunas com cabeçalho âmbar e verde; no celular, dois blocos coloridos por par, cada um com rótulo e ícone.
+- **Citação (`.destaque`):** sem caixa, com traço amarelo curto acima, em Lexend.
+- **Aviso importante (`.equilibrio`):** cartão branco com borda clara; na rede de apoio, em tom abraço.
+- **Serviço (rede de apoio):** cartão branco que abre e fecha. Fechado: nome e para que serve. Aberto: selo, endereço, horário, botões de ligar e "Abrir no mapa".
+- **Emergência:** faixa azul-petróleo com quatro números grandes em amarelo, em blocos claros translúcidos.
+- **Rodapé:** aviso legal, compartilhar, créditos e logo da Afya nas cores originais.
 
-Movimento: botões encolhem para 97% ao toque (160ms). O conteúdo de linhas, perguntas e menu entra com um deslize curto (220ms). Setas giram em 180ms. Tudo desliga com "reduzir movimento".
+Movimento: botões encolhem para 97% ao toque. Cartões abrem com deslize curto e a seta gira. Tudo desliga com "reduzir movimento".
 
 ## Do's and Don'ts
 
-- Separe itens com fio. Não coloque texto corrido dentro de caixas.
-- Não use faixa colorida na lateral de um bloco.
-- Não use as cores das linhas para indicar certo, errado, risco ou sucesso.
-- Não crie um segundo bloco com fundo colorido na mesma seção.
+- Use cartões só onde há uma escolha ou algo que abre e fecha (portas, serviços). Blocos de fundo só para resumo, aviso e o quadro "Pode ser / Não é". Texto corrido fica solto no papel.
+- Não use faixa colorida grossa na lateral de um bloco.
+- Não use as cores dos caminhos para indicar certo, errado, risco ou sucesso.
+- Não ponha cartão dentro de cartão.
 - Mantenha os dois lados de uma comparação com o mesmo peso.
 - Todo alvo de toque fora de texto corrido tem pelo menos 44px de altura.
-- Não use imagens de criança chorando nem de família "quebrada".
+- Não use fotos de banco de imagem, criança chorando nem família "quebrada".
