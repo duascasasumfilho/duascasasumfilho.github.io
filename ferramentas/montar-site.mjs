@@ -350,7 +350,10 @@ if (arquivos.has("404.html")) {
   total++;
 }
 // robots.txt e sitemap.xml: ajudam o Google a encontrar todas as páginas.
-const hoje = new Date().toISOString().slice(0, 10);
+// Data de hoje no horário do computador (e não no horário mundial, que à
+// noite no Brasil já está no dia seguinte).
+const agora = new Date();
+const hoje = [agora.getFullYear(), String(agora.getMonth() + 1).padStart(2, "0"), String(agora.getDate()).padStart(2, "0")].join("-");
 const enderecos = PAGINAS.map(([slug]) =>
   slug === "index" ? ENDERECO_SITE : ENDERECO_SITE + slug + ".html");
 writeFileSync(join(PASTA_SITE, "sitemap.xml"),
