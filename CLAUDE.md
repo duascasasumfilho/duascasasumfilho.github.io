@@ -3,7 +3,13 @@
 - Responda sempre em português do Brasil, de forma simples. O Pedro é iniciante em programação e estudante de Direito.
 - **Leia o `BRIEFING.md` antes de escrever qualquer conteúdo.** Todo conteúdo jurídico e psicológico sai de lá ou de fonte oficial conferida (Planalto, Câmara, CNJ). Não invente leis, dados, números, falas ou coordenadas.
 - Tom do site: acolhedor e sem julgar os pais. Descreva condutas e nunca rotule alguém como "alienador". Mostre a "via de mão dupla" com o mesmo peso.
-- Profissionais com autorização para aparecer com nome e registro (10/11/2026): Dra. Vanessa Castro Moura (OAB/MG 92.847), Dr. Lucas Thiago Ferreira Costa (OAB/MG 238.960 e OAB/ES 41.436), Dra. Ester Magalhães, Stéfany Gomes (CRP-04/63037) e Dr. Saile Marques Cristovão (OAB/MG 154.979). Nunca publique telefone, e-mail ou Instagram deles, nem matrícula ou e-mail de alunos.
+- Profissionais com autorização para aparecer com nome e registro (10/11/2026). Use exatamente estas descrições (conferidas pelo grupo em 12/11/2026):
+  - Dra. Vanessa Castro Moura: advogada de família (OAB/MG 92.847), presidente da Comissão de Direito de Família da OAB Sete Lagoas.
+  - Dr. Lucas Thiago Ferreira Costa: advogado especialista em Direito de Família (OAB/MG 238.960 e OAB/ES 41.436).
+  - Dra. Ester Magalhães: advogada familiarista, com atuação em Direito das Famílias, infância e proteção jurídica da mulher. Presidente da Comissão de Diversidade e Inclusão Racial do IBDFAM/ES e Coordenadora de Mídias da Comissão Nacional de Diversidade e Inclusão Racial do IBDFAM. Tem atuação acadêmica e pesquisa na área de relações parentais.
+  - Stéfany Gomes: psicóloga (CRP-04/63037), com atuação infantil e formação nas áreas Clínica e Social.
+  - Dr. Saile Marques Cristovão: advogado (OAB/MG 154.979), de Sete Lagoas. Instigou o grupo, em uma conversa inicial, a investigar se a alegação de alienação parental pode ser usada como forma de pressão nos processos. **Ele NÃO é advogado de família: nunca acrescente especialidade.**
+- Nunca publique telefone, e-mail ou Instagram deles, nem matrícula ou e-mail de alunos.
 - A Vara de Família não respondeu ao ofício e não aparece no site como fonte da pesquisa.
 - Itens pendentes ficam marcados com `<!-- REVISAR -->` e com a caixa `.em-revisao`. Em 10/11/2026 não havia nenhum.
 
