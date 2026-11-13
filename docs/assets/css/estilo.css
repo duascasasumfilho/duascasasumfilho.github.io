@@ -67,6 +67,9 @@
   --l3: #A94E0B; --l3-claro: #FBE8D8;   /* caminho 3: fui acusado(a) */
   --l4: #8E2F4B; --l4-claro: #F6E2E8;   /* caminho 4: situação de violência */
 
+  --zap: #107C54;            /* verde do botão "Fale com o grupo" (WhatsApp): só ali */
+  --zap-escuro: #0B6142;
+
   --aviso: #FFF4D6;          /* caixa "em revisão" */
   --aviso-borda: #C99A12;
   --aviso-tinta: #5C4300;
@@ -363,7 +366,8 @@ kbd { font: inherit; font-weight: 700; padding: 0 0.3em; border: 1px solid var(-
 .bloco { padding: var(--e-6) 0 var(--e-2); }
 .bloco + .bloco { padding-top: var(--e-7); }
 .bloco h2 { margin-top: 0; margin-bottom: var(--e-2); }
-.bloco:last-child { padding-bottom: var(--e-8); }
+/* a última seção da página inicial (depois dela vem só o botão do grupo) */
+.bloco:last-of-type { padding-bottom: var(--e-8); }
 
 /* As quatro portas: cartões na cor clara de cada caminho */
 .linhas { display: grid; gap: var(--e-3); margin-top: var(--e-4); }
@@ -823,4 +827,224 @@ kbd { font: inherit; font-weight: 700; padding: 0 0.3em; border: 1px solid var(-
   .emergencia h2, .emergencia p, .telefones a, .telefones strong { color: var(--tinta); }
   .telefones a { background: none; }
   details:not([open]) > :not(summary) { display: block; }
+}
+
+/* =========================================================
+   BUSCA (lupa) e FALE COM O GRUPO (WhatsApp)
+   ========================================================= */
+
+/* Texto que só o leitor de tela lê */
+.so-leitor {
+  position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* ---------- Lupa no cabeçalho ---------- */
+.lupa {
+  flex: none;
+  width: 2.75rem; height: 2.75rem; padding: 0;
+  display: inline-grid; place-items: center;
+  border-radius: 50%;
+  border: 2px solid var(--campo);
+  background: var(--superficie); color: var(--campo);
+  cursor: pointer;
+  transition: transform 160ms var(--suavizar), background-color 160ms ease;
+}
+.lupa[hidden] { display: none; }
+.lupa svg { width: 1.35rem; height: 1.35rem; }
+.lupa:active { transform: scale(0.97); }
+
+/* ---------- Janela da busca ---------- */
+/* No celular ocupa a tela toda; no computador é uma caixa no alto da tela. */
+html:has(.busca[open]) { overflow: hidden; }
+.busca {
+  width: 100%; max-width: none; height: 100%; max-height: none;
+  margin: 0; padding: 0; border: 0;
+  background: var(--papel); color: var(--tinta);
+}
+.busca[open] { display: flex; flex-direction: column; }
+.busca::backdrop { background: rgb(31 46 53 / 0.5); }
+.busca-topo {
+  flex: none;
+  padding: var(--e-3) max(var(--borda), env(safe-area-inset-right)) var(--e-3) max(var(--borda), env(safe-area-inset-left));
+  padding-top: max(var(--e-3), env(safe-area-inset-top));
+  background: var(--abraco);
+  border-bottom: 1px solid var(--fio);
+}
+.busca-cabeca { display: flex; align-items: center; justify-content: space-between; gap: var(--e-3); margin-bottom: var(--e-2); }
+.busca-cabeca label { font: 600 1.15rem/1.2 var(--fonte-titulo); color: var(--campo); }
+.busca-campo {
+  display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: var(--e-2);
+  padding: 0 0.4rem 0 0.9rem;
+  background: var(--superficie);
+  border: 2px solid var(--campo);
+  border-radius: var(--pilula);
+}
+.busca-campo:focus-within { outline: 3px solid var(--campo); outline-offset: 2px; }
+.busca-campo > svg { width: 1.3rem; height: 1.3rem; color: var(--campo); }
+.busca-campo input {
+  min-width: 0; width: 100%; min-height: 3rem; padding: 0;
+  border: 0; background: none; color: var(--tinta);
+  font: 400 1.125rem/1.3 var(--fonte-texto);
+  appearance: none; -webkit-appearance: none;
+}
+/* o contorno de foco fica na caixa inteira (.busca-campo) */
+.busca-campo input:focus { outline: none; }
+.busca-campo input::placeholder { color: var(--suave); opacity: 1; }
+.busca-campo input::-webkit-search-cancel-button { display: none; }
+.busca-fechar {
+  min-height: 2.25rem; padding: 0 0.9rem;
+  border: 0; border-radius: var(--pilula);
+  background: var(--campo-claro); color: var(--campo);
+  font: 700 1rem/1 var(--fonte-texto); cursor: pointer;
+}
+.busca-corpo {
+  flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain;
+  padding: var(--e-4) max(var(--borda), env(safe-area-inset-right)) max(var(--e-5), env(safe-area-inset-bottom)) max(var(--borda), env(safe-area-inset-left));
+}
+.busca-status { margin: 0 0 var(--e-3); font-weight: 700; color: var(--tinta); }
+.busca-status:empty { display: none; }
+.busca-nota { margin: var(--e-5) 0 0; font-size: var(--t-pequeno); color: var(--suave); }
+
+.busca-lista { list-style: none; margin: 0; padding: 0; }
+.busca-lista li { margin: 0; }
+.busca-item {
+  display: block; padding: 0.85rem 0;
+  border-top: 1px solid var(--fio);
+  color: var(--tinta); text-decoration: none;
+}
+.busca-lista li:last-child .busca-item { border-bottom: 1px solid var(--fio); }
+.busca-pagina { display: block; font-size: 0.95rem; line-height: 1.3; color: var(--suave); }
+.busca-secao { display: block; margin: 0.1rem 0 0.25rem; font: 600 1.1rem/1.3 var(--fonte-titulo); color: var(--campo); }
+.busca-trecho { display: block; font-size: var(--t-pequeno); line-height: 1.5; }
+.busca mark { background: var(--sol-claro); color: var(--tinta); padding: 0 0.15em; border-radius: 3px; font-weight: 700; }
+.busca-item:focus-visible { outline-offset: 0; border-radius: 6px; }
+
+.busca-vazio p { margin: var(--e-4) 0 var(--e-2); }
+.busca-portas { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--e-2); }
+.busca-portas li { margin: 0; }
+.busca-portas a {
+  display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 0.75rem;
+  min-height: 3.5rem; padding: 0.5rem 0.8rem;
+  border-radius: var(--raio-cartao); background: var(--cor-clara);
+  color: var(--tinta); text-decoration: none;
+}
+.busca-portas .num { width: 2.25rem; height: 2.25rem; font-size: 1.1rem; }
+.busca-portas .frase { font-size: 1rem; }
+
+/* ---------- Fale com o grupo ---------- */
+/* O botão acompanha a tela, mas fica preso ao fim do conteúdo: assim ele
+   nunca passa por cima da faixa de emergência nem do rodapé. */
+.contato-area {
+  position: sticky; z-index: 30;
+  bottom: max(1rem, calc(env(safe-area-inset-bottom) + 0.5rem));
+  width: fit-content;
+  /* a margem negativa faz o botão descansar dentro do espaço que já existe no fim da página */
+  margin: 0 max(1rem, env(safe-area-inset-right)) -3.5rem auto;
+  pointer-events: none;            /* só o botão e o painel recebem toque */
+}
+.conteudo--inicio .contato-area { margin-top: -4.5rem; margin-bottom: 1rem; }
+.contato { position: relative; pointer-events: auto; }
+.contato > summary {
+  list-style: none; cursor: pointer; user-select: none;
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.55rem;
+  width: 3.5rem; height: 3.5rem;
+  border-radius: var(--pilula);
+  background: var(--zap); color: #fff;
+  border: 2px solid var(--papel);
+  box-shadow: 0 6px 16px -6px rgb(31 46 53 / 0.5);
+  font: 700 1rem/1 var(--fonte-texto);
+  transition: transform 160ms var(--suavizar), background-color 160ms ease, opacity 160ms ease;
+}
+.contato > summary::-webkit-details-marker { display: none; }
+.contato > summary:active { transform: scale(0.97); }
+.contato > summary:focus-visible { outline-offset: 3px; border-radius: var(--pilula); }
+.contato .icone-zap { width: 1.9rem; height: 1.9rem; flex: none; }
+/* no celular o texto do botão fica só para o leitor de tela */
+.contato-rotulo { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+/* enquanto estiver em cima do quiz ou do mapa, o botão some */
+.contato--recolhido > summary { opacity: 0; visibility: hidden; pointer-events: none; }
+
+.contato-painel {
+  position: absolute; right: 0; bottom: calc(100% + 0.75rem);
+  width: min(21.5rem, calc(100vw - 2rem));
+  padding: var(--e-4);
+  background: var(--superficie); color: var(--tinta);
+  border: 2px solid var(--fio); border-radius: var(--raio-cartao);
+  box-shadow: 0 18px 32px -14px rgb(31 46 53 / 0.45);
+  transition: opacity 200ms var(--suavizar), transform 200ms var(--suavizar);
+  transform-origin: bottom right;
+}
+@starting-style {
+  .contato[open] .contato-painel { opacity: 0; transform: translateY(0.4rem) scale(0.98); }
+}
+.contato-painel h2 { margin: 0 2.5rem var(--e-2) 0; font-size: 1.2rem; line-height: 1.3; }
+.contato-painel p { margin: 0 0 var(--e-3); font-size: var(--t-pequeno); line-height: 1.5; }
+.contato-painel .contato-aviso { margin: var(--e-3) 0 0; color: var(--suave); font-size: 0.95rem; line-height: 1.45; }
+.contato-lista { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--e-2); }
+.contato-lista li { margin: 0; }
+.botao--zap { background: var(--zap); border-color: var(--zap); color: #fff; }
+.contato-lista .botao--zap { width: 100%; justify-content: flex-start; gap: 0.6rem; text-align: left; padding: 0.5rem 0.9rem; }
+.botao--zap .icone-zap { width: 1.5rem; height: 1.5rem; flex: none; }
+.contato-fechar {
+  position: absolute; top: 0.5rem; right: 0.5rem;
+  width: 2.75rem; height: 2.75rem; padding: 0;
+  display: grid; place-items: center;
+  border: 0; border-radius: 50%; background: none; color: var(--campo); cursor: pointer;
+}
+.contato-fechar svg { width: 1.25rem; height: 1.25rem; }
+/* na página "Sobre o projeto", a lista de contatos fica no meio do texto */
+.coluna > .contato-lista { max-width: 26rem; margin: var(--e-3) 0; }
+
+/* o mapa fica contido na página: não passa por cima do cabeçalho nem do botão */
+#mapa { isolation: isolate; }
+
+@media (hover: hover) and (pointer: fine) {
+  .lupa:hover { background: var(--campo-claro); }
+  .busca-fechar:hover { background: var(--fio); }
+  .busca-item:hover .busca-secao { text-decoration: underline; text-decoration-thickness: 1px; }
+  .busca-portas a:hover .frase { text-decoration: underline; text-decoration-thickness: 1px; }
+  .botao--zap:hover { background: var(--zap-escuro); border-color: var(--zap-escuro); color: #fff; }
+  .contato > summary:hover { background: var(--zap-escuro); }
+  .contato-fechar:hover { background: var(--campo-claro); }
+}
+
+/* Celulares estreitos: o cabeçalho precisa caber em uma linha com a lupa */
+@media (max-width: 26rem) {
+  .topo > .miolo { gap: 0.35rem; }
+  .marca { font-size: 0.82rem; gap: 0.35rem; }
+  .marca svg { width: 1.7rem; height: 1.7rem; }
+  .menu > summary, .topo .sair-rapido { padding: 0 0.7rem; }
+}
+@media (max-width: 23.5rem) {
+  .topo > .miolo { gap: 0.25rem; padding-left: 0.85rem; padding-right: 0.85rem; }
+  .marca { font-size: 0.78rem; gap: 0.3rem; }
+  .marca svg { width: 1.6rem; height: 1.6rem; }
+  .menu > summary, .topo .sair-rapido { padding: 0 0.5rem; }
+}
+/* telas muito pequenas (320px): fica só o desenho das casas; o nome continua para o leitor de tela */
+@media (max-width: 21rem) {
+  .marca span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+}
+
+@media (min-width: 48rem) {
+  /* no computador a busca é uma caixa, e o botão do grupo mostra o texto */
+  .busca {
+    width: min(44rem, calc(100% - 4rem)); height: auto; max-height: min(85vh, 46rem);
+    margin: 6vh auto auto;
+    border-radius: var(--raio-cartao);
+    box-shadow: 0 24px 48px -20px rgb(31 46 53 / 0.5);
+  }
+  .busca-topo, .busca-corpo { padding-left: var(--e-5); padding-right: var(--e-5); }
+  .busca-topo { padding-top: var(--e-4); }
+  .contato > summary { width: auto; padding: 0 1.2rem 0 0.9rem; }
+  .contato-rotulo { position: static; width: auto; height: auto; overflow: visible; clip: auto; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lupa:active, .contato > summary:active { transform: none; }
+}
+
+@media print {
+  .lupa, .busca, .contato-area { display: none !important; }
 }

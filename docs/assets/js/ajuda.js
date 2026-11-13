@@ -53,6 +53,9 @@
 
   lista.forEach(function (s) {
     var card = el("details", "servico");
+    // endereço próprio de cada órgão, usado pela busca (igual ao que o montador calcula)
+    card.id = "servico-" + String(s.nome).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "")
+      .replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 60).replace(/-$/, "");
     var resumo = el("summary");
     resumo.appendChild(el("span", "servico-nome", s.nome));
     resumo.insertAdjacentHTML("beforeend", seta);
@@ -86,6 +89,9 @@
     var destino = alvo.querySelector('[data-categoria="' + s.categoria + '"]') || secoes[secoes.length - 1] || alvo;
     destino.appendChild(card);
   });
+
+  // Se a pessoa chegou por um resultado da busca, abre o órgão procurado
+  if (window.irParaAlvo) window.irParaAlvo();
 
 
   // Mapa: só carrega quando a pessoa pede. Antes disso, a página não faz

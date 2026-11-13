@@ -11,32 +11,99 @@
     try { document.body.style.display = "none"; } catch (e) {}
     window.location.replace(SITE_NEUTRO);
   }
-  var botao = document.querySelector(".sair-rapido");
-  if (botao) {
-    botao.addEventListener("click", function (evento) {
+  // Há dois botões "Sair rápido": o do cabeçalho e o da janela de busca
+  var botoesSair = document.querySelectorAll(".sair-rapido");
+  for (var b = 0; b < botoesSair.length; b++) {
+    botoesSair[b].addEventListener("click", function (evento) {
       evento.preventDefault();
       sairRapido();
     });
   }
 
-  // ---------- Menu ----------
-  // Fecha ao clicar fora dele. A tecla Esc fecha o menu, se estiver
-  // aberto; se não estiver, Esc faz o mesmo que o botão "Sair rápido".
+  // ---------- Menu, busca e painel do grupo ----------
+  // O menu e o painel "Fale com o grupo" fecham ao clicar fora deles.
   var menu = document.querySelector(".menu");
-  if (menu) {
-    document.addEventListener("click", function (evento) {
-      if (menu.open && !menu.contains(evento.target)) menu.open = false;
+  var busca = document.getElementById("busca");
+  var contato = document.getElementById("contato");
+  document.addEventListener("click", function (evento) {
+    if (menu && menu.open && !menu.contains(evento.target)) menu.open = false;
+    if (contato && contato.open && !contato.contains(evento.target)) contato.open = false;
+  });
+
+  // ---------- Tecla Esc ----------
+  // A tecla Esc fecha o que estiver aberto, uma coisa por vez, nesta ordem:
+  // a busca, o painel do grupo, o menu. Só quando nada está aberto é que
+  // o Esc faz o mesmo que o botão "Sair rápido".
+  // Duas proteções contra sair do site sem querer:
+  //  - segurar a tecla não conta como apertar de novo;
+  //  - logo depois de fechar alguma coisa (meio segundo), o Esc é ignorado.
+  var fechouHaPouco = 0;
+  function anotarFechamento() { fechouHaPouco = Date.now(); }
+  if (busca) {
+    busca.addEventListener("close", anotarFechamento);
+    // com a busca aberta, o Esc fecha só a busca e não passa adiante
+    busca.addEventListener("keydown", function (evento) {
+      if (evento.key !== "Escape") return;
+      evento.preventDefault();
+      evento.stopPropagation();
+      if (busca.open) busca.close();
     });
   }
   document.addEventListener("keydown", function (evento) {
-    if (evento.key !== "Escape" || evento.defaultPrevented) return;
+    if (evento.key !== "Escape" || evento.defaultPrevented || evento.repeat) return;
+    if (busca && busca.open) return;
+    if (contato && contato.open) {
+      contato.open = false;
+      contato.querySelector("summary").focus();
+      anotarFechamento();
+      return;
+    }
     if (menu && menu.open) {
       menu.open = false;
       menu.querySelector("summary").focus();
+      anotarFechamento();
       return;
     }
+    if (Date.now() - fechouHaPouco < 500) return;
     sairRapido();
   });
+
+  // ---------- Botão flutuante "Fale com o grupo" ----------
+  if (contato) {
+    var resumoContato = contato.querySelector("summary");
+    var fecharContato = contato.querySelector(".contato-fechar");
+    if (fecharContato) {
+      fecharContato.addEventListener("click", function () {
+        contato.open = false;
+        resumoContato.focus();
+      });
+    }
+    // O botão some enquanto estiver em cima das perguntas do quiz, do mapa
+    // ou dos contatos da página "Sobre", para não cobrir nada. Ele volta
+    // assim que sai de cima.
+    var conferindo = false;
+    var conferirContato = function () {
+      conferindo = false;
+      var meu = resumoContato.getBoundingClientRect();
+      var alvos = document.querySelectorAll("#quiz, #mapa, .coluna > .contato-lista");
+      var cobre = false;
+      for (var i = 0; i < alvos.length && !cobre; i++) {
+        var a = alvos[i].getBoundingClientRect();
+        if (!a.width || !a.height) continue;
+        cobre = a.left < meu.right + 8 && a.right > meu.left - 8 && a.top < meu.bottom + 8 && a.bottom > meu.top - 8;
+      }
+      contato.classList.toggle("contato--recolhido", cobre && !contato.open);
+    };
+    var agendarContato = function () {
+      if (conferindo) return;
+      conferindo = true;
+      window.requestAnimationFrame(conferirContato);
+    };
+    window.addEventListener("scroll", agendarContato, { passive: true });
+    window.addEventListener("resize", agendarContato);
+    contato.addEventListener("toggle", agendarContato);
+    agendarContato();
+  }
 
   function criar(tag, classe, texto) {
     var e = document.createElement(tag);
@@ -212,4 +279,22 @@
     }, { rootMargin: "0px 0px -60% 0px", threshold: [0, 1] });
     titulos.forEach(function (h) { observador.observe(h); });
   })();
+
+  // ---------- Chegar direto em uma seção ----------
+  // A busca leva a pessoa a um endereço com "#" no fim (por exemplo,
+  // perguntas-frequentes.html#...). Se o destino estiver dentro de uma
+  // caixa fechada (porta, pergunta ou serviço), ela é aberta.
+  function irParaAlvo() {
+    var id = "";
+    try { id = decodeURIComponent(window.location.hash.slice(1)); } catch (e) {}
+    if (!id) return;
+    var destino = document.getElementById(id);
+    if (!destino) return;
+    var caixa = destino.tagName === "DETAILS" ? destino : destino.closest("details.linha, details.pergunta, details.servico");
+    if (caixa && !caixa.open) caixa.open = true;
+    destino.scrollIntoView();
+  }
+  window.addEventListener("hashchange", irParaAlvo);
+  window.irParaAlvo = irParaAlvo;   // a página "Onde buscar ajuda" chama depois de montar a lista
+  irParaAlvo();
 })();

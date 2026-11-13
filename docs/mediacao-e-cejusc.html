@@ -37,6 +37,7 @@
   <path d="M26 24l9-9 9 9v15H26Z"/>
   <circle class="crianca-ponto" cx="24" cy="31" r="4" fill="currentColor" stroke="none"/>
 </svg><span aria-hidden="true" translate="no">Duas Casas, <br>Um Filho</span></a>
+      <button type="button" class="lupa" id="abrir-busca" aria-label="Buscar no site" aria-haspopup="dialog" title="Buscar no site (tecla /)" hidden><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="10.500" cy="10.500" r="6.500"/><path d="m15.500 15.500 5 5"/></svg></button>
       <details class="menu">
         <summary>Menu</summary>
         <nav aria-label="Páginas do site">
@@ -85,14 +86,14 @@
 <div class="cabeca-pagina"><h1>Mediação e CEJUSC</h1><svg class="ilustra" viewBox="0 0 64 64" aria-hidden="true" focusable="false" fill="none" stroke="#0F4C5C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="36" r="24" fill="#E3F0E6" stroke="none"/><circle cx="14" cy="22" r="6"/><circle cx="50" cy="22" r="6"/><path d="M4 50v-8a10 10 0 0 1 20 0v8M40 50v-8a10 10 0 0 1 20 0v8M24 40h16"/></svg></div>
 <p class="abertura">Nem toda briga precisa terminar em um longo processo. Quando há segurança para conversar, a mediação ajuda os pais a construírem juntos um plano para os filhos. Veja como funciona e quando ela não é indicada.</p>
 
-<h2>O que é mediação</h2>
+<h2 id="o-que-e-mediacao">O que é mediação</h2>
 <p>Na mediação, uma pessoa neutra e treinada, o <strong>mediador</strong>, ajuda pai e mãe a conversar e a chegar a um acordo. O mediador não decide nada: ele facilita o diálogo para que vocês mesmos encontrem a solução.</p>
 <p>Nas ações de família, a lei manda buscar primeiro a mediação e a conciliação (Código de Processo Civil, art. 694).</p>
 
-<h2>O que é o CEJUSC</h2>
+<h2 id="o-que-e-o-cejusc">O que é o CEJUSC</h2>
 <p>O <strong>CEJUSC</strong> (Centro Judiciário de Solução de Conflitos e Cidadania) é o setor da Justiça que faz sessões de mediação e conciliação. Em Sete Lagoas, ele funciona no prédio dos Juizados Especiais: Rua Senhor dos Passos, 95, Centro. Telefones: <a href="tel:+553137719472">(31) 3771-9472</a> e <a href="tel:+5531995353968">(31) 99535-3968</a>.</p>
 
-<h2>Quando a mediação ajuda</h2>
+<h2 id="quando-a-mediacao-ajuda">Quando a mediação ajuda</h2>
 <p>A mediação funciona bem quando o conflito é de comunicação e de rotina:</p>
 <ul>
   <li>horários de convivência, feriados e férias;</li>
@@ -103,7 +104,7 @@
 </ul>
 <p>Segundo os profissionais ouvidos, a mediação pode ajudar até em casos mais leves de afastamento entre a criança e um dos pais. Os acordos construídos juntos costumam ser mais estáveis, porque foram decididos pela própria família.</p>
 
-<h2>Quando a mediação não é indicada</h2>
+<h2 id="quando-a-mediacao-nao-e-indicada">Quando a mediação não é indicada</h2>
 <div class="equilibrio">
   <p>A mediação <strong>não é indicada</strong> quando há violência, abuso, medida protetiva, intimidação ou controle. Nesses casos, a proteção vem primeiro. Veja <a href="violencia-nao-e-conflito.html">Violência não é conflito</a>.</p>
 </div>
@@ -113,7 +114,7 @@
   <cite>Dra. Vanessa Castro Moura, advogada de família, ouvida pelo projeto</cite>
 </div>
 
-<h2>Como procurar</h2>
+<h2 id="como-procurar">Como procurar</h2>
 <ul>
   <li>Se já existe um processo, o próprio juiz pode encaminhar o caso para a mediação.</li>
   <li>Se ainda não existe processo, você pode procurar o CEJUSC diretamente, por telefone ou indo até lá. Leve documento com foto, comprovante de endereço, os documentos do caso (como a certidão de nascimento do filho) e o nome e o contato da outra pessoa, para que o CEJUSC a convide.</li>
@@ -127,6 +128,21 @@
 </div>
       </article>
     </div>
+    <aside class="contato-area" aria-label="Fale com o grupo">
+      <details class="contato" id="contato">
+        <summary><svg class="icone-zap" viewBox="0 0 32 32" aria-hidden="true" focusable="false" fill="currentColor"><path d="M16 3C8.8 3 3 8.7 3 15.8c0 2.3.6 4.500 1.800 6.400L3 29l7-1.800c1.800 1 3.900 1.500 6 1.500 7.200 0 13-5.700 13-12.800C29 8.700 23.200 3 16 3Zm0 23.400c-1.900 0-3.800-.5-5.400-1.500l-.4-.2-4.100 1.100 1.100-4-.3-.4a10.300 10.300 0 0 1-1.600-5.600C5.300 10 10.100 5.300 16 5.300s10.700 4.700 10.700 10.500S21.900 26.400 16 26.400Zm5.900-7.900c-.3-.2-1.900-.9-2.200-1-.3-.1-.5-.2-.7.2-.2.300-.8 1-1 1.200-.2.2-.4.2-.7.1-.3-.2-1.400-.5-2.600-1.600-1-.9-1.600-1.900-1.800-2.200-.2-.3 0-.5.1-.7l.5-.6c.2-.2.2-.3.3-.5.1-.2.100-.4 0-.6-.1-.2-.7-1.700-1-2.300-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.300-1.200 1.100-1.200 2.800 0 1.600 1.200 3.200 1.400 3.400.2.2 2.400 3.600 5.800 5 .8.300 1.400.5 1.900.7.8.200 1.500.200 2.100.1.600-.1 1.900-.8 2.200-1.500.300-.7.300-1.400.200-1.500-.1-.2-.3-.2-.6-.4Z"/></svg><span class="contato-rotulo">Fale com o grupo</span></summary>
+        <div class="contato-painel">
+          <h2>Converse com a equipe do projeto</h2>
+          <p>Somos estudantes de Direito da Afya Sete Lagoas. Podemos ajudar você a entender as informações do site e indicar onde buscar atendimento.</p>
+          <ul class="contato-lista">
+        <li><a class="botao botao--zap" href="https://wa.me/5531971554636?text=Ol%C3%A1!%20Vim%20pelo%20site%20Duas%20Casas%2C%20Um%20Filho%20e%20gostaria%20de%20uma%20orienta%C3%A7%C3%A3o." target="_blank" rel="noopener noreferrer"><svg class="icone-zap" viewBox="0 0 32 32" aria-hidden="true" focusable="false" fill="currentColor"><path d="M16 3C8.8 3 3 8.7 3 15.8c0 2.3.6 4.500 1.800 6.400L3 29l7-1.800c1.800 1 3.900 1.500 6 1.500 7.200 0 13-5.700 13-12.800C29 8.700 23.200 3 16 3Zm0 23.400c-1.900 0-3.800-.5-5.400-1.500l-.4-.2-4.100 1.100 1.100-4-.3-.4a10.300 10.300 0 0 1-1.600-5.600C5.300 10 10.100 5.300 16 5.300s10.700 4.700 10.700 10.500S21.900 26.400 16 26.400Zm5.900-7.900c-.3-.2-1.900-.9-2.200-1-.3-.1-.5-.2-.7.2-.2.300-.8 1-1 1.200-.2.2-.4.2-.7.1-.3-.2-1.400-.5-2.600-1.600-1-.9-1.600-1.900-1.800-2.200-.2-.3 0-.5.1-.7l.5-.6c.2-.2.2-.3.3-.5.1-.2.100-.4 0-.6-.1-.2-.7-1.700-1-2.300-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.300-1.200 1.100-1.200 2.800 0 1.600 1.200 3.200 1.400 3.400.2.2 2.400 3.600 5.800 5 .8.300 1.400.5 1.900.7.8.200 1.500.200 2.100.1.600-.1 1.900-.8 2.200-1.500.300-.7.300-1.400.200-1.500-.1-.2-.3-.2-.6-.4Z"/></svg><span>Pedro Henrique Batista Marinho<span class="so-leitor"> (abre o WhatsApp)</span></span></a></li>
+        <li><a class="botao botao--zap" href="https://wa.me/5531995432998?text=Ol%C3%A1!%20Vim%20pelo%20site%20Duas%20Casas%2C%20Um%20Filho%20e%20gostaria%20de%20uma%20orienta%C3%A7%C3%A3o." target="_blank" rel="noopener noreferrer"><svg class="icone-zap" viewBox="0 0 32 32" aria-hidden="true" focusable="false" fill="currentColor"><path d="M16 3C8.8 3 3 8.7 3 15.8c0 2.3.6 4.500 1.800 6.400L3 29l7-1.800c1.800 1 3.900 1.500 6 1.500 7.200 0 13-5.700 13-12.800C29 8.700 23.200 3 16 3Zm0 23.400c-1.900 0-3.800-.5-5.400-1.500l-.4-.2-4.100 1.100 1.100-4-.3-.4a10.300 10.300 0 0 1-1.600-5.600C5.300 10 10.100 5.300 16 5.300s10.700 4.700 10.700 10.500S21.900 26.400 16 26.400Zm5.900-7.900c-.3-.2-1.900-.9-2.200-1-.3-.1-.5-.2-.7.2-.2.300-.8 1-1 1.200-.2.2-.4.2-.7.1-.3-.2-1.400-.5-2.600-1.600-1-.9-1.600-1.900-1.800-2.200-.2-.3 0-.5.1-.7l.5-.6c.2-.2.2-.3.3-.5.1-.2.100-.4 0-.6-.1-.2-.7-1.700-1-2.300-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.300-1.200 1.100-1.200 2.800 0 1.600 1.200 3.200 1.400 3.400.2.2 2.400 3.600 5.800 5 .8.300 1.400.5 1.900.7.8.200 1.500.200 2.100.1.600-.1 1.900-.8 2.200-1.500.300-.7.300-1.400.200-1.500-.1-.2-.3-.2-.6-.4Z"/></svg><span>Thaís Carvalho e Silva Lara Santos<span class="so-leitor"> (abre o WhatsApp)</span></span></a></li>
+      </ul>
+          <p class="contato-aviso">Não é atendimento de emergência nem substitui advogado(a) ou a Defensoria. Em perigo, ligue <a href="tel:190">190</a>. Respondemos assim que possível.</p>
+          <button type="button" class="contato-fechar" aria-label="Fechar"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+        </div>
+      </details>
+    </aside>
   </main>
 
   <section class="emergencia" aria-labelledby="titulo-emergencia">
@@ -152,8 +168,28 @@
     </div>
   </footer>
 
+  <dialog class="busca" id="busca" aria-labelledby="busca-rotulo">
+    <div class="busca-topo">
+      <div class="busca-cabeca">
+        <label id="busca-rotulo" for="campo-busca">Buscar no site</label>
+        <a class="sair-rapido" href="https://www.climatempo.com.br/" rel="noopener noreferrer">Sair rápido</a>
+      </div>
+      <div class="busca-campo">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="10.500" cy="10.500" r="6.500"/><path d="m15.500 15.500 5 5"/></svg>
+        <input type="search" id="campo-busca" name="busca" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="search" placeholder="Por exemplo: pensão, guarda, visita…">
+        <button type="button" class="busca-fechar">Fechar</button>
+      </div>
+    </div>
+    <div class="busca-corpo">
+      <p class="busca-status" id="busca-status" role="status" aria-live="polite"></p>
+      <div id="busca-resultados"></div>
+      <p class="busca-nota">O que você digita aqui não é salvo nem enviado para ninguém.</p>
+    </div>
+  </dialog>
+
   <script type="application/json" id="dados-linhas">[{"n":1,"frase":"Estou me separando e quero proteger meu filho","paradas":[["convivencia","Convivência é direito do filho"],["protegendo-seu-filho","Protegendo seu filho do conflito"],["mediacao-e-cejusc","Mediação e CEJUSC"],["o-que-e-alienacao-parental","O que é e o que não é alienação parental"],["onde-buscar-ajuda","Onde buscar ajuda em Sete Lagoas"]]},{"n":2,"frase":"Sinto que meu filho está sendo afastado de mim","paradas":[["o-que-e-alienacao-parental","O que é e o que não é alienação parental"],["passo-a-passo","Se você está vivendo isso agora"],["quando-a-acusacao-vira-arma","Quando a acusação vira arma"],["protegendo-seu-filho","Protegendo seu filho do conflito"],["onde-buscar-ajuda","Onde buscar ajuda em Sete Lagoas"]]},{"n":3,"frase":"Fui acusado(a) de alienação parental","paradas":[["quando-a-acusacao-vira-arma","Quando a acusação vira arma"],["o-que-e-alienacao-parental","O que é e o que não é alienação parental"],["protegendo-seu-filho","Protegendo seu filho do conflito"],["perguntas-frequentes","Perguntas frequentes"],["onde-buscar-ajuda","Onde buscar ajuda em Sete Lagoas"]]},{"n":4,"frase":"Estou em situação de violência","paradas":[["violencia-nao-e-conflito","Violência não é conflito"],["onde-buscar-ajuda","Onde buscar ajuda em Sete Lagoas"],["quando-a-acusacao-vira-arma","Quando a acusação vira arma"],["perguntas-frequentes","Perguntas frequentes"]]}]</script>
   <script src="assets/js/site.js" defer></script>
+  <script src="assets/js/busca.js" defer></script>
   <script src="assets/js/contador.js" data-endpoint="https://duascasasumfilho.goatcounter.com/count" defer></script>
   
 </body>

@@ -1,0 +1,8 @@
+[
+  { "quando": ["visita", "visitas", "visitar", "visitação"], "buscar": ["convivência"] },
+  { "quando": ["ex", "ex-marido", "ex-mulher", "ex-esposa", "ex-esposo", "ex-companheiro", "ex-companheira"], "buscar": ["outro genitor"] },
+  { "quando": ["advogado de graça", "advogada de graça", "advogado gratuito", "advogado grátis", "sem dinheiro para advogado"], "buscar": ["Defensoria", "Núcleo de Prática Jurídica", "NPJ"] },
+  { "quando": ["bater", "bateu", "bate", "apanhar", "agressão", "agrediu", "ameaça", "ameaçou", "ameaçar"], "buscar": ["violência"] },
+  { "quando": ["filho não quer ir", "filha não quer ir", "não quer ir", "não quer ver"], "buscar": ["recusa", "rejeição"] },
+  { "quando": ["juiz", "juíza"], "buscar": ["Justiça", "processo"] }
+]

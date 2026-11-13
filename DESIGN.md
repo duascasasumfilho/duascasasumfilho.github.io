@@ -20,6 +20,8 @@ colors:
   verde-fundo: "#E3F1E6"
   verde-tinta: "#1D5E33"
   verde-traco: "#6DAF7F"
+  zap: "#107C54"
+  zap-escuro: "#0B6142"
   linha-1: "#2F7A45"
   linha-1-claro: "#E3F0E6"
   linha-2: "#1F6594"
@@ -174,12 +176,14 @@ O site é plano. A profundidade vem do tom do fundo (papel, abraço, cartão bra
 - **Citação (`.destaque`):** sem caixa, com traço amarelo curto acima, em Lexend.
 - **Aviso importante (`.equilibrio`):** cartão branco com borda clara; na rede de apoio, em tom abraço.
 - **Serviço (rede de apoio):** cartão branco que abre e fecha. Fechado: nome e para que serve. Aberto: selo, endereço, horário, botões de ligar e "Abrir no mapa".
+- **Lupa e busca:** a lupa é um botão redondo de 44px, com contorno campo, entre a marca e o Menu. A busca abre em tela cheia no celular e em uma caixa no alto da tela no computador. Cada resultado mostra a página (pequeno, cor suave), a seção (Lexend, campo) e um trecho com a palavra destacada em sol-claro. O "Sair rápido" aparece também dentro da busca. Sem resultado nenhum, a busca mostra as quatro portas e o botão do grupo.
+- **Fale com o grupo:** botão flutuante no canto inferior direito, na cor **zap** (#107C54, verde escuro do WhatsApp, usada só nele e nos links de contato). No celular é um círculo de 56px só com o ícone; no computador mostra também o texto. Fica preso ao fim do conteúdo, então não cobre a emergência nem o rodapé, e some enquanto está em cima do quiz, do mapa ou dos contatos da página "Sobre". O painel é um cartão branco com sombra, a segunda sombra do site além da do menu.
 - **Emergência:** faixa azul-petróleo com quatro números grandes em amarelo, em blocos claros translúcidos.
 - **Rodapé:** aviso legal, compartilhar, créditos e logo da Afya nas cores originais.
 
 Movimento: botões encolhem para 97% ao toque (160ms). Cartões (portas, perguntas, serviços) crescem até a altura do conteúdo: 240ms para abrir, 170ms para fechar; a seta gira. Com "reduzir movimento", saem os deslizes e a animação de altura, e ficam só as mudanças de cor.
 
-Tecla Esc: fecha o menu; com o menu fechado, faz o mesmo que o Sair rápido.
+Tecla Esc: fecha, uma coisa por vez, a busca, o painel do grupo e o menu. Com tudo fechado, faz o mesmo que o Sair rápido.
 
 ## Do's and Don'ts
 

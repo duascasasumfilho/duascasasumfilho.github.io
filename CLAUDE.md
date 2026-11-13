@@ -9,7 +9,7 @@
   - Dra. Ester Magalhães: advogada familiarista, com atuação em Direito das Famílias, infância e proteção jurídica da mulher. Presidente da Comissão de Diversidade e Inclusão Racial do IBDFAM/ES e Coordenadora de Mídias da Comissão Nacional de Diversidade e Inclusão Racial do IBDFAM. Tem atuação acadêmica e pesquisa na área de relações parentais.
   - Stéfany Gomes: psicóloga (CRP-04/63037), com atuação infantil e formação nas áreas Clínica e Social.
   - Dr. Saile Marques Cristovão: advogado (OAB/MG 154.979), de Sete Lagoas. Instigou o grupo, em uma conversa inicial, a investigar se a alegação de alienação parental pode ser usada como forma de pressão nos processos. **Ele NÃO é advogado de família: nunca acrescente especialidade.**
-- Nunca publique telefone, e-mail ou Instagram deles, nem matrícula ou e-mail de alunos.
+- Nunca publique telefone, e-mail ou Instagram deles, nem matrícula ou e-mail de alunos. Única exceção: os WhatsApp do Pedro e da Thaís, que o grupo pediu para publicar no botão "Fale com o grupo" (12/11/2026). Eles ficam só em `conteudo/contatos.json`.
 - A Vara de Família não respondeu ao ofício e não aparece no site como fonte da pesquisa.
 - Itens pendentes ficam marcados com `<!-- REVISAR -->` e com a caixa `.em-revisao`. Em 10/11/2026 não havia nenhum.
 
@@ -24,6 +24,9 @@
 - Publicado em https://duascasasumfilho.github.io/ (repositório `duascasasumfilho/duascasasumfilho.github.io`, Pages a partir de `main` `/docs`). Para atualizar: montar, commit e `git push`; o site muda em 1 ou 2 minutos.
 - Quem chega por uma porta navega com `?linha=N` no endereço. O `site.js` mostra "Página X de Y" e a próxima página. Nada é guardado no aparelho.
 - Rede de apoio: `docs/data/rede-apoio.js` (aceita `telefones` em lista, `unidades` para órgãos com vários endereços e `categoria`: protecao, juridico ou saude). A ordem do arquivo é a ordem da página. A página usa `largura: ampla`. Coordenadas ficam no órgão ou em cada unidade. O mapa (Leaflet, em `docs/assets/leaflet/`) só carrega quando a pessoa toca em "Mostrar o mapa"; antes disso o site não faz pedido externo.
+- Busca: a lupa do cabeçalho abre a janela `<dialog id="busca">`. O script é `docs/assets/js/busca.js` (código próprio, sem biblioteca). O montador dá um `id` a cada h2/h3, pergunta frequente (`details.pergunta`) e porta (`#porta-N`), e grava `docs/assets/busca.json` com as seções de todas as páginas, os órgãos da rede de apoio (`#servico-...`) e os sinônimos de `conteudo/busca-sinonimos.json`. Nada do que a pessoa digita é salvo ou enviado. O `site.js` abre a caixa fechada quando o endereço chega com `#` (`irParaAlvo`).
+- Fale com o grupo: botão flutuante (`details#contato`, dentro do `<main>`, com `position: sticky`, para nunca cobrir a emergência nem o rodapé). Nomes, números e textos em `conteudo/contatos.json`; `<!-- CONTATOS -->` no conteúdo vira a lista de contatos (página Sobre). O botão some enquanto está em cima do quiz, do mapa ou dos contatos da página Sobre.
+- Tecla Esc (`site.js`): fecha, nesta ordem, a busca, o painel do grupo e o menu. Só com tudo fechado ela faz o "Sair rápido". Segurar a tecla não repete, e por meio segundo depois de fechar algo o Esc é ignorado.
 - Contador de visitas: `docs/assets/js/contador.js` chama o GoatCounter (`goatcounter.js`, hospedado no site), com o endereço em `CONTADOR_VISITAS` no montador. Conta só o caminho da página e, com `?origem=`, um evento `qr-<local>`.
 - Quiz: `docs/assets/js/quiz.js`. No fim, ele convida para o questionário dos pais (Google Forms).
 - Logo da Afya: `docs/assets/img/afya.png`, ligado por `MOSTRAR_LOGO_AFYA` no montador.

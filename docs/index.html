@@ -38,6 +38,7 @@
   <path d="M26 24l9-9 9 9v15H26Z"/>
   <circle class="crianca-ponto" cx="24" cy="31" r="4" fill="currentColor" stroke="none"/>
 </svg><span aria-hidden="true" translate="no">Duas Casas, <br>Um Filho</span></a>
+      <button type="button" class="lupa" id="abrir-busca" aria-label="Buscar no site" aria-haspopup="dialog" title="Buscar no site (tecla /)" hidden><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="10.500" cy="10.500" r="6.500"/><path d="m15.500 15.500 5 5"/></svg></button>
       <details class="menu">
         <summary>Menu</summary>
         <nav aria-label="Páginas do site">
@@ -110,17 +111,17 @@
     <p>Escolha a frase que mais combina com o seu momento.</p>
 
     <div class="linhas">
-      <details class="linha" style="--cor: var(--l1)">
+      <details class="linha" id="porta-1" style="--cor: var(--l1)">
         <summary><span class="num" aria-hidden="true">1</span><span class="porta-texto"><span class="frase">Estou me separando e quero proteger meu filho</span><span class="apoio">Você não precisa ter todas as respostas agora.</span></span><svg class="seta" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m9 5 7 7-7 7"/></svg></summary>
         <div class="linha-corpo">
           <p>Separar dói, e querer proteger seu filho nesse momento já é um grande passo. Você não precisa ter todas as respostas agora.</p>
-          <h3>O que saber primeiro</h3>
+          <h3 id="o-que-saber-primeiro">O que saber primeiro</h3>
           <ul class="saber">
             <li>A separação é do casal. <strong>Pai e mãe continuam pai e mãe.</strong></li>
             <li>Convivência é direito do seu filho, e pensão e visitas são coisas separadas.</li>
             <li>Tentar um acordo, com mediação ou no CEJUSC, costuma ser o caminho mais tranquilo, quando não há violência.</li>
           </ul>
-          <h3>Leia nesta ordem</h3>
+          <h3 id="leia-nesta-ordem">Leia nesta ordem</h3>
           <ol class="paradas">
               <li><a href="convivencia.html?linha=1">Convivência é direito do filho</a></li>
               <li><a href="protegendo-seu-filho.html?linha=1">Protegendo seu filho do conflito</a></li>
@@ -131,17 +132,17 @@
         </div>
       </details>
 
-      <details class="linha" style="--cor: var(--l2)">
+      <details class="linha" id="porta-2" style="--cor: var(--l2)">
         <summary><span class="num" aria-hidden="true">2</span><span class="porta-texto"><span class="frase">Sinto que meu filho está sendo afastado de mim</span><span class="apoio">Vamos ver juntos o que pode estar acontecendo e o que você pode fazer.</span></span><svg class="seta" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m9 5 7 7-7 7"/></svg></summary>
         <div class="linha-corpo">
           <p>Sentir que está perdendo espaço na vida do seu filho é uma dor enorme. Vamos ver juntos o que pode estar acontecendo e o que você pode fazer.</p>
-          <h3>O que saber primeiro</h3>
+          <h3 id="o-que-saber-primeiro-2">O que saber primeiro</h3>
           <ul class="saber">
             <li>A recusa da criança <strong>é um sinal a ser entendido, não uma prova</strong>. Pode haver várias razões.</li>
             <li><strong>Não revide nem decida sozinho(a).</strong> Responda com fatos e procure orientação, não com outra acusação.</li>
             <li>Registre de forma objetiva: mensagens completas, tentativas de contato, datas. <strong>Nunca peça que seu filho grave ou "prove" nada.</strong></li>
           </ul>
-          <h3>Leia nesta ordem</h3>
+          <h3 id="leia-nesta-ordem-2">Leia nesta ordem</h3>
           <ol class="paradas">
               <li><a href="o-que-e-alienacao-parental.html?linha=2">O que é e o que não é alienação parental</a></li>
               <li><a href="passo-a-passo.html?linha=2">Se você está vivendo isso agora</a></li>
@@ -152,17 +153,17 @@
         </div>
       </details>
 
-      <details class="linha" style="--cor: var(--l3)">
+      <details class="linha" id="porta-3" style="--cor: var(--l3)">
         <summary><span class="num" aria-hidden="true">3</span><span class="porta-texto"><span class="frase">Fui acusado(a) de alienação parental</span><span class="apoio">Respire. Uma acusação não é uma condenação.</span></span><svg class="seta" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m9 5 7 7-7 7"/></svg></summary>
         <div class="linha-corpo">
           <p>Ser acusado(a) mexe com tudo: raiva, medo, injustiça. Respire. Uma acusação não é uma condenação.</p>
-          <h3>O que saber primeiro</h3>
+          <h3 id="o-que-saber-primeiro-3">O que saber primeiro</h3>
           <ul class="saber">
             <li><strong>Alegar não é provar.</strong> A Justiça precisa de avaliação técnica, como o estudo psicossocial.</li>
             <li><strong>Não responda com outra acusação.</strong> Organize os fatos com datas e busque orientação jurídica.</li>
             <li>Vale olhar com honestidade, sem culpa, para as próprias atitudes. Na dor da separação, às vezes a gente não percebe como um comentário atinge o filho.</li>
           </ul>
-          <h3>Leia nesta ordem</h3>
+          <h3 id="leia-nesta-ordem-3">Leia nesta ordem</h3>
           <ol class="paradas">
               <li><a href="quando-a-acusacao-vira-arma.html?linha=3">Quando a acusação vira arma</a></li>
               <li><a href="o-que-e-alienacao-parental.html?linha=3">O que é e o que não é alienação parental</a></li>
@@ -173,10 +174,10 @@
         </div>
       </details>
 
-      <details class="linha" style="--cor: var(--l4)">
+      <details class="linha" id="porta-4" style="--cor: var(--l4)">
         <summary><span class="num" aria-hidden="true">4</span><span class="porta-texto"><span class="frase">Estou em situação de violência</span><span class="apoio">Você não está sozinho(a), e o que está acontecendo não é culpa sua.</span></span><svg class="seta" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m9 5 7 7-7 7"/></svg></summary>
         <div class="linha-corpo">
-          <h3>Primeiro, sua segurança</h3>
+          <h3 id="primeiro-sua-seguranca">Primeiro, sua segurança</h3>
           <ul class="saber">
             <li><strong>Em perigo agora? Ligue <a href="tel:190">190</a>.</strong></li>
             <li><a href="tel:180"><strong>180</strong></a>: Central de Atendimento à Mulher</li>
@@ -185,13 +186,13 @@
             <li>Use o botão <strong>Sair rápido</strong>, no alto da tela, a qualquer momento. Ele troca este site por uma página de previsão do tempo.</li>
           </ul>
           <p>Você não está sozinho(a), e o que está acontecendo não é culpa sua. Buscar proteção para você e para seu filho é um direito.</p>
-          <h3>O que saber primeiro</h3>
+          <h3 id="o-que-saber-primeiro-4">O que saber primeiro</h3>
           <ul class="saber">
             <li><strong>Proteger não é alienar.</strong> Denunciar violência pelos canais certos não é alienação parental.</li>
             <li><strong>A violência é apurada primeiro.</strong> Uma acusação de alienação não pode servir para calar uma denúncia.</li>
             <li><strong>Mediação não é indicada</strong> em casos de violência, e o risco de violência impede a guarda compartilhada.</li>
           </ul>
-          <h3>Leia nesta ordem</h3>
+          <h3 id="leia-nesta-ordem-4">Leia nesta ordem</h3>
           <ol class="paradas">
               <li><a href="violencia-nao-e-conflito.html?linha=4">Violência não é conflito</a></li>
               <li><a href="onde-buscar-ajuda.html?linha=4">Onde buscar ajuda em Sete Lagoas</a></li>
@@ -210,11 +211,11 @@
     <p>Em uma disputa de guarda, a acusação pode virar arma dos dois lados. Nos dois casos, quem mais perde é a criança.</p>
     <div class="sentidos">
       <div class="lado">
-        <h3>Proteger não é alienar</h3>
+        <h3 id="proteger-nao-e-alienar">Proteger não é alienar</h3>
         <p>Quem denuncia uma violência ou um abuso precisa ser ouvido com seriedade. Uma acusação de alienação parental não pode servir para calar essa denúncia.</p>
       </div>
       <div class="lado">
-        <h3>Acusar não é provar</h3>
+        <h3 id="acusar-nao-e-provar">Acusar não é provar</h3>
         <p>Uma denúncia falsa, feita para afastar o outro genitor, também prejudica a criança. A própria lei trata isso como forma de alienação parental.</p>
       </div>
     </div>
@@ -227,7 +228,7 @@
     <p>Aqui você encontra informação clara sobre separação, convivência e alienação parental, sempre com um foco: o bem-estar do seu filho.</p>
     <div class="grupos">
       <div>
-        <h3>Entender</h3>
+        <h3 id="entender">Entender</h3>
         <ul>
           <li><a href="convivencia.html"><svg class="icone-tema" viewBox="0 0 64 64" aria-hidden="true" focusable="false" fill="none" stroke="#0F4C5C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="34" cy="36" r="24" fill="#E3F0E6" stroke="none"/><rect x="12" y="16" width="40" height="36" rx="6"/><path d="M12 27h40M22 11v9M42 11v9"/><circle cx="25" cy="38" r="4" fill="#F2B705" stroke="none"/><circle cx="39" cy="38" r="4" fill="#F2B705" stroke="none"/></svg><span class="tema-texto"><strong>Convivência é direito do filho</strong><span>Guarda compartilhada, visitas e pensão</span></span></a></li>
           <li><a href="o-que-e-alienacao-parental.html"><svg class="icone-tema" viewBox="0 0 64 64" aria-hidden="true" focusable="false" fill="none" stroke="#0F4C5C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M8 14h30a6 6 0 0 1 6 6v12a6 6 0 0 1-6 6H22l-8 7v-7H8a6 6 0 0 1-6-6V20a6 6 0 0 1 6-6Z" fill="#FFF0D2"/><path d="M56 26H34a6 6 0 0 0-6 6v10a6 6 0 0 0 6 6h12l8 7v-7h2a6 6 0 0 0 6-6V32a6 6 0 0 0-6-6Z" fill="#E3F1E6"/><path d="M11 26h22M37 37h16"/></svg><span class="tema-texto"><strong>O que é e o que não é alienação parental</strong><span>O que a lei diz, em palavras simples</span></span></a></li>
@@ -236,7 +237,7 @@
         </ul>
       </div>
       <div>
-        <h3>Cuidar</h3>
+        <h3 id="cuidar">Cuidar</h3>
         <ul>
           <li><a href="protegendo-seu-filho.html"><svg class="icone-tema" viewBox="0 0 64 64" aria-hidden="true" focusable="false" fill="none" stroke="#0F4C5C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="34" r="24" fill="#FCE7A6" stroke="none"/><path d="M6 30a26 22 0 0 1 52 0Z"/><path d="M32 8v4M32 30v22a5 5 0 0 1-10 0"/><circle cx="44" cy="46" r="6" fill="#F2B705"/></svg><span class="tema-texto"><strong>Protegendo seu filho do conflito</strong><span>O que a criança sente e como ajudar</span></span></a></li>
           <li><a href="violencia-nao-e-conflito.html"><svg class="icone-tema" viewBox="0 0 64 64" aria-hidden="true" focusable="false" fill="none" stroke="#0F4C5C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="34" r="24" fill="#F6E2E8" stroke="none"/><path d="M32 6l20 8v14c0 14-9 24-20 30-11-6-20-16-20-30V14Z"/><circle cx="32" cy="32" r="6" fill="#F2B705"/></svg><span class="tema-texto"><strong>Violência não é conflito</strong><span>Quando a segurança vem antes de tudo</span></span></a></li>
@@ -245,7 +246,7 @@
         </ul>
       </div>
       <div>
-        <h3>Agir</h3>
+        <h3 id="agir">Agir</h3>
         <ul>
           <li><a href="onde-buscar-ajuda.html"><svg class="icone-tema" viewBox="0 0 64 64" aria-hidden="true" focusable="false" fill="none" stroke="#0F4C5C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="36" r="24" fill="#E1ECF6" stroke="none"/><path d="M32 60S12 40 12 26a20 20 0 0 1 40 0c0 14-20 34-20 34Z"/><path d="M23 30l9-8 9 8v9H23Z"/><circle cx="32" cy="33" r="2.5" fill="#F2B705" stroke="none"/></svg><span class="tema-texto"><strong>Onde buscar ajuda em Sete Lagoas</strong><span>Endereços e telefones</span></span></a></li>
           <li><a href="perguntas-frequentes.html"><svg class="icone-tema" viewBox="0 0 64 64" aria-hidden="true" focusable="false" fill="none" stroke="#0F4C5C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="34" r="24" fill="#FCE7A6" stroke="none"/><path d="M10 10h44a6 6 0 0 1 6 6v24a6 6 0 0 1-6 6H30l-12 10V46h-8a6 6 0 0 1-6-6V16a6 6 0 0 1 6-6Z"/><path d="M26 22a6 6 0 1 1 8 6c-2 1-2 2-2 4"/><circle cx="32" cy="38" r="1.5" fill="#0F4C5C"/></svg><span class="tema-texto"><strong>Perguntas frequentes</strong><span>Respostas curtas para dúvidas comuns</span></span></a></li>
@@ -256,6 +257,21 @@
     </div>
   </div>
 </section>
+    <aside class="contato-area" aria-label="Fale com o grupo">
+      <details class="contato" id="contato">
+        <summary><svg class="icone-zap" viewBox="0 0 32 32" aria-hidden="true" focusable="false" fill="currentColor"><path d="M16 3C8.8 3 3 8.7 3 15.8c0 2.3.6 4.500 1.800 6.400L3 29l7-1.800c1.800 1 3.900 1.500 6 1.500 7.200 0 13-5.700 13-12.800C29 8.700 23.200 3 16 3Zm0 23.400c-1.900 0-3.800-.5-5.400-1.500l-.4-.2-4.100 1.100 1.100-4-.3-.4a10.300 10.300 0 0 1-1.600-5.600C5.300 10 10.100 5.300 16 5.300s10.700 4.700 10.700 10.500S21.900 26.400 16 26.400Zm5.900-7.900c-.3-.2-1.900-.9-2.200-1-.3-.1-.5-.2-.7.2-.2.300-.8 1-1 1.200-.2.2-.4.2-.7.1-.3-.2-1.400-.5-2.600-1.600-1-.9-1.600-1.900-1.800-2.200-.2-.3 0-.5.1-.7l.5-.6c.2-.2.2-.3.3-.5.1-.2.100-.4 0-.6-.1-.2-.7-1.700-1-2.300-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.300-1.200 1.100-1.200 2.800 0 1.600 1.200 3.200 1.400 3.400.2.2 2.400 3.600 5.800 5 .8.300 1.400.5 1.900.7.8.200 1.500.200 2.100.1.600-.1 1.900-.8 2.200-1.500.300-.7.300-1.400.200-1.500-.1-.2-.3-.2-.6-.4Z"/></svg><span class="contato-rotulo">Fale com o grupo</span></summary>
+        <div class="contato-painel">
+          <h2>Converse com a equipe do projeto</h2>
+          <p>Somos estudantes de Direito da Afya Sete Lagoas. Podemos ajudar você a entender as informações do site e indicar onde buscar atendimento.</p>
+          <ul class="contato-lista">
+        <li><a class="botao botao--zap" href="https://wa.me/5531971554636?text=Ol%C3%A1!%20Vim%20pelo%20site%20Duas%20Casas%2C%20Um%20Filho%20e%20gostaria%20de%20uma%20orienta%C3%A7%C3%A3o." target="_blank" rel="noopener noreferrer"><svg class="icone-zap" viewBox="0 0 32 32" aria-hidden="true" focusable="false" fill="currentColor"><path d="M16 3C8.8 3 3 8.7 3 15.8c0 2.3.6 4.500 1.800 6.400L3 29l7-1.800c1.800 1 3.900 1.500 6 1.500 7.200 0 13-5.700 13-12.800C29 8.700 23.200 3 16 3Zm0 23.400c-1.900 0-3.800-.5-5.400-1.500l-.4-.2-4.100 1.100 1.100-4-.3-.4a10.300 10.300 0 0 1-1.600-5.600C5.300 10 10.100 5.300 16 5.300s10.700 4.700 10.700 10.500S21.900 26.400 16 26.400Zm5.900-7.900c-.3-.2-1.900-.9-2.200-1-.3-.1-.5-.2-.7.2-.2.300-.8 1-1 1.200-.2.2-.4.2-.7.1-.3-.2-1.400-.5-2.600-1.600-1-.9-1.600-1.900-1.800-2.200-.2-.3 0-.5.1-.7l.5-.6c.2-.2.2-.3.3-.5.1-.2.100-.4 0-.6-.1-.2-.7-1.700-1-2.300-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.300-1.200 1.100-1.200 2.800 0 1.600 1.200 3.200 1.400 3.400.2.2 2.400 3.600 5.800 5 .8.300 1.400.5 1.900.7.8.200 1.500.200 2.100.1.600-.1 1.900-.8 2.200-1.500.300-.7.300-1.400.200-1.500-.1-.2-.3-.2-.6-.4Z"/></svg><span>Pedro Henrique Batista Marinho<span class="so-leitor"> (abre o WhatsApp)</span></span></a></li>
+        <li><a class="botao botao--zap" href="https://wa.me/5531995432998?text=Ol%C3%A1!%20Vim%20pelo%20site%20Duas%20Casas%2C%20Um%20Filho%20e%20gostaria%20de%20uma%20orienta%C3%A7%C3%A3o." target="_blank" rel="noopener noreferrer"><svg class="icone-zap" viewBox="0 0 32 32" aria-hidden="true" focusable="false" fill="currentColor"><path d="M16 3C8.8 3 3 8.7 3 15.8c0 2.3.6 4.500 1.800 6.400L3 29l7-1.800c1.800 1 3.900 1.500 6 1.500 7.200 0 13-5.700 13-12.800C29 8.700 23.200 3 16 3Zm0 23.400c-1.900 0-3.800-.5-5.400-1.500l-.4-.2-4.100 1.100 1.100-4-.3-.4a10.300 10.300 0 0 1-1.600-5.600C5.300 10 10.100 5.300 16 5.300s10.700 4.700 10.700 10.500S21.900 26.400 16 26.400Zm5.900-7.900c-.3-.2-1.900-.9-2.200-1-.3-.1-.5-.2-.7.2-.2.300-.8 1-1 1.200-.2.2-.4.2-.7.1-.3-.2-1.400-.5-2.600-1.600-1-.9-1.600-1.900-1.800-2.200-.2-.3 0-.5.1-.7l.5-.6c.2-.2.2-.3.3-.5.1-.2.100-.4 0-.6-.1-.2-.7-1.700-1-2.300-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.300-1.200 1.100-1.200 2.800 0 1.600 1.200 3.200 1.400 3.400.2.2 2.400 3.600 5.800 5 .8.300 1.400.5 1.900.7.8.200 1.500.200 2.100.1.600-.1 1.900-.8 2.200-1.500.300-.7.300-1.400.200-1.500-.1-.2-.3-.2-.6-.4Z"/></svg><span>Thaís Carvalho e Silva Lara Santos<span class="so-leitor"> (abre o WhatsApp)</span></span></a></li>
+      </ul>
+          <p class="contato-aviso">Não é atendimento de emergência nem substitui advogado(a) ou a Defensoria. Em perigo, ligue <a href="tel:190">190</a>. Respondemos assim que possível.</p>
+          <button type="button" class="contato-fechar" aria-label="Fechar"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+        </div>
+      </details>
+    </aside>
   </main>
 
   <section class="emergencia" aria-labelledby="titulo-emergencia">
@@ -281,8 +297,28 @@
     </div>
   </footer>
 
+  <dialog class="busca" id="busca" aria-labelledby="busca-rotulo">
+    <div class="busca-topo">
+      <div class="busca-cabeca">
+        <label id="busca-rotulo" for="campo-busca">Buscar no site</label>
+        <a class="sair-rapido" href="https://www.climatempo.com.br/" rel="noopener noreferrer">Sair rápido</a>
+      </div>
+      <div class="busca-campo">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="10.500" cy="10.500" r="6.500"/><path d="m15.500 15.500 5 5"/></svg>
+        <input type="search" id="campo-busca" name="busca" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="search" placeholder="Por exemplo: pensão, guarda, visita…">
+        <button type="button" class="busca-fechar">Fechar</button>
+      </div>
+    </div>
+    <div class="busca-corpo">
+      <p class="busca-status" id="busca-status" role="status" aria-live="polite"></p>
+      <div id="busca-resultados"></div>
+      <p class="busca-nota">O que você digita aqui não é salvo nem enviado para ninguém.</p>
+    </div>
+  </dialog>
+
   <script type="application/json" id="dados-linhas">[{"n":1,"frase":"Estou me separando e quero proteger meu filho","paradas":[["convivencia","Convivência é direito do filho"],["protegendo-seu-filho","Protegendo seu filho do conflito"],["mediacao-e-cejusc","Mediação e CEJUSC"],["o-que-e-alienacao-parental","O que é e o que não é alienação parental"],["onde-buscar-ajuda","Onde buscar ajuda em Sete Lagoas"]]},{"n":2,"frase":"Sinto que meu filho está sendo afastado de mim","paradas":[["o-que-e-alienacao-parental","O que é e o que não é alienação parental"],["passo-a-passo","Se você está vivendo isso agora"],["quando-a-acusacao-vira-arma","Quando a acusação vira arma"],["protegendo-seu-filho","Protegendo seu filho do conflito"],["onde-buscar-ajuda","Onde buscar ajuda em Sete Lagoas"]]},{"n":3,"frase":"Fui acusado(a) de alienação parental","paradas":[["quando-a-acusacao-vira-arma","Quando a acusação vira arma"],["o-que-e-alienacao-parental","O que é e o que não é alienação parental"],["protegendo-seu-filho","Protegendo seu filho do conflito"],["perguntas-frequentes","Perguntas frequentes"],["onde-buscar-ajuda","Onde buscar ajuda em Sete Lagoas"]]},{"n":4,"frase":"Estou em situação de violência","paradas":[["violencia-nao-e-conflito","Violência não é conflito"],["onde-buscar-ajuda","Onde buscar ajuda em Sete Lagoas"],["quando-a-acusacao-vira-arma","Quando a acusação vira arma"],["perguntas-frequentes","Perguntas frequentes"]]}]</script>
   <script src="assets/js/site.js" defer></script>
+  <script src="assets/js/busca.js" defer></script>
   <script src="assets/js/contador.js" data-endpoint="https://duascasasumfilho.goatcounter.com/count" defer></script>
   
 </body>

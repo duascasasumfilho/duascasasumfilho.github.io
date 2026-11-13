@@ -11,6 +11,8 @@ O site informa pais, mães e responsáveis de Sete Lagoas, com acolhimento, sobr
 ```
 duas-casas-um-filho/
 ├── conteudo/        ← OS TEXTOS DE CADA PÁGINA (é aqui que o grupo edita)
+│   ├── contatos.json          ← nomes e números do botão "Fale com o grupo"
+│   └── busca-sinonimos.json   ← sinônimos que a busca entende
 ├── docs/            ← o site pronto, que vai para a internet (não editar à mão)
 │   ├── data/rede-apoio.js   ← endereços da página "Onde buscar ajuda"
 │   └── assets/              ← cores (css), funções (js) e imagens
@@ -105,6 +107,27 @@ O endereço do site será **https://duascasasumfilho.github.io/**.
 3. Envie este projeto para esse repositório (o Claude Code pode fazer isso, com a sua autorização).
 4. No repositório, abra **Settings** → **Pages**. Em **Branch**, escolha `main` e a pasta `/docs`. Salve.
 5. Em alguns minutos o site abre no endereço acima.
+
+---
+
+## Busca do site (lupa)
+
+A lupa do cabeçalho abre a busca. Ela funciona só no aparelho da pessoa: nada do que é digitado é salvo ou enviado.
+
+- O montador gera sozinho o índice da busca (`docs/assets/busca.json`) a partir dos textos da pasta `conteudo/` e da rede de apoio. Depois de mudar um texto, basta montar o site.
+- **Sinônimos:** ficam em `conteudo/busca-sinonimos.json`. Cada linha tem `"quando"` (o que a pessoa digita) e `"buscar"` (o que o site procura). Exemplo: quem digita "visita" também encontra "convivência". Para acrescentar um sinônimo, copie uma linha, troque as palavras e monte o site.
+- A busca ignora acentos e maiúsculas e aceita pequenos erros de digitação.
+- No computador, a tecla `/` abre a busca. A tecla `Esc` fecha a busca; ela só aciona o "Sair rápido" quando nada está aberto.
+
+---
+
+## Botão "Fale com o grupo" (WhatsApp)
+
+O botão verde no canto da tela e a seção "Fale com a equipe", na página "Sobre o projeto", usam o mesmo arquivo: `conteudo/contatos.json`.
+
+- Para trocar um nome ou um número, mude só esse arquivo e monte o site. O número vai com o código do país e o DDD, sem espaços: `5531999999999`.
+- Para tirar ou acrescentar uma pessoa, apague ou copie uma linha da lista `"pessoas"`.
+- Os textos do painel (título, aviso e a mensagem que já vai escrita no WhatsApp) também ficam nesse arquivo.
 
 ---
 

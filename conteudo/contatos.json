@@ -1,0 +1,11 @@
+{
+  "botao": "Fale com o grupo",
+  "titulo": "Converse com a equipe do projeto",
+  "texto": "Somos estudantes de Direito da Afya Sete Lagoas. Podemos ajudar você a entender as informações do site e indicar onde buscar atendimento.",
+  "mensagem": "Olá! Vim pelo site Duas Casas, Um Filho e gostaria de uma orientação.",
+  "aviso": "Não é atendimento de emergência nem substitui advogado(a) ou a Defensoria. Em perigo, ligue 190. Respondemos assim que possível.",
+  "pessoas": [
+    { "nome": "Pedro Henrique Batista Marinho", "whatsapp": "5531971554636" },
+    { "nome": "Thaís Carvalho e Silva Lara Santos", "whatsapp": "5531995432998" }
+  ]
+}
