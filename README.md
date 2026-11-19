@@ -131,6 +131,25 @@ O botão verde no canto da tela e a seção "Fale com a equipe", na página "Sob
 
 ---
 
+## Vídeos (página "Sobre o projeto")
+
+Os vídeos ficam em `conteudo/videos.json`. Para publicar o vídeo do YouTube:
+
+1. Cole o link do vídeo em `"youtube"` (por exemplo `https://youtu.be/abc123XYZ00`) e, se quiser, a data em `"data"` (`2026-11-20`).
+2. Monte o site. A seção "Vídeos" aparece sozinha na página "Sobre o projeto".
+
+Enquanto `"youtube"` estiver vazio, a seção não aparece. O vídeo só carrega quando a pessoa toca em "Assistir", pelo endereço `youtube-nocookie.com`.
+
+---
+
+## Google (títulos, descrições e dados estruturados)
+
+- No cabeçalho de cada arquivo de `conteudo/`, `titulo-google` é o título que aparece na aba e no Google, e `descricao` é o texto que aparece embaixo dele na busca. O título da página (h1) não muda.
+- O montador põe dados estruturados (schema.org) na página inicial (o site e o projeto), nas perguntas frequentes (perguntas e respostas, lidas da própria página) e, quando houver vídeo, na página "Sobre o projeto".
+- O site já está verificado no Google Search Console (código em `CODIGO_GOOGLE`, no montador). Não apague esse código.
+
+---
+
 ## Contador de visitas (GoatCounter)
 
 O site conta as visitas pelo GoatCounter, que não usa cookies e não identifica ninguém. O endereço do contador fica em `CONTADOR_VISITAS`, no começo de `ferramentas/montar-site.mjs` (deixe `""` para desligar).

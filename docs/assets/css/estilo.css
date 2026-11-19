@@ -1048,3 +1048,29 @@ html:has(.busca[open]) { overflow: hidden; }
 @media print {
   .lupa, .busca, .contato-area { display: none !important; }
 }
+
+/* ---------- Vídeos (página Sobre o projeto) ---------- */
+.video { margin: var(--e-4) 0 var(--e-3); }
+.video-quadro {
+  position: relative; aspect-ratio: 16 / 9; overflow: hidden;
+  border-radius: var(--raio-cartao);
+  background: var(--campo);
+}
+.video-quadro iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.video-play {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  display: grid; place-content: center; justify-items: center; gap: var(--e-3);
+  border: 0; cursor: pointer;
+  background: var(--campo); color: #fff;
+  font: 700 1.05rem/1.2 var(--fonte-texto);
+}
+.video-play svg {
+  width: 4rem; height: 4rem; padding: 1.1rem 0.9rem 1.1rem 1.3rem;
+  border-radius: 50%; background: var(--sol); color: var(--campo);
+  transition: transform 160ms var(--suavizar);
+}
+.video-play:active svg { transform: scale(0.95); }
+.video-play:focus-visible { outline-color: var(--sol); outline-offset: -6px; }
+.video figcaption { margin-top: var(--e-2); font-size: var(--t-pequeno); line-height: 1.5; }
+@media (hover: hover) and (pointer: fine) { .video-play:hover svg { transform: scale(1.05); } }
+@media print { .video { display: none; } }

@@ -297,4 +297,28 @@
   window.addEventListener("hashchange", irParaAlvo);
   window.irParaAlvo = irParaAlvo;   // a página "Onde buscar ajuda" chama depois de montar a lista
   irParaAlvo();
+
+  // ---------- Vídeos ----------
+  // O vídeo do YouTube só é carregado quando a pessoa toca em "Assistir".
+  // Usa o endereço youtube-nocookie.com, que não grava cookies antes do play.
+  var quadros = document.querySelectorAll(".video-quadro[data-youtube]");
+  for (var v = 0; v < quadros.length; v++) {
+    (function (quadro) {
+      var tocar = quadro.querySelector(".video-play");
+      if (!tocar) return;
+      tocar.addEventListener("click", function () {
+        var id = quadro.getAttribute("data-youtube");
+        if (!/^[A-Za-z0-9_-]{11}$/.test(id)) return;
+        var janela = document.createElement("iframe");
+        janela.src = "https://www.youtube-nocookie.com/embed/" + id + "?autoplay=1&rel=0";
+        janela.title = quadro.getAttribute("data-titulo") || "Vídeo";
+        janela.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
+        janela.allowFullscreen = true;
+        janela.referrerPolicy = "strict-origin-when-cross-origin";
+        quadro.textContent = "";
+        quadro.appendChild(janela);
+        janela.focus();
+      });
+    })(quadros[v]);
+  }
 })();

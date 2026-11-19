@@ -81,7 +81,7 @@ const SEGURANCA = [
   `connect-src 'self' ${ORIGEM_CONTADOR}`.trim(),
   "font-src 'self'",
   "object-src 'none'",
-  "frame-src 'none'",
+  "frame-src https://www.youtube-nocookie.com",
   "base-uri 'self'",
   "form-action 'none'",
   "upgrade-insecure-requests"
@@ -273,6 +273,72 @@ function secoesDaRedeDeApoio() {
   }));
 }
 
+// ---------- VÍDEOS ----------
+// Os vídeos ficam em conteudo/videos.json. Enquanto não houver link do
+// YouTube, a seção não aparece. O vídeo só carrega quando a pessoa toca
+// em "Assistir": antes disso, a página não faz nenhum pedido ao YouTube.
+const VIDEOS = JSON.parse(readFileSync(join(PASTA_CONTEUDO, "videos.json"), "utf8")).videos || [];
+const ICONE_PLAY = `<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="currentColor"><path d="M8 5.5v13a1 1 0 0 0 1.5.9l10.4-6.5a1 1 0 0 0 0-1.8L9.5 4.6A1 1 0 0 0 8 5.5Z"/></svg>`;
+function idDoYoutube(link) {
+  const m = String(link || "").match(/(?:youtu\.be\/|youtube(?:-nocookie)?\.com\/(?:watch\?(?:.*&)?v=|embed\/|shorts\/|live\/))([A-Za-z0-9_-]{11})/);
+  return m ? m[1] : (/^[A-Za-z0-9_-]{11}$/.test(String(link || "").trim()) ? String(link).trim() : "");
+}
+const VIDEOS_PRONTOS = VIDEOS.map((v) => ({ ...v, id: idDoYoutube(v.youtube) })).filter((v) => v.id);
+function secaoVideos() {
+  if (!VIDEOS_PRONTOS.length) return "";
+  const itens = VIDEOS_PRONTOS.map((v) => `<figure class="video">
+  <div class="video-quadro" data-youtube="${v.id}" data-titulo="${escapar(v.titulo)}">
+    <button type="button" class="video-play">${ICONE_PLAY}<span>Assistir ao vídeo<span class="so-leitor">: ${escapar(v.titulo)}</span></span></button>
+  </div>
+  <figcaption><strong>${escapar(v.titulo)}</strong>${v.descricao ? ` ${escapar(v.descricao)}` : ""}</figcaption>
+</figure>`).join("\n");
+  return `<h2>Vídeos</h2>
+${itens}
+<p><small>O vídeo vem do YouTube e só carrega quando você toca em "Assistir". Se preferir, <a href="https://www.youtube.com/watch?v=${VIDEOS_PRONTOS[0].id}" rel="noopener noreferrer" target="_blank">abra no YouTube</a>.</small></p>`;
+}
+
+// ---------- DADOS ESTRUTURADOS (schema.org) ----------
+// Ajudam o Google a entender o site. Ficam no <head>, em JSON-LD.
+// Página inicial: o site e o projeto. Perguntas frequentes: as perguntas
+// e respostas. Sobre o projeto: o vídeo, quando houver.
+function jsonLd(objeto) {
+  return `\n  <script type="application/ld+json">${JSON.stringify(objeto).replace(/</g, "\\u003c")}</script>`;
+}
+function dadosEstruturados(slug, conteudo, descricao) {
+  const projeto = {
+    "@type": "Organization",
+    "@id": `${ENDERECO_SITE}#projeto`,
+    name: NOME_SITE,
+    url: ENDERECO_SITE,
+    logo: `${ENDERECO_SITE}assets/img/icone-180.png`,
+    description: "Projeto de Extensão do curso de Direito da Afya Faculdade Sete Lagoas que orienta pais, mães e responsáveis sobre convivência familiar, guarda e alienação parental.",
+    areaServed: { "@type": "City", name: "Sete Lagoas", containedInPlace: { "@type": "State", name: "Minas Gerais" } },
+    parentOrganization: { "@type": "CollegeOrUniversity", name: "Afya Faculdade Sete Lagoas" },
+    knowsAbout: ["alienação parental", "guarda compartilhada", "convivência familiar", "pensão e visitas", "mediação familiar"],
+  };
+  if (slug === "index") {
+    return jsonLd({ "@context": "https://schema.org", "@graph": [
+      { "@type": "WebSite", "@id": `${ENDERECO_SITE}#site`, name: NOME_SITE, url: ENDERECO_SITE, inLanguage: "pt-BR", description: descricao, publisher: { "@id": `${ENDERECO_SITE}#projeto` } },
+      projeto,
+    ] });
+  }
+  if (slug === "perguntas-frequentes") {
+    const perguntas = [...conteudo.matchAll(/<details class="pergunta"[^>]*>\s*<summary>([\s\S]*?)<\/summary>\s*<div>([\s\S]*?)<\/div>\s*<\/details>/g)]
+      .map((m) => ({ "@type": "Question", name: soTexto(m[1]), acceptedAnswer: { "@type": "Answer", text: soTexto(m[2]) } }));
+    if (!perguntas.length) return "";
+    return jsonLd({ "@context": "https://schema.org", "@type": "FAQPage", inLanguage: "pt-BR", mainEntity: perguntas });
+  }
+  if (slug === "sobre-o-projeto" && VIDEOS_PRONTOS.length) {
+    const v = VIDEOS_PRONTOS[0];
+    const video = { "@context": "https://schema.org", "@type": "VideoObject", name: v.titulo, description: v.descricao || descricao,
+      thumbnailUrl: `https://i.ytimg.com/vi/${v.id}/hqdefault.jpg`, embedUrl: `https://www.youtube-nocookie.com/embed/${v.id}`,
+      contentUrl: `https://www.youtube.com/watch?v=${v.id}`, publisher: { "@id": `${ENDERECO_SITE}#projeto` } };
+    if (v.data) video.uploadDate = v.data;
+    return jsonLd(video);
+  }
+  return "";
+}
+
 function lerConteudo(arquivo) {
   const bruto = readFileSync(join(PASTA_CONTEUDO, arquivo), "utf8");
   // Cabeçalho no começo do arquivo:
@@ -315,6 +381,7 @@ function trocarMarcacoes(corpo) {
     })
     .replace(/<!--\s*SETA\s*-->/g, SETA)
     .replace(/<!--\s*CONTATOS\s*-->/g, secaoContato)
+    .replace(/<!--\s*VIDEOS\s*-->/g, secaoVideos)
     .replace(/<!--\s*ILUSTRA\s+([a-z]+)\s*-->/g, (_, nome) => desenho(nome, "icone-tema"))
     .replace(/<div class="pares" role="list">/g, `<div class="pares" role="list">
   <div class="pares-legenda" aria-hidden="true"><div class="lp">${ICONE_PODE}Pode ser</div><div class="ln">${ICONE_NAOE}Não é, por si só</div></div>`)
@@ -344,7 +411,9 @@ function montarMenu(slug) {
 function montarPagina(slug, rotuloMenu, { dados, corpo }) {
   const arquivoSaida = `${slug}.html`;
   const endereco = slug === "index" ? ENDERECO_SITE : `${ENDERECO_SITE}${arquivoSaida}`;
-  const titulo = slug === "index" ? `${NOME_SITE}: convivência familiar e alienação parental` : `${dados.titulo || rotuloMenu} | ${NOME_SITE}`;
+  // "titulo-google" (no cabeçalho do conteúdo) é o título da aba e do Google.
+  // Sem ele, vale "Título da página | Duas Casas, Um Filho".
+  const titulo = dados["titulo-google"] || (slug === "index" ? `${NOME_SITE}: convivência familiar e alienação parental` : `${dados.titulo || rotuloMenu} | ${NOME_SITE}`);
   const descricao = dados.descricao || "Informação acolhedora para pais e mães em separação em Sete Lagoas.";
   const inicio = dados.largura === "larga";
   const extrasHead = dados.head ? dados.head : "";
@@ -397,7 +466,7 @@ ${conteudo}
   <meta name="description" content="${escapar(descricao)}">
   <meta name="theme-color" content="#FDF6EE">${slug === "index" ? VERIFICACAO_GOOGLE : ""}
   <meta name="referrer" content="no-referrer">
-  <meta http-equiv="Content-Security-Policy" content="${SEGURANCA}">
+  <meta http-equiv="Content-Security-Policy" content="${SEGURANCA}">${dadosEstruturados(slug, conteudo, descricao)}
   ${slug === "404" ? '<base href="/">\n  <meta name="robots" content="noindex">' : `<link rel="canonical" href="${endereco}">`}
   <meta property="og:type" content="website">
   <meta property="og:locale" content="pt_BR">
